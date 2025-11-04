@@ -1,0 +1,38 @@
+// import type { Metadata } from "next";
+// import "./globals.css";
+import { Poppins, Inter } from "next/font/google";
+import { Providers } from "@/context/Providers";
+import './../styles/globals.css';
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"], // adjust as needed
+  variable: "--font-poppins",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-inter",
+});
+
+// export const metadata: Metadata = {
+//   title: "OmniShop",
+//   description: "Modern e-commerce built with Next.js",
+// };
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
+      <body className="font-poppins bg-neutral-1 text-neutral-7 min-h-screen antialiased">
+        <Providers>
+          {children}
+        </Providers>
+      </body>
+    </html >
+  );
+}
