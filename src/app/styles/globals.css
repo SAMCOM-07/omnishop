@@ -72,6 +72,9 @@
 .arrow-button{
   @apply p-2 bg-neutral-1 rounded-full z-40 absolute hover:scale-110 active:scale-100 text-neutral-4 transition-all duration-300
 }
+.hover-scale{
+  @apply hover:scale-105 active:scale-90 focus:scale-105 transition-all duration-300
+}
 }
 
 /* @media (prefers-color-scheme: dark) {
