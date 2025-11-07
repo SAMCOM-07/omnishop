@@ -4,6 +4,7 @@ import Button from './Button'
 import { useProducts } from '@/context/ProductContext'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
+import Link from 'next/link'
 
 const NewArrivals = () => {
 
@@ -23,25 +24,24 @@ const NewArrivals = () => {
               <div className='p-3 bg-neutral-2 space-y-2'>
                 <div className='flex item-start justify-between'>
                   <h4 className='px-2.5 py-0.5 rounded-sm bg-neutral-1 font-bold h-fit'>NEW</h4>
-                  <Heart size={36} className='text-neutral-4 bg-neutral-1 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500'/>
+                  <Heart size={36} className='text-neutral-4 bg-neutral-1 p-2 rounded-full shadow-lg lg:opacity-0 group-hover:opacity-100 transition-all duration-500'/>
                 </div>
                 {product.discount !== 0 ? <h5 className='bg-green rounded-small text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2.5'>-{product.discount}%</h5> : <h5 className='h-5'></h5>}
-                <div className='overflow-hidden w-[300px] h-[300px]'>
+                <Link href={`/shop/${product.id}`} className='overflow-hidden block w-[300px] h-[300px]'>
                   <Image width={400} height={400} priority src={product.images[0].url.replace(
                     "/upload/",
                     "/upload/f_auto,q_auto,w_600/"
-                  )} alt={product.name} className='h-full w-full object-contain object-center' />
-                </div>
-                <button className='bg-neutral-7 text-neutral-1 p-3 rounded-md w-full text-center font-inter opacity-0 group-hover:opacity-100 transition-all duration-700'>Add to Cart</button>
+                  )} alt={product.name} className='h-full w-full object-contain object-center hover:scale-105 active:scale-105 transition-all duration-500' />
+                </Link>
+                <button className='bg-neutral-7 text-neutral-1 p-3 rounded-md w-full text-center font-inter lg:opacity-0 group-hover:opacity-100  transition-all duration-700'>Add to Cart</button>
               </div>
               <div className='space-y-0.5 p-3'>
-                <h4 className='font-bold line-clamp-1'>{product.name}</h4>
-                {/* <p className='line-clamp-2 leading-4 text-sm text-neutral-4'>{product.description}</p> */}
+                <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
                 {product.discountedAmount ? <span className='text-sm font-bold'>${product.discountedAmount}</span> : ''}
                 <span className='text-sm ml-4 line-through text-neutral-4'>${product.price}</span>
               </div>
             </div>
-          ) : <p className='items-center text-2xl grid-cols-10'>No Product Found !!!</p>
+      ) : <p className='items-center text-2xl grid-cols-10'>No Product Found !!!</p>
         }
       </div>
     </section>

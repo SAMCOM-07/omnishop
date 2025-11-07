@@ -11,6 +11,7 @@ import Button from "./Button"
 import cloth1 from "../../public/images/clothes1.jpg"
 import cloth2 from "../../public/images/clothes2.jpg"
 import cloth3 from "../../public/images/clothes3.jpg"
+import chair from "../../public/images/chair.png"
 
 
 
@@ -62,37 +63,38 @@ const Main = () => {
       </section>
 
       {/* showcase section */}
-      <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 [direction:ltr] '>
+      <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 [direction:ltr]'>
         {/* 1 */}
-        <div className='bg-neutral-2 p-6 overflow-hidden space-y-4 row-span-2'>
-          <h2>New Clothes</h2>
+        <div className='bg-neutral-2 p-6 overflow-hidden space-y-4 w-full'>
+          <h2>Furniture</h2>
           <Button text='Show More' href='/shop' />
           <div className='overflow-hidden w-full'>
-            <Image priority src={cloth1} alt='cloth' className='h-full object-cover object-center' />
+            <Image priority src={chair} alt='chair (sofa)' className='h-full object-cover object-center' />
           </div>
         </div>
         {/* 2 & 3 container */}
-        <div className='space-y-4'>
+        <div className='flex flex-col gap-4'>
           {/* 2 */}
-          <div className='bg-neutral-2 p-6 overflow-hidden grid grid-cols-2 items-end'>
+          <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2'>
             <div className='space-y-2'>
               <h2>Imported</h2>
               <Button text='Show More' href='/shop' />
             </div>
-            <div className='overflow-hidden'>
-              <Image priority src={cloth2} alt='cloth' className='h-full object-cover object-center' />
+            <div className='overflow-hidden w-[60%] h-full'>
+              <Image priority src={cloth2} alt='cloth' className='h-full w-full object-cover object-center' />
             </div>
           </div>
-          {/* 3 */}
-          <div className='bg-neutral-2 p-6 overflow-hidden grid grid-cols-2 items-end [direction:rtl] lg:[direction:ltr]'>
+          {/* 2 */}
+          <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2 [direction:rtl] lg:[direction:ltr]'>
             <div className='space-y-2'>
-              <h2>Refurblished</h2>
+              <h2>Newly Made</h2>
               <Button text='Show More' href='/shop' />
             </div>
-            <div className='overflow-hidden'>
-              <Image priority src={cloth3} alt='cloth' className='h-full object-cover object-center' />
+            <div className='overflow-hidden w-[60%] h-full'>
+              <Image priority src={cloth3} alt='cloth' className='h-full w-full object-cover object-center' />
             </div>
           </div>
+          
         </div>
       </section>
     </main>

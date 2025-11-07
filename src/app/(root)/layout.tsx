@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// import "./globals.css";
 import { Poppins, Inter } from "next/font/google";
 import { Providers } from "@/context/Providers";
 import Navbar from "@/components/Navbar";
