@@ -14,7 +14,7 @@ const ProductCard = (product: ProductType) => {
             className='text-neutral-4 bg-neutral-1 p-1.5 rounded-full shadow-lg lg:opacity-0 group-hover:opacity-100 transition-all duration-500'
           ><Heart size={20} className='hover-scale' /></button>
         </div>
-        <Link href={`/shop/${product.id}`} className='aspect-square overflow-hidden block rounded-lg w-full'>
+        <Link href={`/shop/details/${product.id}`} className='aspect-square overflow-hidden block rounded-lg w-full'>
           <Image width={400} height={400} priority src={product.images[0].url.replace(
             "/upload/",
             "/upload/f_auto,q_auto,w_600/"

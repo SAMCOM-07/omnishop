@@ -9,10 +9,13 @@ const ProductContext = createContext<ProductContextType | null>(null);
 
 export function ProductProvider({ children }: { children: ReactNode }) {
 
-  const [products, setProducts] = useState<ProductType[]>([])
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true)
       try {
         const response = await getDocs(collection(db, 'products'));
         const data: ProductType[] = response.docs.map(doc => ({
@@ -25,20 +28,23 @@ export function ProductProvider({ children }: { children: ReactNode }) {
         );
 
         setProducts(sortedProducts)
+        setLoading(false)
       } catch (error: any) {
         console.log(error.message)
-
+        setLoading(false);
       } finally {
-
+        setLoading(false);
       }
     }
     fetchProducts();
-  }, [products])
+  }, [products.length]);
 
   return (
     <ProductContext.Provider
       value={{
         products,
+        loading,
+        error
       }}
     >
       {children}

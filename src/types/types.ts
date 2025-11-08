@@ -33,6 +33,8 @@ export type ProductType = {
 
 export type ProductContextType = {
     products: ProductType[];
+    loading: boolean;
+    error: string;
 };
 
 export function getCreatedAtSeconds(createdAt?: Date | string | Timestamp): number {

@@ -5,10 +5,11 @@ import { useProducts } from '@/context/ProductContext'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
 import Link from 'next/link'
+import ProductSkeleton from './ProductSkeleton'
 
 const NewArrivals = () => {
 
-  const { products } = useProducts();
+  const { products, loading } = useProducts();
 
   return (
     <section className='overflow-x-hidden'>
@@ -17,8 +18,12 @@ const NewArrivals = () => {
         <Button text='All Products' href='/shop' />
       </div>
       <div className='mt-12 flex items-start overflow-x-auto gap-6 p-2'>
-        {
-          products && products.length > 0 ? products.slice(0, 10).map((product, index) =>
+        {loading ? <div className='flex gap-4 items-center overflow-x-auto w-full'>
+          {Array.from({ length: 10 }).map((_, index) =>
+            <div className='w-full min-w-[250px] max-w-[250px]'><ProductSkeleton key={index} /></div>
+          )}
+        </div> :
+          products && products.length > 0 && products.slice(0, 10).map((product, index) =>
             <div key={index} className='group overflow-clip'>
               <div className='p-3 bg-neutral-2 space-y-3'>
                 <div className='flex item-start justify-between'>
@@ -42,7 +47,7 @@ const NewArrivals = () => {
                 <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
               </div>
             </div>
-          ) : <p className='items-center text-2xl grid-cols-10'>No Product Found !!!</p>
+          )
         }
       </div>
     </section>
