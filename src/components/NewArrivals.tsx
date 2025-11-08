@@ -14,7 +14,7 @@ const NewArrivals = () => {
     <section className='overflow-x-hidden'>
       <div className='flex items-end justify-between'>
         <h1 className='inline-block leading-8'>New <span className='block'>Arrivals</span></h1>
-        <Button text='More Products' href='/shop' />
+        <Button text='All Products' href='/shop' />
       </div>
       <div className='mt-12 flex items-start overflow-x-auto gap-6 p-2'>
         {
@@ -38,8 +38,8 @@ const NewArrivals = () => {
               </div>
               <div className='space-y-0.5 p-3'>
                 <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
-                {product.discountedAmount ? <span className='text-sm font-bold'>${product.discountedAmount}</span> : ''}
-                <span className='text-sm ml-4 line-through text-neutral-4'>${product.price}</span>
+                <span className='text-sm font-bold'>{product.discount ? product.discountedAmount : product.price}</span>
+                <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
               </div>
             </div>
           ) : <p className='items-center text-2xl grid-cols-10'>No Product Found !!!</p>
