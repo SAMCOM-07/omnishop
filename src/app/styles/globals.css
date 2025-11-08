@@ -39,42 +39,52 @@
   --color-border: var(--border);
 }
 
-@layer utilities{
-  h1{
+@layer utilities {
+  h1 {
     @apply font-bold font-poppins text-2xl lg:text-4xl
   }
-  h2{
+
+  h2 {
     @apply font-poppins font-semibold tracking-wider sm:text-2xl xl:text-3xl
   }
-  h3{
-    @apply font-poppins text-lg
+
+  h3 {
+    @apply font-semibold font-poppins sm:text-lg
   }
-  h4{
+
+  h4 {
     @apply font-poppins text-base
   }
-  h5{
+
+  h5 {
     @apply font-poppins text-sm
   }
-  h6{
+
+  h6 {
     @apply font-poppins text-xs
   }
-  p{
+
+  p {
     @apply font-inter text-base
   }
-  button{
-    @apply cursor-pointer }
+
+  button {
+    @apply cursor-pointer
+  }
 }
 
-@layer components{
-.container{
-  @apply container mx-auto  px-6
-}
-.arrow-button{
-  @apply p-2 bg-neutral-1 rounded-full z-40 absolute hover:scale-110 active:scale-100 text-neutral-4 transition-all duration-300
-}
-.hover-scale{
-  @apply hover:scale-105 active:scale-90 focus:scale-105 transition-all duration-300
-}
+@layer components {
+  .container {
+    @apply container mx-auto px-6
+  }
+
+  .arrow-button {
+    @apply p-2 bg-neutral-1 rounded-full z-40 absolute hover:scale-110 active:scale-100 text-neutral-4 transition-all duration-300
+  }
+
+  .hover-scale {
+    @apply hover:scale-105 active:scale-90 transition-all duration-300
+  }
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -83,4 +93,3 @@
     --foreground: #ededed;
   }
 } */
-
