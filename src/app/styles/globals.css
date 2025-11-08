@@ -65,7 +65,7 @@
   }
 
   p {
-    @apply font-inter text-base
+    @apply font-inter text-sm md:text-base lg:text-lg
   }
 
   button {

@@ -17,10 +17,10 @@ const NewArrivals = () => {
         <h1 className='inline-block leading-8'>New <span className='block'>Arrivals</span></h1>
         <Button text='All Products' href='/shop' />
       </div>
-      <div className='mt-12 flex items-start overflow-x-auto gap-6 p-2'>
+      <div className='mt-12 flex items-start overflow-x-auto gap-6'>
         {loading ? <div className='flex gap-4 items-center overflow-x-auto w-full'>
           {Array.from({ length: 10 }).map((_, index) =>
-            <div className='w-full min-w-[250px] max-w-[250px]'><ProductSkeleton key={index} /></div>
+            <div key={index} className='w-full min-w-[250px] max-w-[250px]'><ProductSkeleton /></div>
           )}
         </div> :
           products && products.length > 0 && products.slice(0, 10).map((product, index) =>

@@ -12,6 +12,7 @@ import cloth1 from "../../public/images/clothes1.jpg"
 import cloth2 from "../../public/images/clothes2.jpg"
 import cloth3 from "../../public/images/clothes3.jpg"
 import chair from "../../public/images/chair.png"
+import Link from 'next/link'
 
 
 
@@ -48,6 +49,7 @@ const Main = () => {
         <div className='text-center grid place-content-center absolute bg-neutral-7/15 bg-blend-overlay inset-0 w-full h-full text-neutral-1'>
           <h1 className='max-w-[70%] mx-auto sm:text-3xl lg:text-5xl leading-6.5 lg:leading-10'>Omnishop Where You Get All Kinds Of Products </h1>
           <span className='max-w-[70%] mx-auto mt-2 text-xs sm:text-sm lg:text-lg'>Built with Next.js, Tailwind Css, Firebase and Cloudinary</span>
+          <Link href={'/shop'} className='animate-bounce hover-scale text-xs md:text-sm bg-green px-3 py-1.5 font-bold rounded-full w-fit justify-self-center mt-4 shadow-md hover:animate-none shadow-neutral-3'>SHOP NOW</Link>
         </div>
       </section>
 

@@ -30,7 +30,7 @@ const Guarantee = () => {
     <div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
       {
         guarantee.map((g, index) =>
-          <div className='hover:scale-105 transition-all duration-300 p-4 bg-neutral-3 space-y-2 h-48 flex justify-center items-center flex-col text-center' key={index}>
+          <div className='hover:scale-105 transition-all duration-300 p-4 bg-neutral-2 space-y-2 h-48 flex justify-center items-center flex-col text-center' key={index}>
             {g.icon}
             <h3>{g.title}</h3>
             <p className='text-xs md:text-sm text-neutral-4'>{g.description}</p>
