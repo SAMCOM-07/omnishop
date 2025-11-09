@@ -23,7 +23,7 @@ const ProductCard = (product: ProductType) => {
         <button className='hover-scale bg-neutral-7 text-xs md:textbase text-neutral-1 p-3 rounded-md w-full text-center font-inter lg:opacity-0 group-hover:opacity-100 transition-all duration-700'>Add to Cart</button>
       </div>
       <div className='p-3'>
-        <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
+        <Link href={`/shop/details/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
         {/* <span className='block text-sm'>{product.rating}</span> */}
         <span className='text-sm font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
         <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>

@@ -7,14 +7,12 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Button from "./Button"
 
-
-import cloth1 from "../../public/images/clothes1.jpg"
 import cloth2 from "../../public/images/clothes2.jpg"
 import cloth3 from "../../public/images/clothes3.jpg"
 import chair from "../../public/images/chair.png"
 import Link from 'next/link'
-
-
+import Shirt from './../../public/images/floating-white-shirt-stockcake-removebg-preview.png';
+import Bag from './../../public/images/ei_1757649839935-removebg-preview.png';
 
 const Main = () => {
 
@@ -79,21 +77,21 @@ const Main = () => {
           {/* 2 */}
           <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2'>
             <div className='space-y-2'>
-              <h2>Imported</h2>
+              <h2>Cloth</h2>
               <Button text='Show More' href='/shop' />
             </div>
             <div className='overflow-hidden w-[60%] h-full'>
-              <Image priority src={cloth2} alt='cloth' className='h-full w-full object-cover object-center' />
+              <Image priority src={Shirt} alt='cloth' className='h-full w-full object-cover object-center' />
             </div>
           </div>
           {/* 2 */}
           <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2 [direction:rtl] lg:[direction:ltr]'>
             <div className='space-y-2'>
-              <h2>Newly Made</h2>
+              <h2>Travel Bags</h2>
               <Button text='Show More' href='/shop' />
             </div>
-            <div className='overflow-hidden w-[60%] h-full'>
-              <Image priority src={cloth3} alt='cloth' className='h-full w-full object-cover object-center' />
+            <div className='overflow-hidden w-[40%] h-full'>
+              <Image priority src={Bag} alt='cloth' className='h-full w-full object-cover object-center' />
             </div>
           </div>
           
