@@ -1,15 +1,12 @@
-'use client'
-
-import Button from './Button'
-import { useProducts } from '@/context/ProductContext'
+import Button from '../Button'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
 import Link from 'next/link'
-import ProductSkeleton from './ProductSkeleton'
+import { getProducts } from '@/lib/getProducts'
 
-const NewArrivals = () => {
+const NewArrivals = async () => {
 
-  const { products, loading } = useProducts();
+  const products = await getProducts();
 
   return (
     <section className='overflow-x-hidden'>
@@ -18,11 +15,7 @@ const NewArrivals = () => {
         <Button text='All Products' href='/shop' />
       </div>
       <div className='mt-12 flex items-start overflow-x-auto gap-6'>
-        {loading ? <div className='flex gap-4 items-center overflow-x-auto w-full'>
-          {Array.from({ length: 10 }).map((_, index) =>
-            <div key={index} className='w-full min-w-[250px] max-w-[250px]'><ProductSkeleton /></div>
-          )}
-        </div> :
+        {
           products && products.length > 0 && products.slice(0, 10).map((product, index) =>
             <div key={index} className='group overflow-clip'>
               <div className='p-3 bg-neutral-2 space-y-3'>
