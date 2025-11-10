@@ -1,4 +1,4 @@
-import "server-only";
+// import "server-only";
 
 import { ProductType } from "@/types/types";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
@@ -16,12 +16,7 @@ export const getProducts = async (): Promise<ProductType[]> => {
   return products;
 };
 
-export const getProductsById = async ({
-  params,
-}: {
-  params: { productId: string };
-}): Promise<ProductType | null> => {
-  const { productId } = params;
+export const getProductById = async (productId: string) => {
   const snapshot = await getDocs(collection(db, "products"));
   const products = snapshot.docs.map((doc) => ({
     id: doc.id,

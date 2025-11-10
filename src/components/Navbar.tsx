@@ -12,7 +12,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="container w-full py-6 sticky inset-0 z-40 bg-white/50 backdrop-blur-xs flex items-center gap-6 justify-between">
+    <header className="container py-6 flex items-center gap-6 justify-between">
       <div className="flex items-center gap-2">
         {/* nav button */}
         <button className="lg:hidden"><MenuIcon size={20} /></button>
