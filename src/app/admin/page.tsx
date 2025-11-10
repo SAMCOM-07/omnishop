@@ -1,14 +1,9 @@
 import { getProducts } from '@/lib/getProducts';
-import { getCreatedAtSeconds } from '@/types/types';
 import Link from 'next/link';
 
 export default async function AdminDashboard() {
 
   const products = await getProducts();
-
-  // const sortedProducts = products.sort(
-  //   (a, b) => getCreatedAtSeconds(b.createdAt) - getCreatedAtSeconds(a.createdAt)
-  // );
 
   return (
     <div className="p-6">
@@ -26,8 +21,6 @@ export default async function AdminDashboard() {
         Add Product
       </Link>
 
-
-
       <div className="mt-8">
         <h2 className="text-lg font-medium mb-4">All Products</h2>
         <div className="space-y-3">
@@ -38,7 +31,7 @@ export default async function AdminDashboard() {
             >
               <span>{index + 1}</span>
               <span>{p.name}</span>
-              <span>₦{p.price}</span>
+              <span>${p.price}</span>
             </div>
           ))}
         </div>

@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="space-y-20">
-        <Main />
+      <Main />
       <div className='container space-y-20'>
         <Suspense fallback={<div className='mt-12 flex items-start overflow-x-auto gap-6'>
           {Array.from({ length: 10 }).map((_, index) =>

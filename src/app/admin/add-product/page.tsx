@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
-import { revalidatePath } from "next/cache";
+import { addProductAction } from "@/app/actions/addProducts";
 
 export default function AddProduct() {
   const router = useRouter();
@@ -35,32 +33,34 @@ export default function AddProduct() {
   };
 
   const handleUpload = async () => {
-    const { name, price } = product;
-    if (!name || !price || files.length === 0) {
-      alert("Please fill required fields and add at least one image.");
-      return;
-    }
+  const { name, price } = product;
+  if (!name || !price || files.length === 0) {
+    alert("Please fill required fields and add at least one image.");
+    return;
+  }
 
-    setLoading(true);
-    const productId = Date.now().toString();
+  setLoading(true);
+  const productId = Date.now().toString();
 
-    // upload images to Cloudinary via your /api/upload route
-    const formData = new FormData();
-    files.forEach((f) => formData.append("files", f));
-    formData.append("productId", productId);
+  const formData = new FormData();
+  files.forEach((f) => formData.append("files", f));
+  formData.append("productId", productId);
 
-    try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
+  try {
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await res.json();
 
-      data && data?.images && data?.images.length > 0 && await addDoc(collection(db, "products"), {
+    if (data?.images?.length) {
+      const newProduct = {
         ...product,
         price: Number(product.price).toFixed(2),
         discount: Number(product.discount) || 0,
-        discountedAmount: (Number(price) - ((Number(product.discount) * Number(price)) / 100)).toFixed(2),
+        discountedAmount: (
+          Number(price) - (Number(product.discount) * Number(price)) / 100
+        ).toFixed(2),
         tax: Number(product.tax) || 0,
         unit: Number(product.unit) || 1,
         rating: Number(product.rating) || 0,
@@ -68,36 +68,40 @@ export default function AddProduct() {
           ? product.tags.split(",").map((t) => t.trim().toLowerCase())
           : [],
         images: data.images ?? [],
-        createdAt: new Date(),
         reviews: [],
-      });
+      };
 
-      setProduct({
-        name: "",
-        description: "",
-        category: "",
-        price: "",
-        discount: "",
-        tax: "",
-        unit: "",
-        tags: "",
-        shippingInfo: "",
-        availability: "in stock",
-        rating: 0,
-      });
-      alert("✅ Product added successfully!");
-      revalidatePath("/shop");
-      revalidatePath("/");
-      revalidatePath("/");
-      setFiles([]);
-      router.push("/admin");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to upload product.");
-    } finally {
-      setLoading(false);
+      // ✅ Call server action
+      const result = await addProductAction(newProduct);
+
+      if (result.success) {
+        alert("✅ Product added successfully!");
+        setProduct({
+          name: "",
+          description: "",
+          category: "",
+          price: "",
+          discount: "",
+          tax: "",
+          unit: "",
+          tags: "",
+          shippingInfo: "",
+          availability: "in stock",
+          rating: 0,
+        });
+        setFiles([]);
+        router.push("/admin");
+      } else {
+        alert(result.error);
+      }
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Failed to upload product.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white shadow rounded-lg">
@@ -250,4 +254,3 @@ export default function AddProduct() {
     </div>
   );
 }
-
