@@ -50,7 +50,7 @@ const Main = () => {
       </section>
 
       {/* hero text (motto) section */}
-      <section className='grid grid-cols-1 sm:grid-cols-2 sm:items-center gap-6 mt-12'>
+      <section className='container grid grid-cols-1 sm:grid-cols-2 sm:items-center gap-6 mt-12'>
         <div className='text-4xl lg:text-6xl xl:text-7xl'>
           <div>Simply Unique <span className='text-neutral-4'>/</span></div>
           <div>Simply Better <span className='text-neutral-4'>.</span></div>
@@ -61,7 +61,7 @@ const Main = () => {
       </section>
 
       {/* showcase section */}
-      <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 [direction:ltr]'>
+      <section className='container grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 [direction:ltr]'>
         {/* 1 */}
         <div className='bg-neutral-2 p-6 overflow-hidden space-y-4 w-full'>
           <h2>Furniture</h2>
