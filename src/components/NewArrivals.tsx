@@ -1,4 +1,4 @@
-import Button from '../Button'
+import Button from './Button'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
 import Link from 'next/link'

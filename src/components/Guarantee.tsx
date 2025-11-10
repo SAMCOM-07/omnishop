@@ -1,5 +1,4 @@
-import { Car, CardSim, LockIcon, PhoneIcon, Projector } from 'lucide-react'
-import React from 'react'
+import { Car, CardSim, LockIcon, PhoneIcon} from 'lucide-react'
 
 const guarantee = [
   {

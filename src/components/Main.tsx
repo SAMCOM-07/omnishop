@@ -7,8 +7,6 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Button from "./Button"
 
-import cloth2 from "../../public/images/clothes2.jpg"
-import cloth3 from "../../public/images/clothes3.jpg"
 import chair from "../../public/images/chair.png"
 import Link from 'next/link'
 import Shirt from './../../public/images/floating-white-shirt-stockcake-removebg-preview.png';

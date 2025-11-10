@@ -1,6 +1,5 @@
 import { MailIcon } from 'lucide-react'
 import Image from 'next/image';
-// import  from './../../public/images/pillow-bed-decoration-interior-bedroom.jpg';
 import AdBannerImg from './../../public/images/clothes2.jpg';
 const Newsletter = () => {
   return (

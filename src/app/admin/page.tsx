@@ -1,11 +1,14 @@
-'use client';
-
-import { useProducts } from '@/context/ProductContext';
+import { getProducts } from '@/lib/getProducts';
+import { getCreatedAtSeconds } from '@/types/types';
 import Link from 'next/link';
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
 
-  const { products } = useProducts();
+  const products = await getProducts();
+
+  // const sortedProducts = products.sort(
+  //   (a, b) => getCreatedAtSeconds(b.createdAt) - getCreatedAtSeconds(a.createdAt)
+  // );
 
   return (
     <div className="p-6">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export default function AddProduct() {
   const router = useRouter();
@@ -71,7 +72,6 @@ export default function AddProduct() {
         reviews: [],
       });
 
-      alert("✅ Product added successfully!");
       setProduct({
         name: "",
         description: "",
@@ -85,6 +85,10 @@ export default function AddProduct() {
         availability: "in stock",
         rating: 0,
       });
+      alert("✅ Product added successfully!");
+      revalidatePath("/shop");
+      revalidatePath("/");
+      revalidatePath("/");
       setFiles([]);
       router.push("/admin");
     } catch (error) {
