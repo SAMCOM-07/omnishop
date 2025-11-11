@@ -12,7 +12,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="container py-6 flex items-center gap-6 justify-between">
+    <header className="container py-4 flex items-center gap-6 justify-between">
       <div className="flex items-center gap-2">
         {/* nav button */}
         <button className="lg:hidden"><MenuIcon size={20} /></button>
@@ -20,7 +20,7 @@ const Navbar = () => {
         <Link href={'/'} className="font-bold text-lg md:text-xl lg:text-2xl  tracking-tight text-green">Omnishop</Link>
       </div>
       {/* nav links */}
-      <nav className='hidden lg:flex items-center gap-12'>
+      <nav className='hidden :flex items-center gap-12'>
         {
           navLinks && navLinks.map(link => {
             const activeLink = pathname === link.href

@@ -1,8 +1,9 @@
-import Button from './Button'
+import Button from './buttons/Button'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
 import Link from 'next/link'
 import { getProducts } from '@/lib/getProducts'
+import AddToCartBtn from './buttons/AddToCartBtn'
 
 const NewArrivals = async () => {
 
@@ -32,7 +33,7 @@ const NewArrivals = async () => {
                     "/upload/f_auto,q_auto,w_600/"
                   )} alt={product.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
                 </Link>
-                <button className='hover-scale bg-neutral-7 text-neutral-1 p-3 rounded-md w-full text-center font-inter lg:opacity-0 group-hover:opacity-100  transition-all duration-700'>Add to Cart</button>
+                <AddToCartBtn />
               </div>
               <div className='space-y-0.5 p-3'>
                 <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from "./Button"
+import Button from "./buttons/Button"
 
 import chair from "../../public/images/chair.png"
 import Link from 'next/link'
@@ -31,20 +31,25 @@ const Main = () => {
                 priority
                 className='w-full h-full object-cover object-center'
               />
-
             </div>
           )
         }
+
+        {/* banner buttons */}
         <button aria-label='scroll-left' onClick={() => setCurrentBanner(prev => prev === 0 ? 0 : prev - 1)} className='arrow-button left-6'><ArrowLeft /></button>
         <button aria-label='scroll-right' onClick={() => setCurrentBanner(prev => prev === banners.length - 1 ? banners.length - 1 : prev + 1)} className='arrow-button right-6'><ArrowRight /></button>
+        
+        {/* navigation button */}
         <div className='flex items-center gap-3 absolute bottom-6'>
           {[...banners].map((_, index) =>
             <button key={index} onClick={() => setCurrentBanner(index)} className={cn('h-3 rounded-full bg-neutral-1 transition-all duration-300 z-40', currentBanner === index ? 'w-6 bg-green' : 'w-3')}></button>
           )}
         </div>
-        <div className='text-center grid place-content-center absolute bg-neutral-7/15 bg-blend-overlay inset-0 w-full h-full text-neutral-1'>
-          <h1 className='max-w-[70%] mx-auto sm:text-3xl lg:text-5xl leading-6.5 lg:leading-10'>Omnishop Where You Get All Kinds Of Products </h1>
-          <span className='max-w-[70%] mx-auto mt-2 text-xs sm:text-sm lg:text-lg'>Built with Next.js, Tailwind Css, Firebase and Cloudinary</span>
+
+        {/* texts and CTA button */}
+        <div className='text-center grid place-content-center absolute bg-black/50  inset-0 w-full h-full text-neutral-1'>
+          <h1 className='max-w-[70%] mx-auto sm:text-3xl lg:text-5xl leading-6.5 lg:leading-10 font-extrabold'>Omnishop Where You Get All Kinds Of Products </h1>
+          <span className='max-w-[70%] mx-auto mt-2 text-xs sm:text-sm lg:text-lg font-bold'>Built with Next.js, Tailwind Css, Firebase and Cloudinary</span>
           <Link href={'/shop'} className='animate-bounce hover-scale text-xs md:text-sm bg-green px-3 py-1.5 font-bold rounded-full w-fit justify-self-center mt-4 shadow-md hover:animate-none shadow-neutral-3'>SHOP NOW</Link>
         </div>
       </section>
@@ -92,7 +97,7 @@ const Main = () => {
               <Image priority src={Bag} alt='cloth' className='h-full w-full object-cover object-center' />
             </div>
           </div>
-          
+
         </div>
       </section>
     </main>
