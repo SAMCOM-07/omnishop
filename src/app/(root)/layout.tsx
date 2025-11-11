@@ -37,7 +37,7 @@ export default function RootLayout({
           </div>
           {children}
           <Footer />
-          <div className="sticky bottom-0 left-0 w-full z-50 bg-white/50 backdrop-blur-xs">
+          <div className="sticky bottom-0 left-0 w-full z-50 bg-white border-t border-border">
             <Hamburger />
           </div>
         </Providers>

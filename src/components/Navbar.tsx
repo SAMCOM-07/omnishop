@@ -2,7 +2,7 @@
 
 import { navLinks } from "@/data/links"
 import { cn } from "@/lib/utils"
-import { MenuIcon, Search, ShoppingBagIcon, UserCircleIcon } from "lucide-react"
+import { Search, ShoppingBagIcon, UserCircleIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -13,14 +13,10 @@ const Navbar = () => {
 
   return (
     <header className="container py-4 flex items-center gap-6 justify-between">
-      <div className="flex items-center gap-2">
-        {/* nav button */}
-        <button className="lg:hidden"><MenuIcon size={20} /></button>
         {/* logo */}
-        <Link href={'/'} className="font-bold text-lg md:text-xl lg:text-2xl  tracking-tight text-green">Omnishop</Link>
-      </div>
+        <Link href={'/'} className="font-extrabold text-lg md:text-xl lg:text-2xl tracking-tight text-green">Omnishop</Link>
       {/* nav links */}
-      <nav className='hidden :flex items-center gap-12'>
+      <nav className='hidden md:flex items-center gap-12'>
         {
           navLinks && navLinks.map(link => {
             const activeLink = pathname === link.href
