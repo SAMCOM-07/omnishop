@@ -26,9 +26,10 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <ProductDetailsImages productImages={product.images} />
         <div className="mt-6 md:mt-0">
-          <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
-          <p className="text-gray-700 mb-6">{product.description}</p>
-          <span className="text-xl font-semibold text-green">${product.price}</span>
+          <h1 className="text font-bold mb-4">{product.name}</h1>
+          <p className="text-neutral-4 mb-6">{product.description}</p>
+          <span className='font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
+          <span className='ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
         </div>
       </section>
     </div>
