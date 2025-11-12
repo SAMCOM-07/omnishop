@@ -8,13 +8,13 @@ const ShopPage = async () => {
   const products = await getProducts();
 
   return (
-    <Suspense fallback={<div className='container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-4'>
+    <Suspense fallback={<div className='product-fallback mt-12'>
       {Array.from({ length: 15 }).map((_, index) => <ProductSkeleton key={index} />)}
     </div>}>
-      <div className='container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-4'>
+      <div className='product-grid mt-12'>
         {
-          products && products.length > 0 && products.map((product, index) =>
-            <ProductCard key={index} {...product} />
+          products && products.length > 0 && products.map((product) =>
+            <ProductCard key={product.id} {...product} />
           )
         }
       </div>

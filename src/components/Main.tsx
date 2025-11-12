@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from "./buttons/Button"
+import { LinkButton } from "./Buttons"
 
 import chair from "../../public/images/chair.png"
 import Link from 'next/link'
@@ -38,7 +38,7 @@ const Main = () => {
         {/* banner buttons */}
         <button aria-label='scroll-left' onClick={() => setCurrentBanner(prev => prev === 0 ? 0 : prev - 1)} className='arrow-button left-6'><ArrowLeft /></button>
         <button aria-label='scroll-right' onClick={() => setCurrentBanner(prev => prev === banners.length - 1 ? banners.length - 1 : prev + 1)} className='arrow-button right-6'><ArrowRight /></button>
-        
+
         {/* navigation button */}
         <div className='flex items-center gap-3 absolute bottom-6'>
           {[...banners].map((_, index) =>
@@ -70,7 +70,7 @@ const Main = () => {
         {/* 1 */}
         <div className='bg-neutral-2 p-6 overflow-hidden space-y-4 w-full'>
           <h2>Furniture</h2>
-          <Button text='Show More' href='/shop' />
+          <LinkButton text='Show More' href='/shop' />
           <div className='overflow-hidden w-full'>
             <Image priority src={chair} alt='chair (sofa)' className='h-full object-cover object-center' />
           </div>
@@ -81,7 +81,7 @@ const Main = () => {
           <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2'>
             <div className='space-y-2'>
               <h2>Cloth</h2>
-              <Button text='Show More' href='/shop' />
+              <LinkButton text='Show More' href='/shop' />
             </div>
             <div className='overflow-hidden w-[60%] h-full'>
               <Image priority src={Shirt} alt='cloth' className='h-full w-full object-cover object-center' />
@@ -91,7 +91,7 @@ const Main = () => {
           <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2 [direction:rtl] lg:[direction:ltr]'>
             <div className='space-y-2'>
               <h2>Travel Bags</h2>
-              <Button text='Show More' href='/shop' />
+              <LinkButton text='Show More' href='/shop' />
             </div>
             <div className='overflow-hidden w-[40%] h-full'>
               <Image priority src={Bag} alt='cloth' className='h-full w-full object-cover object-center' />

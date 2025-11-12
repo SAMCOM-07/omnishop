@@ -83,7 +83,15 @@
   }
 
   .hover-scale {
-    @apply hover:scale-105 active:scale-90 transition-all duration-300
+    @apply hover:scale-110 active:scale-90 transition-all duration-300
+  }
+
+  .product-fallback {
+    @apply container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4
+  }
+
+  .product-grid {
+    @apply container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4
   }
 }
 

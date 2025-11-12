@@ -5,18 +5,22 @@ import Image from 'next/image'
 import { useState } from 'react';
 
 interface ProductDetailsImagesProps {
-  productImages: { publicId: string, url: string }[]
+  productImages: { publicId: string, url: string }[];
+  discount: number;
 }
 
-const ProductDetailsImages = ({ productImages }: ProductDetailsImagesProps) => {
+const ProductDetailsImages = ({ productImages, discount }: ProductDetailsImagesProps) => {
 
   const [count, setCount] = useState(0);
 
   return (
-    <div className='grid grid-cols-1 gap-2 max-w-lg mx-auto'>
-      <div className=' w-full aspect-square bg-neutral-2'>
+    <div className='grid grid-cols-1 gap-2 max-w-lg mx-auto min-h-96'>
+      <div className='w-full aspect-square bg-neutral-2 relative'>
         <Image src={productImages[count]?.url} alt={`Product Image`} width={400} height={400} className='w-full h-full object-cover object-center' />
+      {/* discount indicator */}
+      {discount !== 0 && <h4 className='bg-green rounded-small text-center text-neutral-1 font-semibold rounded-sm w-fit px-2.5 absolute top-5 left-5'>-{discount}%</h4> }
       </div>
+
       {
         productImages.length > 1 && <div className={cn('grid gap-2 max-h-20 overflow-hidden', productImages.length === 2 ? 'grid-cols-2' : 'grid-cols-3')}>
           <div onClick={() => setCount(0)} >
@@ -34,6 +38,7 @@ const ProductDetailsImages = ({ productImages }: ProductDetailsImagesProps) => {
           }
         </div>
       }
+
     </div >
   )
 }

@@ -2,7 +2,7 @@ import { ProductType } from '@/types/types';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import AddToCartBtn from './buttons/AddToCartBtn';
+import { AddToCartBtn } from './Buttons';
 
 const ProductCard = (product: ProductType) => {
 
@@ -15,17 +15,19 @@ const ProductCard = (product: ProductType) => {
             className='text-neutral-4 bg-neutral-1 p-1.5 rounded-full shadow-lg lg:opacity-0 group-hover:opacity-100 transition-all duration-500'
           ><Heart size={20} className='hover-scale' /></button>
         </div>
-        <Link href={`/shop/${product.id}`} className='aspect-square overflow-hidden block rounded-lg w-full'>
+        <Link href={`/shop/${product.id}`} className='aspect-square overflow-hidden block rounded-md w-full'>
           <Image width={400} height={400} priority src={product.images[0].url.replace(
             "/upload/",
             "/upload/f_auto,q_auto,w_600/"
           )} alt={product.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
         </Link>
-        <AddToCartBtn />
+        <div className='lg:opacity-0 group-hover:opacity-100 transition-all duration-700'>
+          <AddToCartBtn productId={product.id} />
+        </div>
       </div>
       <div className='p-3'>
         <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
-    
+
         <span className='text-sm font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
         <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
       </div>
