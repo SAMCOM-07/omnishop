@@ -16,7 +16,7 @@ const NewArrivals = async () => {
       </div>
       <div className='mt-12 flex items-start overflow-x-auto gap-6'>
         {
-          products && products.length > 0 && products.slice(0, 10).map((product, index) =>
+          products && products.length > 0 ? products.slice(0, 10).map((product, index) =>
             <div key={index} className='group overflow-clip'>
               <div className='p-3 bg-neutral-2 space-y-3'>
                 <div className='flex item-start justify-between'>
@@ -38,7 +38,7 @@ const NewArrivals = async () => {
                 <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
               </div>
             </div>
-          )
+          ): <p className='text-center w-full py-6'>No product found !</p>
         }
       </div>
     </section>

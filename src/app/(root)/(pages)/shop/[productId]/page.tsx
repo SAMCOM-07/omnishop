@@ -1,4 +1,4 @@
-import { AddToCartBtn, WishListBtnWithText } from "@/components/Buttons";
+import { AddToCartBtn, LinkButton, WishListBtnWithText } from "@/components/Buttons";
 import ProductCard from "@/components/ProductCard";
 import ProductDetailsImages from "@/components/ProductDetailsImages";
 import ProductSkeleton from "@/components/ProductSkeleton";
@@ -30,7 +30,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   }
 
   return (
-    <div className="container py-10 min-h-screen">
+    <div className="container">
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         {/* <Suspense fallback={<div className="w-6 h-6 rounded-full border-t-2 border-b-2 border-green-600 animate-spin mx-auto mt-20"></div>}>
           <ProductDetailsImages productImages={product.images} />
@@ -44,7 +44,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
             <span className='ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
           </div>
           <div className="flex gap-4 items-center">
-            <div className="bg-neutral-3 max-w-28 min-w-28 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
+            <div className="bg-neutral-2 max-w-28 min-w-28 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
               <button className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-4 hover-scale"><Minus className="hover-scale" size={16} /></button>
               <span className="font-bold text-sm">1</span>
               <button className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-4 hover-scale"><Plus className="hover-scale" size={16} /></button>
@@ -58,11 +58,14 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
       {/* related products */}
       {
         relatedProducts && relatedProducts.length > 0 && <section className="mt-20">
-          <h2 className="text-xl font-bold mb-6">Related Products</h2>
+          <div className='flex items-end justify-between mb-12'>
+                  <h1 className='inline-block leading-8'>Related <span className='block'>Products</span></h1>
+                  <LinkButton text='More Products' href='/shop' />
+                </div>
           <Suspense fallback={<div className='product-fallback'>
             {Array.from({ length: 10 }).map((_, index) => <ProductSkeleton key={index} />)}
           </div>}>
-            <div className='product-grid'>
+            <div className='product-grid px-0'>
               {
                 relatedProducts && relatedProducts.length > 0 && relatedProducts.map((product) =>
                   <ProductCard key={product.id} {...product} />

@@ -13,9 +13,9 @@ const ShopPage = async () => {
     </div>}>
       <div className='product-grid mt-12'>
         {
-          products && products.length > 0 && products.map((product) =>
+          products && products.length > 0 ? products.map((product) =>
             <ProductCard key={product.id} {...product} />
-          )
+          ): <p className='py-6 col-span-full place-self-center'>No product found !</p>
         }
       </div>
     </Suspense>
