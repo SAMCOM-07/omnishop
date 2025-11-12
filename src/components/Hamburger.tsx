@@ -22,7 +22,7 @@ const Hamburger = () => {
         links.map((link, index) => {
           const isActive = pathname === link.href;
           return (
-            <Link key={index} href={link.href} className={cn('flex flex-col gap-0.5 items-center text-sm', isActive ? 'text-green':'text-neutral-4')}>{link.icon}<span>{link.name}</span></Link>)
+            <Link key={index} href={link.href} className={cn('flex flex-col gap-0.5 items-center text-xs sm:text-sm', isActive ? 'text-green':'text-neutral-4')}>{link.icon}<span>{link.name}</span></Link>)
         }
         )
       }

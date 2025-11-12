@@ -1,3 +1,4 @@
+import ProductDetailsImages from "@/components/ProductDetailsImages";
 import { getProductById } from "@/lib/getProducts";
 
 type ProductDetailsPageProps = {
@@ -21,10 +22,15 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   }
 
   return (
-    <div className="container py-10 h-screen">
-      <h1 className="text-3xl font-semibold mb-4">{product?.name}</h1>
-      <p className="text-lg text-gray-600 mb-2">{product?.description}</p>
-      <p className="text-xl font-bold text-green-600">₦{product?.price}</p>
+    <div className="container py-10 ">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <ProductDetailsImages productImages={product.images} />
+        <div className="mt-6 md:mt-0">
+          <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
+          <p className="text-gray-700 mb-6">{product.description}</p>
+          <span className="text-xl font-semibold text-green">${product.price}</span>
+        </div>
+      </section>
     </div>
   );
 }

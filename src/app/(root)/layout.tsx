@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <body className="font-poppins bg-neutral-1 text-neutral-7 min-h-screen antialiased relative">
         <Providers>
-          <div className="sticky w-full inset-0 z-50 bg-white/50 backdrop-blur-xs">
+          <div className="sticky w-full inset-0 z-50 bg-white border-b border-border">
             <Navbar />
           </div>
           {children}

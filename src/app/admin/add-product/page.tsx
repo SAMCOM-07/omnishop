@@ -213,7 +213,7 @@ export default function AddProduct() {
           min="0"
           max="5"
           name="rating"
-          placeholder="Rating (0–5)"
+          placeholder="Rating (0 - 5)"
           value={product.rating}
           onChange={handleChange}
           className="border p-2 w-full rounded"
