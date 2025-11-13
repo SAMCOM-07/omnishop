@@ -1,4 +1,4 @@
-import { AddToCartBtn, LinkButton, WishListBtnWithText } from "@/components/Buttons";
+import { AddToCartBtn, GoBackButton, LinkButton, WishListBtnWithText } from "@/components/Buttons";
 import ProductCard from "@/components/ProductCard";
 import ProductDetailsImages from "@/components/ProductDetailsImages";
 import ProductSkeleton from "@/components/ProductSkeleton";
@@ -7,13 +7,7 @@ import { Minus, Plus } from "lucide-react";
 import { Suspense } from "react";
 // import { Suspense } from "react";
 
-type ProductDetailsPageProps = {
-  params: {
-    productId: string;
-  };
-};
-
-export default async function ProductDetailsPage({ params }: ProductDetailsPageProps) {
+export default async function ProductDetailsPage({ params }: {params: { productId: string }}) {
 
   const { productId } = await params;
 
@@ -30,8 +24,9 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   }
 
   return (
-    <div className="container">
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+    <div className="container mt-4">
+      <GoBackButton />
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-12">
         {/* <Suspense fallback={<div className="w-6 h-6 rounded-full border-t-2 border-b-2 border-green-600 animate-spin mx-auto mt-20"></div>}>
           <ProductDetailsImages productImages={product.images} />
         </Suspense> */}
@@ -60,14 +55,14 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         relatedProducts && relatedProducts.length > 0 && <section className="mt-20">
           <div className='flex items-end justify-between mb-12'>
                   <h1 className='inline-block leading-8'>Related <span className='block'>Products</span></h1>
-                  <LinkButton text='More Products' href='/shop' />
+                  {relatedProducts && relatedProducts.length > 4 && <LinkButton text='See All' href={`/shop?category=${product.category}`} />}
                 </div>
           <Suspense fallback={<div className='product-fallback'>
             {Array.from({ length: 10 }).map((_, index) => <ProductSkeleton key={index} />)}
           </div>}>
             <div className='product-grid px-0'>
               {
-                relatedProducts && relatedProducts.length > 0 && relatedProducts.map((product) =>
+                relatedProducts && relatedProducts.length > 0 && relatedProducts.slice(0).map((product) =>
                   <ProductCard key={product.id} {...product} />
                 )
               }

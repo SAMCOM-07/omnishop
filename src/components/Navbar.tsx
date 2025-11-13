@@ -24,7 +24,7 @@ const Navbar = () => {
               <Link href={link.href}
                 key={link.name}
                 className={cn(
-                  activeLink ? "text-neutral-7 font-semibold" : "text-neutral-4 hover:text-neutral-5",
+                  activeLink ? "text-green font-semibold" : "text-neutral-4 hover:text-neutral-5",
                   "transition-colors duration-300"
                 )}
               >{link.name}</Link>)

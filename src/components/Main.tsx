@@ -29,6 +29,8 @@ const Main = () => {
                 src={banner.img}
                 alt='banner Image'
                 priority
+                width={600}
+                height={400}
                 className='w-full h-full object-cover object-center'
               />
             </div>
@@ -46,7 +48,7 @@ const Main = () => {
           )}
         </div>
 
-        {/* texts and CTA button */}
+        {/* texts, overlay and CTA button */}
         <div className='text-center grid place-content-center absolute bg-black/50  inset-0 w-full h-full text-neutral-1'>
           <h1 className='max-w-[70%] mx-auto sm:text-3xl lg:text-5xl leading-6.5 lg:leading-10 font-extrabold'>Omnishop Where You Get All Kinds Of Products </h1>
           <span className='max-w-[70%] mx-auto mt-2 text-xs sm:text-sm lg:text-lg font-bold'>Built with Next.js, Tailwind Css, Firebase and Cloudinary</span>
