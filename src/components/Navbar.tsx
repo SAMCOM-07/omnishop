@@ -34,8 +34,8 @@ const Navbar = () => {
       </nav>
       <div className="flex items-center gap-4">
         <Search size={20} />
-        <UserCircleIcon size={20} />
-        <ShoppingBagIcon size={20} />
+        <UserCircleIcon size={20}  className="hidden md:inline-block"/>
+        <ShoppingBagIcon size={20} className="hidden md:inline-block"/>
       </div>
     </header>
   )

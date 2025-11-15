@@ -28,10 +28,16 @@ const ShopPage = async ({ searchParams }: { searchParams: { category: string } }
         {/* texts, overlay and CTA button */}
         <div className='text-center flex flex-col gap-3 items-center justify-center p-6 absolute bg-black/50  inset-0 w-full h-full text-neutral-1'>
           <h1 className='mx-auto sm:text-3xl lg:text-5xl leading-6.5 lg:leading-10 font-extrabold'>Feel Free To Shop Anything !!!</h1>
-          <span className='mx-auto mt-2 text-xs sm:text-sm lg:text-lg font-bold'>You can shop by category, filter and sort</span>
+          <span className='mx-auto mt-2 text-xs sm:text-sm lg:text-lg font-bold'>You can filter by category and also sort</span>
           <LinkButton text='Go Home' href='/' />
         </div>
       </section>
+
+      {/* heading */}
+
+      <div className='container flex'>
+        {category ? <h1 className='mt-12 text-center'>Category: <span className='text-green capitalize'>{category}</span></h1> : <h1 className='mt-12 text-center'>All Products</h1>}
+      </div>
 
       {/* product grid */}
       <Suspense fallback={<div className='product-fallback mt-12'>

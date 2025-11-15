@@ -2,12 +2,13 @@ import { AddToCartBtn, GoBackButton, LinkButton, WishListBtnWithText } from "@/c
 import ProductCard from "@/components/ProductCard";
 import ProductDetailsImages from "@/components/ProductDetailsImages";
 import ProductSkeleton from "@/components/ProductSkeleton";
+import Rating from "@/components/Rating";
 import { getProductById, getRelatedProducts } from "@/lib/getProducts";
 import { Minus, Plus } from "lucide-react";
 import { Suspense } from "react";
 // import { Suspense } from "react";
 
-export default async function ProductDetailsPage({ params }: {params: { productId: string }}) {
+export default async function ProductDetailsPage({ params }: { params: { productId: string } }) {
 
   const { productId } = await params;
 
@@ -32,6 +33,7 @@ export default async function ProductDetailsPage({ params }: {params: { productI
         </Suspense> */}
         <ProductDetailsImages productImages={product.images} discount={product.discount} />
         <div className="mt-6 md:mt-0 space-y-4 max-w-xl">
+          <Rating rating={product.rating} />
           <h1 className="text font-bold">{product.name}</h1>
           <p className="text-neutral-4 text-sm font-poppins">{product.description}</p>
           <div>
@@ -44,7 +46,7 @@ export default async function ProductDetailsPage({ params }: {params: { productI
               <span className="font-bold text-sm">1</span>
               <button className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-4 hover-scale"><Plus className="hover-scale" size={16} /></button>
             </div>
-            <WishListBtnWithText productId={product.id}/>
+            <WishListBtnWithText productId={product.id} />
           </div>
           <AddToCartBtn productId={product.id} />
         </div>
@@ -54,9 +56,9 @@ export default async function ProductDetailsPage({ params }: {params: { productI
       {
         relatedProducts && relatedProducts.length > 0 && <section className="mt-20">
           <div className='flex items-end justify-between mb-12'>
-                  <h1 className='inline-block leading-8'>Related <span className='block'>Products</span></h1>
-                  {relatedProducts && relatedProducts.length > 4 && <LinkButton text='See All' href={`/shop?category=${product.category}`} />}
-                </div>
+            <h1 className='inline-block leading-8'>Related <span className='block'>Products</span></h1>
+            {relatedProducts && relatedProducts.length > 4 && <LinkButton text='See All' href={`/shop?category=${product.category}`} />}
+          </div>
           <Suspense fallback={<div className='product-fallback'>
             {Array.from({ length: 10 }).map((_, index) => <ProductSkeleton key={index} />)}
           </div>}>

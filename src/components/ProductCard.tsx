@@ -3,6 +3,7 @@ import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AddToCartBtn } from './Buttons';
+import Rating from './Rating';
 
 const ProductCard = (product: ProductType) => {
 
@@ -26,6 +27,8 @@ const ProductCard = (product: ProductType) => {
         </div>
       </div>
       <div className='p-3'>
+        <Rating rating={product.rating}/>
+
         <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
 
         <span className='text-sm font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
