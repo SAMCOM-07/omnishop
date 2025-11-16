@@ -12,12 +12,12 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase";
 
-export const getProducts = async (category?: string): Promise<ProductType[]> => {
-  if (category) {
+export const getProducts = async (c?: string): Promise<ProductType[]> => {
+  if (c) {
     const productsRef = collection(db, "products");
     const qRef = query(
       productsRef,
-      where("category", "==", category.toLowerCase()),
+      where("category", "==", c.toLowerCase()),
       orderBy("createdAt", "desc")
     );
     const querySnapshot = await getDocs(qRef);

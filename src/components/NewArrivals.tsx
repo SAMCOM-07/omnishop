@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getProducts } from '@/lib/getProducts'
 import { AddToCartBtn } from './Buttons'
+import Rating from './Rating'
 
 const NewArrivals = async () => {
 
@@ -33,6 +34,7 @@ const NewArrivals = async () => {
                 <AddToCartBtn productId={product.id} />
               </div>
               <div className='space-y-0.5 p-3'>
+                <Rating rating={product.rating} />
                 <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
                 <span className='text-sm font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
                 <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>

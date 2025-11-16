@@ -6,10 +6,10 @@ import bannerImg from './../../../../../public/images/clothes2.jpg';
 import Image from 'next/image';
 import { LinkButton } from '@/components/Buttons';
 
-const ShopPage = async ({ searchParams }: { searchParams: { category: string } }) => {
+const ShopPage = async ({ searchParams }: { searchParams: { c: string } }) => {
 
-  const { category } = await searchParams;
-  const products = await getProducts(category);
+  const { c } = await searchParams;
+  const products = await getProducts(c);
 
   return (
     <>
@@ -36,7 +36,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { category: string } }
       {/* heading */}
 
       <div className='container flex'>
-        {category ? <h1 className='mt-12 text-center'>Category: <span className='text-green capitalize'>{category}</span></h1> : <h1 className='mt-12 text-center'>All Products</h1>}
+        {c ? <h1 className='mt-12 text-center'>Category: <span className='text-green capitalize'>{c}</span></h1> : <h1 className='mt-12 text-center'>All Products</h1>}
       </div>
 
       {/* product grid */}
