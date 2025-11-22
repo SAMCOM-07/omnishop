@@ -30,7 +30,6 @@ export const getProducts = async (c?: string): Promise<ProductType[]> => {
   } else {
     const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(q);
-
     const products = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -41,22 +40,16 @@ export const getProducts = async (c?: string): Promise<ProductType[]> => {
 
 // search query fetch
 
-// const getProductsBySearch = async (searchTerm: string): Promise<ProductType[]> => {
-//   const productsRef = collection(db, "products");
-//   const qRef = query(
-//     productsRef,
-//     where("name", ">=", searchTerm),
-//     where("name", "<=", searchTerm + "\uf8ff"),
-//     orderBy("name")
-//   );;
-//   const querySnapshot = await getDocs(qRef);
-//   const products = querySnapshot.docs.map((doc) => ({
-//     id: doc.id,
-//     ...doc.data(),
-//   })) as ProductType[];
-
-//   return products;
-// }
+export const getProductsBySearch = async (q: string): Promise<ProductType[]> => {
+  const qq = query(collection(db, "products"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(qq);
+    const data = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as ProductType[];
+    const products = data.filter(p => p.name.toLowerCase().includes(q.toLowerCase()))
+    return products;
+}
 
 // export const getProductById = async (productId: string) => {
 //   const snapshot = await getDocs(collection(db, "products"));

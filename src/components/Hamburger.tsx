@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { HomeIcon, ShoppingBagIcon, ShoppingBasket, User2Icon } from 'lucide-react'
+import { HomeIcon, Search, ShoppingBagIcon, ShoppingCart, User2Icon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -12,7 +12,8 @@ const Hamburger = () => {
   const links = [
     { name: 'Home', href: '/', icon: <HomeIcon size={20} /> },
     { name: 'Shop', href: '/shop', icon: <ShoppingBagIcon size={20} /> },
-    { name: 'Cart', href: '/cart', icon: <ShoppingBasket size={20} /> },
+    { name: 'Search', href: '/search', icon: <Search size={20} /> },
+    { name: 'Cart', href: '/cart', icon: <ShoppingCart size={20} /> },
     { name: 'Profile', href: '/profile', icon: <User2Icon size={20} /> },
   ]
 

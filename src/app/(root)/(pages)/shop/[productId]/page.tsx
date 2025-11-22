@@ -57,7 +57,7 @@ export default async function ProductDetailsPage({ params }: { params: { product
         relatedProducts && relatedProducts.length > 0 && <section className="mt-20">
           <div className='flex items-end justify-between mb-12'>
             <h1 className='inline-block leading-8'>Related <span className='block'>Products</span></h1>
-            {relatedProducts && relatedProducts.length > 4 && <LinkButton text='See All' href={`/shop?category=${product.category}`} />}
+            {relatedProducts && relatedProducts.length > 4 && <LinkButton text='See All' href={`/shop?c=${encodeURIComponent(product.category)}`} />}
           </div>
           <Suspense fallback={<div className='product-fallback'>
             {Array.from({ length: 10 }).map((_, index) => <ProductSkeleton key={index} />)}
