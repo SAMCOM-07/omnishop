@@ -18,8 +18,8 @@ const Filter = ({ category }: { category: string }) => {
 
   return (
     <section className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4'>
-      <div className='sticky inset-0 top-14'>
-        <span className='inline-flex gap-1 items-center py-6 font-semibold' onClick={() => setIsOpen(true)}><ListFilter size={16} />Filter</span>
+      <div className='sticky inset-0 py-6 top-14'>
+        <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold' onClick={() => setIsOpen(true)}><ListFilter size={16} />Filter</button>
 
         {/* filter(side bar) from medium upward */}
         <aside className='hidden md:block'>
@@ -38,14 +38,14 @@ const Filter = ({ category }: { category: string }) => {
         </aside>
 
         {/* filter for small width */}
-        <div className={cn('md:hidden absolute inset-0 top-12 bg-neutral-1 shadow-md h-fit p-4 rounded-lg transition-opacity duration-300', isOpen ? 'opacity-100 z-50' : 'opacity-0 z-0')} onClick={() => setIsOpen(false)}>
+        <div className={cn('md:hidden absolute inset-0 top-16 bg-neutral-1 shadow-lg border border-border h-fit p-4 rounded-lg transition-opacity duration-300', isOpen ? 'opacity-100 z-50' : 'opacity-0 z-0')} onClick={() => setIsOpen(false)}>
           <h3 className='mb-4'>CATEGORIES</h3>
           <div className='flex flex-wrap gap-2'>
             {
               categoriesLinks.map((link, index) => {
                 const activeLink = pathname + '?c=' + category === link.href || link.href === '/shop' && !category
                 return (
-                  <Link className={cn('text-neutral-4 text-sm py-1 px-2 rounded-full hover:font-bold transition-all duration-500 w-fit inline', activeLink ? 'bg-neutral-3 font-bold' : 'bg-neutral-2')} key={index} href={link.href}>{link.name}</Link>
+                  <Link className={cn('text-neutral-4 text-sm py-1 px-2 rounded-full hover:font-bold transition-all duration-500 w-fit inline', activeLink ? 'bg-neutral-3 font-bold' : 'bg-neutral-2', isOpen ? 'opacity-100 z-50' : 'opacity-0 -z-500')} key={index} href={link.href}>{link.name}</Link>
                 )
               }
               )
