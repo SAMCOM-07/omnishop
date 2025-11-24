@@ -1,6 +1,6 @@
 import ProductCard from '@/components/ProductCard';
-import ProductSkeleton from '@/components/ProductSkeleton';
-import { getProducts } from '@/lib/getProducts';
+import { ProductSkeleton } from '@/components/Skeletons';
+import { getProductsByPriceRange, getProductsByCategory, getAllProducts, getProductsByCategoryAndPriceRange } from '@/lib/getProducts';
 import { Suspense } from 'react';
 import bannerImg from './../../../../../public/images/clothes2.jpg';
 import Image from 'next/image';
@@ -8,10 +8,24 @@ import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
 
-const ShopPage = async ({ searchParams }: { searchParams: { c: string } }) => {
+const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: string, max: string } }) => {
 
-  const { c } = await searchParams;
-  const products = await getProducts(c);
+  const { c, min, max } = await searchParams;
+
+  let products;
+
+  if (c && (min || max)) {
+    products = await getProductsByCategoryAndPriceRange(c, min, max);
+  } else if (c) {
+    products = await getProductsByCategory(c);
+  } else if (min || max) {
+    products = await getProductsByPriceRange(min, max);
+  }
+  else {
+    products = await getAllProducts();
+  }
+
+
 
   return (
     <>
@@ -38,7 +52,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string } }) => {
       {/* filter, sort and category-title */}
 
       <div className='container flex flex-col md:flex-row mt-8'>
-        <Filter category={c} />
+        <Filter category={c} min={min} max={max} />
         <div className='w-full'>
           <div className='flex items-center justify-between sticky inset-0 top-32 md:top-14 py-6 z-30 bg-neutral-1'>
             {c ? <h3 className='capitalize'>{c}</h3> : <h3 className=''>All Products</h3>}

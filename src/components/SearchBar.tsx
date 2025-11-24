@@ -18,11 +18,10 @@ const SearchBar = () => {
     }, [query])
 
     return (
-        <form onSubmit={(e) => e.preventDefault()} className='border border-border text-neutral-4 py-2 px-3 rounded-full flex items-center gap-3 max-w-lg mx-auto font-inter'>
+        <form onSubmit={(e) => e.preventDefault()} className='border border-border text-neutral-4 p-3 rounded-full flex items-center gap-3 max-w-lg mx-auto font-inter'>
             <Search />
             <input
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-
                 value={query}
                 type="text"
                 placeholder='Search anything here . . .'

@@ -1,4 +1,6 @@
-const ProductSkeleton = () => {
+// skeleton for shop page products
+
+export const ProductSkeleton = () => {
   return (
     <div className="animate-pulse bg-white rounded-lg shadow-sm overflow-hidden relative w-full">
       {/* Image placeholder */}
@@ -21,4 +23,14 @@ const ProductSkeleton = () => {
   );
 };
 
-export default ProductSkeleton;
+
+// skeleton for searched products
+export const SearchProductSkeleton = () => {
+  return (
+    <div>
+      <div className="bg-neutral-3 aspect-square w-full" />
+      <div></div>
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-linear-to-r from-transparent via-white/40 to-transparent" />
+    </div>
+  )
+}

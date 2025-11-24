@@ -1,13 +1,13 @@
 import { LinkButton, WishListBtn } from './Buttons'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getProducts } from '@/lib/getProducts'
+import { getAllProducts } from '@/lib/getProducts'
 import { AddToCartBtn } from './Buttons'
 import Rating from './Rating'
 
 const NewArrivals = async () => {
 
-  const products = await getProducts();
+  const products = await getAllProducts();
 
   return (
     <section className='overflow-x-hidden'>

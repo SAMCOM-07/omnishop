@@ -6,7 +6,7 @@ const Rating = ({ rating }: { rating: number }) => {
   return (
     <>
       {rating > 0 ? <div className='flex items-center -ml-1'>
-        {Array.from({ length: 5 }, (_, i) => i < Math.floor(rating)).map((isFilled, i) => (
+        {Array.from({ length: 5 }, (_, i) => i < Math.ceil(rating)).map((isFilled, i) => (
           <StarIcon
           size={18}
             key={i}

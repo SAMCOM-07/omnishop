@@ -19,7 +19,7 @@
   --orange: #FFAB00;
   --blue: #377DFF;
   --purple: #6a08db;
-  --border: #E8ECEF;
+  --border: #d2d4d6;
 }
 
 @theme inline {
@@ -83,7 +83,7 @@
   }
 
   .arrow-button {
-    @apply p-2 bg-neutral-1 rounded-full z-40 absolute hover:scale-110 active:scale-100 text-neutral-4 transition-all duration-300
+    @apply z-40 absolute hover:scale-110 active:scale-100 text-neutral-3 transition-all duration-300
   }
 
   .hover-scale {

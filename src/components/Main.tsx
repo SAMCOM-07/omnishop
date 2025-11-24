@@ -2,7 +2,7 @@
 
 import { banners } from '@/data/images'
 import { cn } from '@/lib/utils'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 import { LinkButton } from "./Buttons"
@@ -38,13 +38,13 @@ const Main = () => {
         }
 
         {/* banner buttons */}
-        <button aria-label='scroll-left' onClick={() => setCurrentBanner(prev => prev === 0 ? 0 : prev - 1)} className='arrow-button left-6'><ArrowLeft /></button>
-        <button aria-label='scroll-right' onClick={() => setCurrentBanner(prev => prev === banners.length - 1 ? banners.length - 1 : prev + 1)} className='arrow-button right-6'><ArrowRight /></button>
+        <button aria-label='scroll-left' onClick={() => setCurrentBanner(prev => prev === 0 ? 0 : prev - 1)} className='arrow-button left-6'><ChevronLeft /></button>
+        <button aria-label='scroll-right' onClick={() => setCurrentBanner(prev => prev === banners.length - 1 ? banners.length - 1 : prev + 1)} className='arrow-button right-6'><ChevronRight /></button>
 
         {/* navigation button */}
-        <div className='flex items-center gap-3 absolute bottom-6'>
+        <div className='flex items-center gap-2 absolute bottom-6'>
           {[...banners].map((_, index) =>
-            <button key={index} onClick={() => setCurrentBanner(index)} className={cn('h-3 rounded-full bg-neutral-1 transition-all duration-300 z-40', currentBanner === index ? 'w-6 bg-green' : 'w-3')}></button>
+            <button key={index} onClick={() => setCurrentBanner(index)} className={cn('h-2.5 rounded-full bg-neutral-1 transition-all duration-300 z-40', currentBanner === index ? 'w-5 bg-green' : 'w-2.5')}></button>
           )}
         </div>
 

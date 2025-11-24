@@ -2,7 +2,7 @@ import Guarantee from "@/components/Guarantee";
 import Main from "@/components/Main";
 import NewArrivals from "@/components/NewArrivals";
 import Newsletter from "@/components/Newsletter";
-import ProductSkeleton from "@/components/ProductSkeleton";
+import { ProductSkeleton } from "@/components/Skeletons";
 import { Suspense } from "react";
 
 

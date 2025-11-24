@@ -1,7 +1,7 @@
 import { AddToCartBtn, GoBackButton, LinkButton, WishListBtnWithText } from "@/components/Buttons";
 import ProductCard from "@/components/ProductCard";
 import ProductDetailsImages from "@/components/ProductDetailsImages";
-import ProductSkeleton from "@/components/ProductSkeleton";
+import { ProductSkeleton } from "@/components/Skeletons";
 import Rating from "@/components/Rating";
 import { getProductById, getRelatedProducts } from "@/lib/getProducts";
 import { Minus, Plus } from "lucide-react";

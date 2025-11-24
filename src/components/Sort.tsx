@@ -3,7 +3,12 @@ import React from 'react'
 const Sort = () => {
   return (
     <div>
-      Sort
+      <select name="" id="">
+        <option value="">Sort</option>
+        <option value="">Name</option>
+        <option value="">Low - High</option>
+        <option value="">High - Low</option>
+      </select>
     </div>
   )
 }
