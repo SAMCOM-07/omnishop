@@ -27,7 +27,7 @@ const Filter = ({ category, min, max }: { category: string, min: string, max: st
           <div className='flex flex-col overflow-y-scroll gap-4 h-60'>
             {
               categoriesLinks.map((link, index) => {
-                const activeLink = pathname + '?c=' + category === link.href || link.href === '/shop' && !category
+                const activeLink = `${pathname}?c=${category}` === link.href || link.href === '/shop' && !category
                 return (
                   <Link className={cn('text-neutral-4 text-sm hover:font-bold transition-all duration-500 w-fit inline', activeLink && 'border-b font-semibold text-neutral-7')} key={index} href={link.href}>{link.name}</Link>
                 )
@@ -41,9 +41,9 @@ const Filter = ({ category, min, max }: { category: string, min: string, max: st
           <div className='flex flex-col gap-3 pr-4'>
             {
               priceLinks.map((link, index) => {
-                const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && !min;
+                const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && (!min || !max);
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `/shop?${category}&${link.href}` : `/shop?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? '✔' : ''}</span></Link>
+                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `${pathname}?c=${category}&${link.href}` : `${pathname}?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? '✔' : ''}</span></Link>
                 )
               }
               )

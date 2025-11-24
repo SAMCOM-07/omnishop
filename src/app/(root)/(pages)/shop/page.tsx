@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
+import { revalidatePath } from 'next/cache';
 
 const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: string, max: string } }) => {
 
@@ -14,11 +15,11 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
 
   let products;
 
-  if (c && (min || max)) {
+  if (c && (min && max)) {
     products = await getProductsByCategoryAndPriceRange(c, min, max);
-  } else if (c) {
+  } else if (c && (!min && !max)) {
     products = await getProductsByCategory(c);
-  } else if (min || max) {
+  } else if ((min && max) && !c) {
     products = await getProductsByPriceRange(min, max);
   }
   else {
