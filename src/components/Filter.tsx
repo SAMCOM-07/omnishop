@@ -79,7 +79,7 @@ const Filter = ({ category, min, max }: { category: string, min: string, max: st
               priceLinks.map((link, index) => {
                 const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.href === '';
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `/shop?${category}&${link.href}` : `/shop?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? '✔' : ''}</span></Link>
+                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `/shop?c=${category}&${link.href}` : `/shop?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? '✔' : ''}</span></Link>
                 )
               }
               )
