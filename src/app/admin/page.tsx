@@ -1,9 +1,9 @@
-import { getProducts } from '@/lib/getProducts';
+import { getAllProducts } from '@/lib/getProducts';
 import Link from 'next/link';
 
 export default async function AdminDashboard() {
 
-  const products = await getProducts();
+  const products = await getAllProducts();
 
   return (
     <div className="p-6">
