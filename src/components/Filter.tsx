@@ -2,7 +2,7 @@
 
 import { categoriesLinks, priceLinks } from '@/data/links'
 import { cn } from '@/lib/utils'
-import { ListFilter } from 'lucide-react'
+import { ListFilter, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -29,7 +29,7 @@ const Filter = ({ category, min, max }: { category: string, min: string, max: st
               categoriesLinks.map((link, index) => {
                 const activeLink = `${pathname}?c=${category}` === link.href || link.href === '/shop' && !category
                 return (
-                  <Link className={cn('text-neutral-4 text-sm hover:font-bold transition-all duration-500 w-fit inline', activeLink && 'border-b font-semibold text-neutral-7')} key={index} href={link.href}>{link.name}</Link>
+                  <Link className={cn('text-neutral-4 text-sm hover:font-bold transition-all duration-500 w-fit inline', activeLink && 'border-b font-semibold text-neutral-7')} key={index} href={min && link.href !== '/shop' ? `${link.href}&min=${min}&max=${max}` : link.href}>{link.name}</Link>
                 )
               }
               )
@@ -55,16 +55,17 @@ const Filter = ({ category, min, max }: { category: string, min: string, max: st
 
 
         {/* filter for small width */}
-        <div className={cn('md:hidden absolute inset-0 top-16 bg-neutral-1 shadow-lg border border-border h-fit p-4 rounded-lg transition-opacity duration-300', isOpen ? 'opacity-100 z-50' : 'opacity-0 z-0')} onClick={() => setIsOpen(false)}>
+
+        <div className={cn('md:hidden absolute inset-0 top-16 bg-neutral-1 shadow-lg border border-border min-h-fit p-4 rounded-lg transition-opacity duration-1000', isOpen ? 'block' : 'hidden')}>
 
           {/* filter by cateogories */}
-          <h3 className='mb-4'>CATEGORIES</h3>
+          <h3 className='mb-4 flex items-center justify-between'>CATEGORIES<button onClick={() => setIsOpen(false)}><X /></button></h3>
           <div className='flex flex-wrap gap-2'>
             {
               categoriesLinks.map((link, index) => {
                 const activeLink = pathname + '?c=' + category === link.href || link.href === '/shop' && !category
                 return (
-                  <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:font-bold transition-all duration-500 w-fit inline', activeLink ? 'bg-neutral-3 font-bold' : 'bg-neutral-2', isOpen ? 'opacity-100 z-50' : 'opacity-0 -z-500')} key={index} href={link.href}>{link.name}</Link>
+                  <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:font-bold transition-all duration-500 w-fit inline', activeLink ? 'bg-neutral-3 font-bold' : 'bg-neutral-2')} key={index} href={min && link.href !== '/shop' ? `${link.href}&min=${min}&max=${max}` : link.href}>{link.name}</Link>
                 )
               }
               )
@@ -77,9 +78,9 @@ const Filter = ({ category, min, max }: { category: string, min: string, max: st
           <div className='flex flex-wrap gap-3'>
             {
               priceLinks.map((link, index) => {
-                const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.href === '';
+                const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && (!min || !max);
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `/shop?${category}&${link.href}` : `/shop?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? '✔' : ''}</span></Link>
+                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `/shop?c=${category}&${link.href}` : `/shop?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? '✔' : ''}</span></Link>
                 )
               }
               )
