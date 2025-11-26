@@ -3,6 +3,9 @@ import SearchBar from '@/components/SearchBar'
 import { getProductsBySearch } from '@/lib/getProducts'
 import Link from 'next/link';
 import { Suspense } from 'react';
+import { p } from 'framer-motion/client';
+import Image from 'next/image';
+import Rating from '@/components/Rating';
 const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => {
 
   const { q } = await searchParams;
@@ -34,7 +37,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
 
 
   return (
-    <div className='h-screen mt-4 container'>
+    <div className='h- mt-4 container'>
       <SearchBar />
 
       <div className="flex flex-wrap gap-2 mt-6 max-w-2xl mx-auto justify-center">
@@ -53,14 +56,25 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
       <Suspense fallback={<div className='flex flex-col gap-3 mt-6'>
         {Array.from({ length: 10 }).map((_, index) => <SearchProductSkeleton key={index} />)}
       </div>}>
-        <div className='grid grid-col-3 gap-4 mt-18 max-w-xl mx-auto'>
+        <div className='flex flex-col gap-3 mt-18 max-w-xl mx-auto'>
           {
-            products && (await products).map((product, index) =>
-              <div key={index}>
-                <h2>{product.name}</h2>
-                <p>{product.description}</p>
-              </div>
-            )
+            products ? products.map((product, index) =>
+              <Link href={`/shop/${product.id}`} key={index} className='flex items-center gap-4 group hover:shadow-none transition-all hover:skew-1 duration-500 shadow-md p-2 rounded-md'>
+                <div className='min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] overflow-hidden rounded-md bg-neutral-2 grid'>
+                  <Image priority src={product.images[0].url.replace(
+                    "/upload/",
+                    "/upload/f_auto,q_auto,w_600/"
+                  )} width={400} height={400} alt={product.name} className='w-full h-full object-cover object-center group-hover:scale-110 group-active:scale-95 transition-all duration-500' />
+                </div>
+                <div>
+                  <Rating rating={product.rating} />
+                  <h3>{product.name}</h3>
+                  <p className='line-clamp-2 leading-tight text-xs md:text-sm'>{product.description}</p>
+                  <span className='text-xs font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
+                  <span className='text-xs ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
+                </div>
+              </Link>
+            ) : <p className='text-center col-span-full text-xl text-neutral-4'>No product found for {q}</p>
           }
         </div>
       </Suspense>

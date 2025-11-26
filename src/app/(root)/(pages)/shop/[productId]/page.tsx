@@ -6,6 +6,7 @@ import Rating from "@/components/Rating";
 import { getProductById, getRelatedProducts } from "@/lib/getProducts";
 import { Minus, Plus } from "lucide-react";
 import { Suspense } from "react";
+import Link from "next/link";
 // import { Suspense } from "react";
 
 export default async function ProductDetailsPage({ params }: { params: { productId: string } }) {
@@ -36,6 +37,17 @@ export default async function ProductDetailsPage({ params }: { params: { product
           <Rating rating={product.rating} />
           <h1 className="text font-bold">{product.name}</h1>
           <p className="text-neutral-4 text-sm font-poppins">{product.description}</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            {
+              product.tags && product.tags.map((tag, i) =>
+                <Link
+                  key={i}
+                  href={`/search?q=${tag.toLowerCase()}`}
+                  className="bg-blue text-neutral-1 rounded-md py-1 px-3 text-xs font-inter"
+                >{tag}</Link>
+              )
+            }
+          </div>
           <div>
             <span className='font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
             <span className='ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>

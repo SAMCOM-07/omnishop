@@ -27,7 +27,7 @@ const ProductCard = (product: ProductType) => {
         </div>
       </div>
       <div className='p-3'>
-        <Rating rating={product.rating} />
+        <Rating rating={product.rating} />P
         <Link href={`/shop/${product.id}`} className='font-bold line-clamp-1'>{product.name}</Link>
 
         <span className='text-sm font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>

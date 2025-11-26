@@ -32,6 +32,10 @@ export const categoriesLinks = [
     href: `/shop?c=${encodeURIComponent("fashion")}`,
   },
   {
+    name: "Furniture",
+    href: `/shop?c=${encodeURIComponent("furniture")}`,
+  },
+  {
     name: "Accessories",
     href: `/shop?c=${encodeURIComponent("accessories")}`,
   },

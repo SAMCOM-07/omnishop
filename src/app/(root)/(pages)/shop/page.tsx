@@ -68,7 +68,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
               {
                 products && products.length > 0 ? products.map((product) =>
                   <ProductCard key={product.id} {...product} />
-                ) : <p className='py-6 col-span-full place-self-center w-full'>No product found !</p>
+                ) : <p className='py-32 col-span-full place-content-center w-full h-full text-center'>No product found !</p>
               }
             </div>
           </Suspense>

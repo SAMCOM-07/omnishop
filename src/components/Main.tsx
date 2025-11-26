@@ -72,7 +72,7 @@ const Main = () => {
         {/* 1 */}
         <div className='bg-neutral-2 p-6 overflow-hidden space-y-4 w-full'>
           <h2>Furniture</h2>
-          <LinkButton text='Show More' href='/shop' />
+          <LinkButton text='Show More' href='/shop?c=furniture' />
           <div className='overflow-hidden w-full'>
             <Image priority src={chair} alt='chair (sofa)' className='h-full object-cover object-center' />
           </div>
@@ -83,7 +83,7 @@ const Main = () => {
           <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2'>
             <div className='space-y-2'>
               <h2>Cloth</h2>
-              <LinkButton text='Show More' href='/shop' />
+              <LinkButton text='Show More' href='/shop?c=fashion' />
             </div>
             <div className='overflow-hidden w-[60%] h-full'>
               <Image priority src={Shirt} alt='cloth' className='h-full w-full object-cover object-center' />
@@ -93,7 +93,7 @@ const Main = () => {
           <div className='bg-neutral-2 p-6 flex gap-4 overflow-hidden justify-between items-end h-1/2 [direction:rtl] lg:[direction:ltr]'>
             <div className='space-y-2'>
               <h2>Travel Bags</h2>
-              <LinkButton text='Show More' href='/shop' />
+              <LinkButton text='Show More' href='/shop?c=home & kitchen' />
             </div>
             <div className='overflow-hidden w-[40%] h-full'>
               <Image priority src={Bag} alt='cloth' className='h-full w-full object-cover object-center' />
