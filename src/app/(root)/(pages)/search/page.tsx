@@ -3,7 +3,6 @@ import SearchBar from '@/components/SearchBar'
 import { getProductsBySearch } from '@/lib/getProducts'
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { p } from 'framer-motion/client';
 import Image from 'next/image';
 import Rating from '@/components/Rating';
 const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => {
@@ -37,7 +36,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
 
 
   return (
-    <div className='h- mt-4 container'>
+    <div className='my-4 container min-h-screen'>
       <SearchBar />
 
       <div className="flex flex-wrap gap-2 mt-6 max-w-2xl mx-auto justify-center">
@@ -58,7 +57,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
       </div>}>
         <div className='flex flex-col gap-3 mt-18 max-w-xl mx-auto'>
           {
-            products ? products.map((product, index) =>
+            products && products.length ? products.map((product, index) =>
               <Link href={`/shop/${product.id}`} key={index} className='flex items-center gap-4 group hover:shadow-none transition-all hover:skew-1 duration-500 shadow-md p-2 rounded-md'>
                 <div className='min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] overflow-hidden rounded-md bg-neutral-2 grid'>
                   <Image priority src={product.images[0].url.replace(
@@ -74,7 +73,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
                   <span className='text-xs ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
                 </div>
               </Link>
-            ) : <p className='text-center col-span-full text-xl text-neutral-4'>No product found for {q}</p>
+            ) : q ? <p className='text-center col-span-full text-xl text-neutral-4 py-34'>No product found for <span className='font-semibold italic capitalize'>"{q}"</span> !!!</p> : <p className='text-center col-span-full text-xl text-neutral-4 py-34'>Search Something Fantastic !!!</p>
           }
         </div>
       </Suspense>
