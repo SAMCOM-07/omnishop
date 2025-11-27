@@ -2,7 +2,7 @@
 
 import { categoriesLinks, priceLinks } from '@/data/links'
 import { cn } from '@/lib/utils'
-import { ListFilter, X } from 'lucide-react'
+import { Check, ListFilter, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -43,7 +43,7 @@ const Filter = ({ category, min, max }: { category: string, min: string, max: st
               priceLinks.map((link, index) => {
                 const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && (!min || !max);
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `${pathname}?c=${category}&${link.href}` : `${pathname}?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? '✔' : ''}</span></Link>
+                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index} href={category && link.href !== '' ? `${pathname}?c=${category}&${link.href}` : `${pathname}?${link.href}`}>{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? <Check className='p-1'/> : ''}</span></Link>
                 )
               }
               )
