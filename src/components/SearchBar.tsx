@@ -18,7 +18,7 @@ const SearchBar = () => {
     }, [query])
 
     return (
-        <form onSubmit={(e) => e.preventDefault()} className='border border-border text-neutral-4 p-3 rounded-full flex items-center gap-3 font-inter'>
+        <div className='border border-border text-neutral-4 p-3 rounded-full flex items-center gap-3 font-inter'>
             <Search />
             <input
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ const SearchBar = () => {
             }}
                 className={`${query ? 'block' : 'hidden'}`}><X size={18} /></button>
 
-        </form>
+        </div>
     )
 }
 
