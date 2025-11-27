@@ -36,10 +36,11 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
 
 
   return (
-    <div className='my-4 container min-h-screen'>
+    <div className='my-4 container min-h-screen max-w-xl max-auto'>
       <SearchBar />
 
-      <div className="flex flex-wrap gap-2 mt-6 max-w-2xl mx-auto justify-center">
+      <h2 className='text-center mt-8'>Quick Search</h2>
+      <div className="flex flex-wrap gap-2 mt-2 justify-center">
         {searchTags.map(tag => (
           <Link
             href={`/search?q=${tag.toLowerCase()}`}
@@ -52,10 +53,10 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
       </div>
 
 
-      <Suspense fallback={<div className='flex flex-col gap-3 mt-6'>
+      <Suspense fallback={<div className='flex flex-col gap-3 mt-18'>
         {Array.from({ length: 10 }).map((_, index) => <SearchProductSkeleton key={index} />)}
       </div>}>
-        <div className='flex flex-col gap-3 mt-18 max-w-xl mx-auto'>
+        <div className='flex flex-col gap-3 mt-18'>
           {
             products && products.length ? products.map((product, index) =>
               <Link href={`/shop/${product.id}`} key={index} className='flex items-center gap-4 group hover:shadow-none transition-all hover:skew-1 duration-500 shadow-md p-2 rounded-md'>
@@ -73,7 +74,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
                   <span className='text-xs ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
                 </div>
               </Link>
-            ) : q ? <p className='text-center col-span-full text-xl text-neutral-4 py-34'>No product found for <span className='font-semibold italic capitalize'>"{q}"</span> !!!</p> : <p className='text-center col-span-full text-xl text-neutral-4 py-34'>Search Something Fantastic !!!</p>
+            ) : q ? <p className='text-center col-span-full text-xl text-neutral-4 py-34'>No search result for <span className='font-semibold italic capitalize'>"{q}"</span> !!!</p> : <p className='text-center col-span-full text-xl text-neutral-4 py-34'>Search For Any Product Here !!!</p>
           }
         </div>
       </Suspense>

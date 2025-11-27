@@ -18,7 +18,7 @@ const SearchBar = () => {
     }, [query])
 
     return (
-        <form onSubmit={(e) => e.preventDefault()} className='border border-border text-neutral-4 p-3 rounded-full flex items-center gap-3 max-w-lg mx-auto font-inter'>
+        <form onSubmit={(e) => e.preventDefault()} className='border border-border text-neutral-4 p-3 rounded-full flex items-center gap-3 font-inter'>
             <Search />
             <input
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,13 +27,14 @@ const SearchBar = () => {
                 }}
                 value={query}
                 type="text"
-                placeholder='Search anything here . . .'
+                placeholder='Search . . .'
                 className='outline-0 grow'
                 id='searchform'
             />
 
             <button onClick={() => {
-                setQuery('')
+                setQuery('');
+                router.push('/search')
             }}
                 className={`${query ? 'block' : 'hidden'}`}><X size={18} /></button>
 
