@@ -53,13 +53,16 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
       </div>
 
 
+      {
+        products.length > 0 && <h2 className='mt-12'>{products.length > 1 && products.length !== 0 ? `Search results for "${q}"` : `Search result for "${q}"`}</h2>
+      }
       <Suspense fallback={<div className='flex flex-col gap-3 mt-18'>
         {Array.from({ length: 10 }).map((_, index) => <SearchProductSkeleton key={index} />)}
       </div>}>
-        <div className='flex flex-col gap-3 mt-18'>
+        <div className='flex flex-col gap-3 '>
           {
             products && products.length ? products.map((product, index) =>
-              <Link href={`/shop/${product.id}`} key={index} className='flex items-center gap-4 group hover:shadow-none transition-all hover:skew-1 duration-500 shadow-md p-2 rounded-md'>
+              <Link href={`/shop/${product.id}`} key={index} className='flex items-center mt-4 gap-4 group hover:shadow-none transition-all hover:skew-1 duration-500 shadow-md p-2 rounded-md'>
                 <div className='min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] overflow-hidden rounded-md bg-neutral-2 grid'>
                   <Image priority src={product.images[0].url.replace(
                     "/upload/",
