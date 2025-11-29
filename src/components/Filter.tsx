@@ -85,7 +85,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
           <div className='flex flex-wrap gap-2'>
             {
               categoriesLinks.map((link, index) => {
-                const activeLink = pathname + '?c=' + category === link.href || link.href === '/shop' && !category
+                const activeLink = `${pathname}?c=${category}` === link.href || link.href === '/shop?' && !category
                 return (
                   <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:font-bold transition-all duration-500 w-fit inline', activeLink ? 'bg-neutral-3 font-bold' : 'bg-neutral-2')} key={index}
                     href={`${link.href}${min || max ? `&min=${min}&max=${max}` : ''}${sort ? `&sort=${sort}` : ''}`}
