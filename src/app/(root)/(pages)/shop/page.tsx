@@ -7,23 +7,45 @@ import Image from 'next/image';
 import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
-import { revalidatePath } from 'next/cache';
 
-const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: string, max: string } }) => {
+const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: string, max: string, sort: string } }) => {
 
-  const { c, min, max } = await searchParams;
+  const { c, min, max, sort } = await searchParams;
 
   let products;
 
   if (c && (min && max)) {
-    products = await getProductsByCategoryAndPriceRange(c, min, max);
+    const p = await getProductsByCategoryAndPriceRange(c, min, max);
+    if (sort) {
+      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
+    }
+    else {
+      products = p;
+    }
   } else if (c && (!min && !max)) {
-    products = await getProductsByCategory(c);
+    const p = await getProductsByCategory(c);
+    if (sort) {
+      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
+    }
+    else {
+      products = p;
+    }
   } else if ((min && max) && !c) {
-    products = await getProductsByPriceRange(min, max);
-  }
-  else {
-    products = await getAllProducts();
+    const p = await getProductsByPriceRange(min, max);
+    if (sort) {
+      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
+    }
+    else {
+      products = p;
+    }
+  } else {
+    const p = await getAllProducts();
+    if (sort) {
+      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
+    }
+    else {
+      products = p;
+    }
   }
 
 
@@ -53,11 +75,11 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
       {/* filter, sort and category-title */}
 
       <div className='container flex flex-col md:flex-row mt-8'>
-        <Filter category={c} min={min} max={max} />
+        <Filter category={c} min={min} max={max} sort={sort} />
         <div className='w-full'>
-          <div className='flex items-center justify-between sticky inset-0 top-32 md:top-14 py-6 z-30 bg-neutral-1'>
+          <div className='flex items-center justify-between sticky inset-0 top-32 md:top-14 pt-6 pb-3 z-30 bg-neutral-1'>
             {c ? <h3 className='capitalize'>{c}</h3> : <h3 className=''>All Products</h3>}
-            <Sort />
+            <Sort category={c} min={min} max={max} sort={sort} />
           </div>
 
           {/* product grid */}

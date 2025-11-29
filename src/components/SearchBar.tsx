@@ -11,11 +11,19 @@ const SearchBar = ({ q }: { q: string }) => {
     const [query, setQuery] = useState('')
 
     useEffect(() => {
-        const fecthSearch = () => {
-            query && router.push(`/search?q=${query}`);
+        const params = new URLSearchParams(window.location.search);
+
+        if (!query.trim()) {
+            params.delete("q"); // <-- important fix
+        } else {
+            params.set("q", query);
         }
-        fecthSearch();
-    }, [query, q])
+
+        const newQuery = params.toString();
+
+        router.push(`/search?${newQuery}`);
+    }, [query]);
+
 
     return (
         <div className='border border-border text-neutral-4 p-3 rounded-full flex items-center gap-3 font-inter'>
@@ -24,7 +32,7 @@ const SearchBar = ({ q }: { q: string }) => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setQuery(e.target.value);
                 }}
-                value={query}
+                value={q ? q : query}
                 type="text"
                 placeholder='Search . . .'
                 className='outline-0 grow'

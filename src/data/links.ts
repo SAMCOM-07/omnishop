@@ -21,7 +21,7 @@ export const navLinks = [
 export const categoriesLinks = [
   {
     name: "All Products",
-    href: "/shop",
+    href: "/shop?",
   },
   {
     name: "Electronics",
