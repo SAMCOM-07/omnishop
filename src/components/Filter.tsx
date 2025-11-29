@@ -33,9 +33,12 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
   return (
     <section className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4'>
       <div className='sticky inset-0 py-6 top-14'>
-        <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
-          onClick={() => setIsOpen(true)}
-        ><ListFilter size={16} />Filter</button>
+        <div className='flex gap-2 items-center'>
+          <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
+            onClick={() => setIsOpen(true)}
+          ><ListFilter size={16} />Filter</button>
+          {(category || min || max) && <Link href={`/shop${sort ? `?sort=${sort}` : ''}`}><X size={16} /></Link>}
+        </div>
 
         {/* filter(side bar) from medium upward */}
         <aside className='hidden md:block'>
