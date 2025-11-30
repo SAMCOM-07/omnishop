@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState('')
 
   return (
-    <section className='flex items-center gap-4'>
+    <section className='flex items-center gap-2'>
       <div className='flex text-neutral-4/70 items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 px-3 py-2 rounded-full font-inter grow'>
         <Search size={20}/>
         <input
@@ -37,7 +37,7 @@ const SearchBar = () => {
       </div>
       <button
       onClick={() => router.replace('/')}
-      className='font-inter hover-scale text-neutral-4 bg-neutral-2 shadow-[0_0_10px_inset] rounded-full px-3 py-1'
+      className='font-inter hover:bg-neutral-4/50 hover:text-neutral-1 transition-colors duration-300 text-neutral-4/50 rounded-full px-3 py-1'
         >Cancel</button>
     </section>
   )

@@ -36,7 +36,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
 
 
   return (
-    <div className='container max-w-xl max-auto min-h-screen'>
+    <div className='container max-w-xl max-auto'>
       <div className='sticky inset-0 z-40 pt-8 pb-2 bg-neutral-1 shadow-[0_0_0_10px] shadow-neutral-1'>
         <SearchBar />
       </div>

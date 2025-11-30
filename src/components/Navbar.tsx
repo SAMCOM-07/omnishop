@@ -35,7 +35,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      <Link href={'/search'} className="flex text-neutral-4/70 hover-scale items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 px-3 py-1.5 rounded-full grow max-w-sm">
+      <Link href={'/search'} className="flex text-neutral-4/70 hover-scale items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 px-3 py-1.5 rounded-full grow max-w-sm font-inter">
         <Search size={20} />
         Search . . .
       </Link>
