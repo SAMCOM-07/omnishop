@@ -37,8 +37,8 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
 
   return (
     <div className='container max-w-xl max-auto min-h-screen'>
-      <div className='sticky inset-0 z-40 pt-8 pb-2 top-16 bg-neutral-1 shadow-[0_0_0_10px] shadow-neutral-1'>
-        <SearchBar q={q} />
+      <div className='sticky inset-0 z-40 pt-8 pb-2 bg-neutral-1 shadow-[0_0_0_10px] shadow-neutral-1'>
+        <SearchBar />
       </div>
 
       <h2 className='text-center mt-8'>Quick Search</h2>
@@ -47,7 +47,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
           <Link
             href={`/search?q=${tag.toLowerCase()}`}
             key={tag}
-            className="px-3 text-neutral-4 py-1 rounded-full text-xs bg-neutral-2 hover:bg-neutral-3 transition"
+            className="px-3 text-neutral-4 py-1 rounded-full text-xs bg-neutral-2 hover:bg-neutral-3 transition border border-border"
           >
             {tag}
           </Link>
@@ -64,7 +64,7 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
         <div className='flex flex-col gap-3 mb-12'>
           {
             products && products.length ? products.map((product, index) =>
-              <Link href={`/shop/${product.id}`} key={index} className='flex items-center mt-4 gap-4 group hover:shadow-sm transition-all hover:skew-1 duration-500 shadow-lg p-2 rounded-md'>
+              <Link href={`/shop/${product.id}`} key={index} className='flex items-center mt-4 gap-4 group hover:shadow-sm transition-all hover:skew-1 duration-500 shadow-lg p-2 rounded-md  border border-border/50'>
                 <div className='min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] overflow-hidden rounded-md bg-neutral-2 grid'>
                   <Image priority src={product.images[0].url.replace(
                     "/upload/",
