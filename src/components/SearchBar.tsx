@@ -37,7 +37,7 @@ const SearchBar = () => {
       </div>
       <button
       onClick={() => router.replace('/')}
-      className='font-inter hover:bg-neutral-4/50 hover:text-neutral-1 transition-colors duration-300 text-neutral-4/50 rounded-full px-3 py-1'
+      className='font-inter hover:bg-neutral-4/50 hover:text-neutral-1 transition-colors duration-300 text-neutral-4/70 rounded-full px-3 py-1'
         >Cancel</button>
     </section>
   )
