@@ -6,7 +6,7 @@ import { Search, ShoppingCart, UserCircleIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SearchPage from "./SearchPage"
-import { useState } from "react"
+import { Suspense, useState } from "react"
 
 
 const Navbar = () => {
@@ -58,7 +58,9 @@ const Navbar = () => {
 
       {/* search page */}
       <div className={cn("fixed inset-0 w-full h-screen bg-neutral-1 overflow-y-auto", isSearchOpen ? 'block' : 'hidden')}>
-        <SearchPage setIsSearchOpen={setIsSearchOpen} />
+        <Suspense >
+          <SearchPage setIsSearchOpen={setIsSearchOpen} />
+        </Suspense>
       </div>
     </>
   )
