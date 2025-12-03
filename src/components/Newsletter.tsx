@@ -4,7 +4,7 @@ import AdBannerImg from './../../public/images/clothes2.jpg';
 const Newsletter = () => {
   return (
 
-    <div className="flex flex-col md:flex-row bg-neutral-2 gap-12 items-center">
+    <section className="flex flex-col md:flex-row bg-neutral-2 gap-12 items-center">
       <Image
         src={AdBannerImg}
         alt='banner Image'
@@ -20,7 +20,7 @@ const Newsletter = () => {
           <button type='submit' className='hover:text-neutral-4 active:text-neutral-7 transition-color duration-300 text-sm'>Subscribe</button>
         </form>
       </div>
-    </div>
+    </section>
   )
 }
 

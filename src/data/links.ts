@@ -92,3 +92,18 @@ export const priceLinks = [
     },
   ];
 
+
+  export const sortings = [
+    {
+      title: 'Relevant',
+      href: '',
+    },
+    {
+      title: 'Low',
+      href: `sort=low`,
+    },
+    {
+      title: 'High',
+      href: `sort=high`,
+    },
+  ]

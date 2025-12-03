@@ -31,7 +31,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
 
   return (
-    <section className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4'>
+    <section className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4 '>
       <div className='sticky inset-0 py-6 top-14'>
         <div className='flex gap-2 items-center'>
           <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
@@ -66,7 +66,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
               priceLinks.map((link, index) => {
                 const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && (!min || !max);
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index}
+                  <Link className={cn(' text-sm inline-flex items-center justify-between transition-all duration-500 w-full hover:font-bold', activeLink ? 'text-neutral-7 font-bold' : 'text-neutral-4')} key={index}
                     href={`${pathname}?${category ? `c=${category}` : ''}&${link.href}${sort ? `&sort=${sort}` : ''}`}
                   >{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? <Check className='p-1' /> : ''}</span></Link>
                 )
@@ -90,7 +90,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
               categoriesLinks.map((link, index) => {
                 const activeLink = `${pathname}?c=${category}` === link.href || link.href === '/shop?' && !category
                 return (
-                  <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:font-bold transition-all duration-500 w-fit inline', activeLink ? 'bg-neutral-3 font-bold' : 'bg-neutral-2')} key={index}
+                  <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:bg-neutral-3 bg-neutral-2 transition-all duration-500 w-fit inline border border-border', activeLink && 'font-bold text-neutral-7' )} key={index}
                     href={`${link.href}${min || max ? `&min=${min}&max=${max}` : ''}${sort ? `&sort=${sort}` : ''}`}
                   >{link.name}</Link>
                 )
@@ -107,7 +107,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
               priceLinks.map((link, index) => {
                 const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && (!min || !max);
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between font-semibold transition-all duration-500 w-full', activeLink ? 'text-neutral-7' : 'text-neutral-4')} key={index}
+                  <Link className={cn(' text-sm inline-flex items-center justify-between transition-all duration-500 w-full hover:font-bold', activeLink ? 'text-neutral-7 font-bold' : 'text-neutral-4')} key={index}
                     href={`${pathname}?${category ? `c=${category}` : ''}&${link.href}${sort ? `&sort=${sort}` : ''}`}
                   >{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? <Check className='p-1' /> : ''}</span></Link>
                 )

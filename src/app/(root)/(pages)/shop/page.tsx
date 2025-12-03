@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
+import Newsletter from '@/components/Newsletter';
 
 const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: string, max: string, sort: string } }) => {
 
@@ -52,7 +53,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
 
   return (
     <>
-      <section className='flex items-center justify-center overflow-hidden bg-gray-500 relative'>
+      <section className='flex items-center justify-center overflow-hidden bg-gray-500 relative '>
         <div
           className='w-full lg:h-[600px] h-[400px] bg-gray-200 transition-all duration-500'>
           <Image
@@ -74,7 +75,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
 
       {/* filter, sort and category-title */}
 
-      <div className='container flex flex-col md:flex-row mt-8'>
+      <div className='container flex flex-col md:flex-row mt-8 mb-18'>
         <Filter category={c} min={min} max={max} sort={sort} />
         <div className='w-full'>
           <div className='flex items-center justify-between sticky inset-0 top-32 md:top-14 pt-6 pb-3 z-30 bg-neutral-1'>
@@ -98,6 +99,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
       </div>
 
 
+      <Newsletter />
     </>
   )
 }
