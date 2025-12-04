@@ -1,9 +1,10 @@
 import { getAllProducts } from '@/lib/getProducts';
+import { ProductType } from '@/types/types';
 import Link from 'next/link';
 
 export default async function AdminDashboard() {
 
-  const products = await getAllProducts();
+  const products: ProductType[] = await getAllProducts();
 
   return (
     <div className="p-6">
