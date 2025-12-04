@@ -7,11 +7,13 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SearchPage from "./SearchPage"
 import { Suspense, useState } from "react"
+import { useCart } from "@/context/CartContext"
 
 
 const Navbar = () => {
 
   const pathname = usePathname();
+  const { totalQuantity } = useCart();
 
   const [isSearchOpen, setIsSearchOpen] = useState(false)
 
@@ -47,10 +49,10 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-4">
           <UserCircleIcon size={20} />
-          <div className="relative">
+          <Link href={'/cart'} className="relative">
             <ShoppingCart size={20} />
-            <div className='rounded-full p-1 font-bold text-green text-sm absolute -right-3.5 -top-3.5'>2</div>
-          </div>
+            <div className='rounded-full p-1 font-bold text-green text-sm absolute left-4.5 -top-3.5'>{totalQuantity}</div>
+          </Link>
         </div>
       </header>
 

@@ -6,15 +6,14 @@ import Rating from "@/components/Rating";
 import { getProductById, getRelatedProducts } from "@/lib/getProducts";
 import { Minus, Plus } from "lucide-react";
 import { Suspense } from "react";
-import Link from "next/link";
-// import { Suspense } from "react";
+import { ProductType } from "@/types/types";
 
 export default async function ProductDetailsPage({ params }: { params: { productId: string } }) {
 
   const { productId } = await params;
 
-  const product = await getProductById(productId);
-  const relatedProducts = await getRelatedProducts(product?.category || '', productId);
+  const product: ProductType = await getProductById(productId);
+  const relatedProducts: ProductType[] = await getRelatedProducts(product?.category || '', productId);
 
 
   if (!product) {
@@ -29,9 +28,6 @@ export default async function ProductDetailsPage({ params }: { params: { product
     <div className="container mt-4">
       <GoBackButton />
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-12">
-        {/* <Suspense fallback={<div className="w-6 h-6 rounded-full border-t-2 border-b-2 border-green-600 animate-spin mx-auto mt-20"></div>}>
-          <ProductDetailsImages productImages={product.images} />
-        </Suspense> */}
         <ProductDetailsImages productImages={product.images} discount={product.discount} />
         <div className="mt-6 md:mt-0 space-y-4 max-w-xl">
           <Rating rating={product.rating} />
@@ -40,11 +36,10 @@ export default async function ProductDetailsPage({ params }: { params: { product
           <div className="flex items-center gap-2 flex-wrap">
             {
               product.tags && product.tags.map((tag, i) =>
-                <Link
+                <span
                   key={i}
-                  href={`/search?q=${tag.toLowerCase()}`}
                   className="bg-blue text-neutral-1 rounded-md py-1 px-3 text-xs font-inter"
-                >{tag}</Link>
+                >{tag}</span>
               )
             }
           </div>
@@ -60,7 +55,7 @@ export default async function ProductDetailsPage({ params }: { params: { product
             </div>
             <WishListBtnWithText productId={product.id} />
           </div>
-          <AddToCartBtn productId={product.id} />
+          <AddToCartBtn product={product} />
         </div>
       </section>
 

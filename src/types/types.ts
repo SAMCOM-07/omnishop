@@ -30,16 +30,26 @@ export type ProductType = {
   }[];
 };
 
+export type CartProductType = ProductType & { quantity: number };
 
 export type ProductContextType = {
-    products: ProductType[];
-    loading: boolean;
-    error: string;
+  products: ProductType[];
+  loading: boolean;
+  error: string;
 };
 
-export function getCreatedAtSeconds(createdAt?: Date | string | Timestamp): number {
+export type CartContextType = {
+  cartItems: CartProductType[] | null;
+  addToCart: (product: ProductType) => void;
+  totalQuantity: number;
+};
+
+export function getCreatedAtSeconds(
+  createdAt?: Date | string | Timestamp
+): number {
   if (createdAt instanceof Timestamp) return createdAt.seconds;
   if (createdAt instanceof Date) return createdAt.getTime() / 1000;
-  if (typeof createdAt === "string") return new Date(createdAt).getTime() / 1000;
+  if (typeof createdAt === "string")
+    return new Date(createdAt).getTime() / 1000;
   return 0;
 }

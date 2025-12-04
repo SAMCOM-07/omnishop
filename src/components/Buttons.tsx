@@ -1,7 +1,14 @@
 'use client'
 
+import { useCart } from "@/context/CartContext";
+import { ProductType } from "@/types/types";
 import { ArrowRight, ChevronLeft, Heart } from "lucide-react";
 import Link from "next/link";
+
+
+
+
+
 
 
 // link button
@@ -21,9 +28,12 @@ export const LinkButton = ({ text, href }: { text: string, href: string }) => {
 
 
 // add to cart button
-export const AddToCartBtn = ({ productId }: { productId: string | undefined }) => {
+export const AddToCartBtn = ({ product }: { product: ProductType }) => {
+
+  const { addToCart } = useCart();
+
   return (
-    <button className='hover:scale-105 active:scale-95 transition-transform duration-300 bg-neutral-7 text-xs md:textbase text-neutral-1 p-3 rounded-md w-full text-center font-inter'>Add to Cart</button>
+    <button onClick={() => addToCart(product)} className='hover:scale-105 active:scale-95 transition-transform duration-300 bg-neutral-7 text-xs md:textbase text-neutral-1 p-3 rounded-md w-full text-center font-inter'>Add to Cart</button>
   )
 }
 
@@ -46,10 +56,10 @@ export const WishListBtnWithText = ({ productId }: { productId: string | undefin
 export const GoBackButton = () => {
   return (
     <button
-      onClick={ () => window.history.back() }
+      onClick={() => window.history.back()}
       className="w-fit text-neutral-4 flex items-center gap-1 group text-sm md:text-base group [direction:ltr] font-inter"
     >
-      <ChevronLeft size={18} className="group-hover:-translate-x-0.5 group-active:translate-0 transition-transform duration-200"/>
+      <ChevronLeft size={18} className="group-hover:-translate-x-0.5 group-active:translate-0 transition-transform duration-200" />
       <span>back</span>
     </button>
   );

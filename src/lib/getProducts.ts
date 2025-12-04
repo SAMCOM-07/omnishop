@@ -11,6 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "./firebase";
+import { serializeData } from "./serialize";
 
 // export const getProducts = async (c?: string): Promise<ProductType[]> => {
 //   if (c) {
@@ -101,7 +102,7 @@ export const getAllProducts = async () => {
     ...doc.data(),
   })) as ProductType[];
 
-  return products;
+  return serializeData(products);
 };
 
 // get products by category
@@ -120,7 +121,7 @@ export const getProductsByCategory = async (c: string) => {
     (product) => product.category.toLowerCase() === c.toLowerCase()
   );
 
-  return products;
+  return serializeData(products);
 };
 
 // get product by price range
@@ -140,7 +141,7 @@ export const getProductsByPriceRange = async (min: string, max: string) => {
     return effectivePrice >= Number(min) && effectivePrice <= Number(max);
   });
 
-  return products;
+  return serializeData(products);
 };
 
 // get product by price range and category
@@ -168,7 +169,7 @@ export const getProductsByCategoryAndPriceRange = async (
     );
   });
 
-  return products;
+  return serializeData(products);
 };
 
 // search query fetch
@@ -184,7 +185,7 @@ export const getProductsBySearch = async (
   const products = data.filter((p) =>
     p.name?.toLowerCase().includes(q.toLowerCase())
   );
-  return products;
+  return serializeData(products);
 };
 
 // export const getProductById = async (productId: string) => {
@@ -202,7 +203,7 @@ export async function getProductById(productId: string) {
   const snapshot = await getDoc(ref);
   if (!snapshot.exists()) return null;
   const product = { id: snapshot.id, ...snapshot.data() } as ProductType;
-  return product;
+  return serializeData(product);
 }
 
 export async function getRelatedProducts(category: string, productId: string) {
@@ -215,5 +216,5 @@ export async function getRelatedProducts(category: string, productId: string) {
   const relatedProducts = products.filter(
     (product) => product.category === category && product.id !== productId
   );
-  return relatedProducts;
+  return serializeData(relatedProducts);
 }

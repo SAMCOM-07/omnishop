@@ -8,6 +8,7 @@ import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
 import Newsletter from '@/components/Newsletter';
+import { ProductType } from '@/types/types';
 
 const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: string, max: string, sort: string } }) => {
 
@@ -16,7 +17,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
   let products;
 
   if (c && (min && max)) {
-    const p = await getProductsByCategoryAndPriceRange(c, min, max);
+    const p: ProductType[] = await getProductsByCategoryAndPriceRange(c, min, max);
     if (sort) {
       products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
     }
@@ -24,7 +25,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
       products = p;
     }
   } else if (c && (!min && !max)) {
-    const p = await getProductsByCategory(c);
+    const p: ProductType[] = await getProductsByCategory(c);
     if (sort) {
       products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
     }
@@ -32,7 +33,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
       products = p;
     }
   } else if ((min && max) && !c) {
-    const p = await getProductsByPriceRange(min, max);
+    const p: ProductType[] = await getProductsByPriceRange(min, max);
     if (sort) {
       products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
     }
@@ -40,7 +41,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
       products = p;
     }
   } else {
-    const p = await getAllProducts();
+    const p: ProductType[] = await getAllProducts();
     if (sort) {
       products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
     }

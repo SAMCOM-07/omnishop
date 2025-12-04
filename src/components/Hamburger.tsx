@@ -1,13 +1,15 @@
 'use client'
 
+import { useCart } from '@/context/CartContext'
 import { cn } from '@/lib/utils'
-import { Heart, HomeIcon, Search, ShoppingBagIcon, ShoppingCart, User2Icon } from 'lucide-react'
+import { Heart, HomeIcon, ShoppingBagIcon, ShoppingCart, User2Icon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const Hamburger = () => {
 
   const pathname = usePathname();
+  const { totalQuantity } = useCart();
 
   const links = [
     { name: 'Home', href: '/', icon: <HomeIcon size={20} /> },
@@ -25,7 +27,7 @@ const Hamburger = () => {
           return (
             <Link key={index} href={link.href} className={cn('flex flex-col gap-0.5 items-center text-xs sm:text-sm', isActive ? 'text-green' : 'text-neutral-4', link.name === 'Cart' && 'relative')}>{link.icon}<span>{link.name}</span>
               {link.name === 'Cart' &&
-                <div className='rounded-full p-1 font-bold text-green absolute -right-3 -top-3'>2</div>}
+                <div className='rounded-full p-1 font-semibold text-green absolute left-6 -top-3'>{totalQuantity}</div>}
             </Link>)
         }
         )

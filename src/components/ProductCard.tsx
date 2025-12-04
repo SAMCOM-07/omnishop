@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { AddToCartBtn } from './Buttons';
 import Rating from './Rating';
 
-const ProductCard = (product: ProductType) => {
+const ProductCard = (p: ProductType) => {
 
+  const product = {...p};
+  
   return (
     <div className='group overflow-clip'>
       <div className='p-3 bg-neutral-2 space-y-3'>
@@ -23,7 +25,7 @@ const ProductCard = (product: ProductType) => {
           )} alt={product.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
         </Link>
         <div className='lg:opacity-0 group-hover:opacity-100 transition-all duration-700'>
-          <AddToCartBtn productId={product.id} />
+          <AddToCartBtn product={product} />
         </div>
       </div>
       <div className='p-3'>
