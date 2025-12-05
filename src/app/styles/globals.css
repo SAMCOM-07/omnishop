@@ -43,6 +43,31 @@
   --color-border: var(--border);
 }
 
+
+
+/* .Toastify__toast--success {
+  background: var(--green) !important;
+  color: var(--neutral-1) !important;
+}
+.Toastify__toast--error {
+  background: var(--red) !important;
+  color: var(--neutral-1) !important;
+}
+.Toastify__toast--info {
+  background: var(--blue) !important;
+  color: var(--neutral-1) !important;
+}
+.Toastify__toast--warning {
+  background: var(--orange) !important;
+  color: var(--neutral-7) !important;
+}
+
+.Toastify__toast {
+  border-radius: 0.5rem;
+  font-weight: 700;
+} */
+
+
 @layer utilities {
   h1 {
     @apply font-bold font-poppins text-2xl lg:text-4xl

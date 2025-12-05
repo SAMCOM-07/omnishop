@@ -6,6 +6,7 @@ import './../styles/globals.css';
 import Footer from "@/components/Footer";
 import Hamburger from "@/components/Hamburger";
 import SearchPage from "@/components/SearchPage";
+import ToastProvider from "@/components/ui/ToastProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <body className="font-poppins bg-neutral-1 text-neutral-7 min-h-screen antialiased relative">
+        <ToastProvider />
         <Providers>
           <div className="sticky w-full inset-0 z-500 bg-white border-b border-border">
             <Navbar />
@@ -41,7 +43,7 @@ export default function RootLayout({
           <div className="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-border">
             <Hamburger />
           </div>
-        
+
         </Providers>
       </body>
     </html >

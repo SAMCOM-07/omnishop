@@ -6,11 +6,6 @@ import { ArrowRight, ChevronLeft, Heart } from "lucide-react";
 import Link from "next/link";
 
 
-
-
-
-
-
 // link button
 export const LinkButton = ({ text, href }: { text: string, href: string }) => {
   return (

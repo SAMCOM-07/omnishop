@@ -2,6 +2,7 @@
 
 import { CartContextType, CartProductType, ProductType } from "@/types/types"
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
+import { toast } from "react-toastify";
 
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -20,18 +21,23 @@ export const CartProvider = ({
 
   //   // Add item to cart
   const addToCart = (product: ProductType) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        return [...prev, { ...product, quantity: 1 }];
-      }
-    });
+    try {
+      setCartItems((prev) => {
+        const existing = prev.find((item) => item.id === product.id);
+        if (existing) {
+          return prev.map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          );
+        } else {
+          return [...prev, { ...product, quantity: 1 }];
+        }
+      });
+      toast.success("Product Successfully Added !");
+    } catch (error) {
+      toast.error("Something went wrong !")
+    }
     // console.log(cartItems);
   };
 
@@ -116,7 +122,7 @@ export function useCart() {
 //       await setDoc(doc(db, "carts", user.uid), { items: cartItems });
 //     } catch (err) {
 //       console.error("Error syncing cart:", err);
-//     } finally {
+//     } finally {2
 //       setIsSyncing(false);
 //     }
 //   }, [cartItems, user, isSyncing]);
