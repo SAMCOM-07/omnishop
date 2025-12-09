@@ -10,7 +10,7 @@ export default function ToastProvider() {
       autoClose={3000}
     //   pauseOnHover
     //   theme="colored"
-      className='font-bold text-sm '
+      className='font-bold text-sm mx-auto mt-6 px-12 container'
     />
   );
 }

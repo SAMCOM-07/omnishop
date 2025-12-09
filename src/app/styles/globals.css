@@ -65,7 +65,8 @@
 .Toastify__toast {
   border-radius: 0.5rem;
   font-weight: 700;
-} */
+  margin-top: 30px;
+}*/
 
 
 @layer utilities {
