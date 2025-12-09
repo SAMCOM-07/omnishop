@@ -14,7 +14,7 @@
     "firebase": "^12.4.0",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.548.0",
-    "next": "16.0.1",
+    "next": "16.0.8",
     "next-cloudinary": "^6.16.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
