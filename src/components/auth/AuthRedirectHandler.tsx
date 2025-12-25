@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { getRedirectResult } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { setAuthCookie } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
 export default function AuthRedirectHandler() {
@@ -13,7 +12,12 @@ export default function AuthRedirectHandler() {
     getRedirectResult(auth)
       .then(async (result) => {
         if (result?.user) {
-          await setAuthCookie();
+          const token = await result.user.getIdToken();
+          await fetch("/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+          });
           router.push("/");
         }
       })
