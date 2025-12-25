@@ -40,6 +40,7 @@ export default function LoginForm() {
       router.push("/");
     } catch (e: any) {
       toast.error("Error Signing In")
+      console.log('Error: ' + e);
     } finally {
       setLoading(false);
     }
@@ -77,7 +78,7 @@ export default function LoginForm() {
               <input type="checkbox" id="remember-me" readOnly checked={isChecked} className="hidden" />
               <span className={cn("h-5 w-5 rounded-sm border-neutral-4 text-neutral-1 grid place-content-center", isChecked ? 'bg-neutral-7 border-0' : 'bg-neutral-1 border-2')}>{isChecked ? <Check className="p-1" /> : ""}</span>
             </button>
-            <label htmlFor="remember-me" className="text-neutral-4 text-sm cursor-pointer">Remember me</label>
+            <label htmlFor="remember-me" className="mt-0.5 text-neutral-4 text-sm cursor-pointer">Remember me</label>
           </div>
           <Link href={'#'} className="text-neutral-7 text-sm font-semibold">Forgot password?</Link>
         </div>

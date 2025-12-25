@@ -13,7 +13,7 @@ export const LogInButton = () => {
   return (
     <Link
       href={'/login'}
-      className="bg-green text-neutral-1 text-sm py-2 px-4 rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2"
+      className="bg-green text-neutral-1 text-sm py-2 px-3 rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2"
     >
       Login <LogInIcon size={18} />
     </Link>
@@ -28,7 +28,7 @@ export const GoogleSignInButton = ({ handleGoogle, loading }: { handleGoogle: Mo
     <button
       onClick={handleGoogle}
       disabled={loading}
-      className="w-full p-3 border border-neutral-3 gap-2 text-sm ld bg-neutral-2 rounded-full relative hover:bg-neutral-3 active:scale-95 transition-all duration-300 flex items-center justify-center"
+      className="w-full p-3 border border-neutral-3 gap-2 text-sm ld bg-neutral-2 rounded-full relative hover:bg-neutral-3 active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-wait"
     >
       <Image src={GoogleLogo} alt="Google Logo" width={20} height={20} className="absolute left-2" />
       <span>Continue with Google</span>
@@ -45,7 +45,7 @@ export const LogOutButton = () => {
   async function handleLogout() {
     try {
       await logoutUser();
-      // router.push("/login");
+      router.push("/login");
     } catch (err) {
       console.error("Logout failed:", err);
     }
@@ -63,8 +63,10 @@ export const LogOutButton = () => {
 // login/register button
 export const AuthButton = ({ text, loading }: { text: string, loading: boolean }) => {
   return (
-    <button type="submit" disabled={loading} className="bg-green text-neutral-1 text-sm w-full p-3 rounded-full" >
-      {text}
+    <button type="submit" disabled={loading} className="bg-green text-neutral-1 text-sm w-full p-3 rounded-full hover:scale-105 disabled:opacity-50 disabled:cursor-wait">
+      {
+        loading ? 'Processing...' : text
+      }
     </button >
   )
 }

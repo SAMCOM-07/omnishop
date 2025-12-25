@@ -19,7 +19,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const { totalQuantity } = useCart();
 
-  const { isLoggedIn, loading } = useAuth()
+  const { isLoggedIn, loading } = useAuth();
 
   return (
     <>

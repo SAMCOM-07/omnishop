@@ -40,9 +40,12 @@ export async function loginUser(email: string, password: string) {
 
 /* ---------------- GOOGLE AUTH ---------------- */
 const googleProvider = new GoogleAuthProvider();
+const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
 export async function signInWithGoogle() {
-  const credential = await signInWithPopup(auth, googleProvider);
+  const credential = isMobile
+    ? await signInWithPopup(auth, googleProvider)
+    : await signInWithPopup(auth, googleProvider);
   await createUserIfNotExists(credential.user);
   return credential.user;
 }

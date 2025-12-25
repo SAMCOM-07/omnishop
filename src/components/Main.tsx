@@ -24,7 +24,7 @@ const Main = () => {
         {
           banners && banners.length > 0 && banners.map((banner, index) =>
             <div key={banner.id}
-              className={cn('lg:h-[600px] h-[400px] bg-gray-200 transition-all duration-500 relative', currentBanner === index ? 'w-full' : 'w-0')}>
+              className={cn('lg:h-150 h-100 bg-gray-200 transition-all duration-500 relative', currentBanner === index ? 'w-full' : 'w-0')}>
               <Image
                 src={banner.img}
                 alt='banner Image'
@@ -74,7 +74,7 @@ const Main = () => {
           <h2>Furniture</h2>
           <LinkButton text='Show More' href='/shop?c=furniture' />
           <div className='overflow-hidden w-full '>
-            <Image priority src={Chair} alt='chair (sofa)' className='h-full w-full object-cover object-center' />
+            <Image src={Chair} alt='chair (sofa)' className='h-full w-full object-cover object-center' />
           </div>
         </div>
         {/* 2 & 3 container */}
@@ -86,7 +86,7 @@ const Main = () => {
               <LinkButton text='Show More' href='/shop?c=fashion' />
             </div>
             <div className='overflow-hidden w-[60%] h-full'>
-              <Image priority src={Shirt} alt='cloth' className='h-full w-full object-cover object-center' />
+              <Image src={Shirt} alt='cloth' className='h-full w-full object-cover object-center' />
             </div>
           </div>
           {/* 2 */}
@@ -96,7 +96,7 @@ const Main = () => {
               <LinkButton text='Show More' href='/shop?c=home & kitchen' />
             </div>
             <div className='overflow-hidden w-[40%] h-full'>
-              <Image priority src={Bag} alt='cloth' className='h-full w-full object-cover object-center' />
+              <Image src={Bag} alt='cloth' className='h-full w-full object-cover object-center' />
             </div>
           </div>
 

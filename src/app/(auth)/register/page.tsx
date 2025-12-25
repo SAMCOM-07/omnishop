@@ -14,7 +14,7 @@ export default function RegisterPage() {
       <div className="mx-auto bg-neutral-3 w-full min-h-full hidden lg:grid place-content-center">
         <Image src={Logo2} width={500} height={500} alt="Product Picture" />
       </div>
-      <div className="mx-auto w-full h-full flex flex-col gap-4 items-center relative justify-center">
+      <div className="mx-auto w-full h-full flex flex-col gap-4 items-center relative justify-center px-6 lg:px-0">
 
         <Image src={Logo3} width={120} height={120} alt="Product Picture" />
         <RegisterForm />
