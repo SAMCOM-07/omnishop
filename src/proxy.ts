@@ -8,7 +8,7 @@ type TokenPayload = {
 export async function proxy(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
 
-  // Not logged in
+  // ❌ Not logged in → block ALL protected routes
   if (!token) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
@@ -22,20 +22,27 @@ export async function proxy(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  // Check role
-  const roleRes = await fetch(
-    `${req.nextUrl.origin}/api/check-role?uid=${uid}`
-  );
+  // 🔒 ONLY protect admin routes with role check
+  if (req.nextUrl.pathname.startsWith("/admin")) {
+    const roleRes = await fetch(
+      `${req.nextUrl.origin}/api/check-role?uid=${uid}`,
+      { cache: "no-store" }
+    );
 
-  const { role } = await roleRes.json();
+    if (!roleRes.ok) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
 
-  if (role !== "admin") {
-    return NextResponse.redirect(new URL("/", req.url));
+    const data = await roleRes.json();
+
+    if (data.role !== "admin") {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/profile/:path*", "/cart/:path*"],
 };

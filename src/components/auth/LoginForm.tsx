@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { loginUser, setAuthCookie, signInWithGoogle } from "@/lib/auth";
+import { loginUser, signInWithGoogle } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -22,8 +22,13 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      await loginUser(email, password);
-      await setAuthCookie();
+      const user = await loginUser(email, password);
+      const token = await user.getIdToken();
+      await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
       router.push("/");
     } catch (e: any) {
       toast.error("Error Signing In")
@@ -35,8 +40,13 @@ export default function LoginForm() {
   async function handleGoogle() {
     setLoading(true);
     try {
-      await signInWithGoogle();
-      await setAuthCookie();
+      const user = await signInWithGoogle();
+      const token = await user.getIdToken();
+      await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
       router.push("/");
     } catch (e: any) {
       toast.error("Error Signing In")
@@ -56,7 +66,7 @@ export default function LoginForm() {
           placeholder="Username or Email"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-4"
+          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-5 placeholder:text-sm"
         />
 
         <div
@@ -67,11 +77,13 @@ export default function LoginForm() {
             placeholder="Password"
             required
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full outline-none"
+            className="w-full outline-none text-neutral-5 placeholder:text-sm"
           />
           <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <EyeOff size={18} /> : <Eye size={18} />}</button>
         </div>
 
+
+        {/* remember me */}
         <div className="flex items-center gap-4 justify-between">
           <div className="flex items-center gap-2 ">
             <button type="button" className="" onClick={() => setIsChecked(prev => !prev)}>

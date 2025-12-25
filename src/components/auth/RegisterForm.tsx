@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { registerUser, setAuthCookie, signInWithGoogle } from "@/lib/auth";
+import { registerUser, signInWithGoogle } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeClosed, EyeOff } from "lucide-react";
@@ -20,8 +20,13 @@ export default function RegisterForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      await registerUser(email, password);
-      await setAuthCookie();
+       const user = await registerUser(email, password);
+      const token = await user.getIdToken();
+      await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
       router.push("/");
     } catch (e: any) {
       toast.error("Error Signing In")
@@ -33,8 +38,13 @@ export default function RegisterForm() {
   async function handleGoogle() {
     setLoading(true);
     try {
-      await signInWithGoogle();
-      await setAuthCookie();
+      const user = await signInWithGoogle();
+      const token = await user.getIdToken();
+      await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
       router.push("/");
     } catch (e: any) {
       toast.error("Error Signing In")
@@ -53,7 +63,7 @@ export default function RegisterForm() {
           placeholder="Username"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-4"
+          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-5 placeholder:text-sm"
         />
 
         <input
@@ -61,7 +71,7 @@ export default function RegisterForm() {
           placeholder="Email"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-4"
+          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-5 placeholder:text-sm"
         />
 
         <div
@@ -72,7 +82,7 @@ export default function RegisterForm() {
             placeholder="Password"
             required
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full outline-none"
+            className="w-full outline-none text-neutral-5 placeholder:text-sm"
           />
           <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <EyeOff size={18} /> : <Eye size={18} />}</button>
         </div>

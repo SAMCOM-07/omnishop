@@ -7,16 +7,6 @@ import {
 } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { getIdToken } from "firebase/auth";
-import Cookies from "js-cookie";
-
-export async function setAuthCookie() {
-  const user = auth.currentUser;
-  if (!user) return;
-
-  const token = await getIdToken(user);
-  document.cookie = `token=${token}; path=/;`;
-}
 
 /* ---------------- EMAIL REGISTER ---------------- */
 export async function registerUser(email: string, password: string) {
@@ -27,7 +17,6 @@ export async function registerUser(email: string, password: string) {
   );
 
   await createUserIfNotExists(credential.user);
-
   return credential.user;
 }
 
@@ -40,17 +29,14 @@ export async function loginUser(email: string, password: string) {
 
 /* ---------------- GOOGLE AUTH ---------------- */
 const googleProvider = new GoogleAuthProvider();
-const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
 export async function signInWithGoogle() {
-  const credential = isMobile
-    ? await signInWithPopup(auth, googleProvider)
-    : await signInWithPopup(auth, googleProvider);
+  const credential = await signInWithPopup(auth, googleProvider);
   await createUserIfNotExists(credential.user);
   return credential.user;
 }
 
-/* ---------------- USER DOC HANDLER ---------------- */
+/* ---------------- USER DOC ---------------- */
 async function createUserIfNotExists(user: any) {
   const ref = doc(db, "users", user.uid);
   const snap = await getDoc(ref);
@@ -58,15 +44,14 @@ async function createUserIfNotExists(user: any) {
   if (!snap.exists()) {
     await setDoc(ref, {
       email: user.email,
-      role: "user", // DEFAULT ROLE
+      role: "user",
       createdAt: serverTimestamp(),
     });
   }
 }
 
+/* ---------------- LOGOUT ---------------- */
 export async function logoutUser() {
-  // 1. Sign out from Firebase
   await signOut(auth);
-  // 2. Remove auth cookie
-  Cookies.remove("auth-token");
+  await fetch("/api/logout", { method: "POST" }); // 👈 clears cookie
 }

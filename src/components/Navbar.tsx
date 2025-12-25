@@ -2,7 +2,7 @@
 
 import { navLinks } from "@/data/links"
 import { cn } from "@/lib/utils"
-import { Search, ShoppingCart, UserCircleIcon } from "lucide-react"
+import { Search, ShoppingCart, User2 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCart } from "@/context/CartContext"
@@ -56,9 +56,9 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-6">
 
           {
-            isLoggedIn ? <Link href={'/profile'}><UserCircleIcon size={24} /></Link> : loading ? <UserIconSkeleton /> : <LogInButton />
+            isLoggedIn ? <Link href={'/profile'}><User2 size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" /></Link> : loading ? <UserIconSkeleton /> : <LogInButton />
           }
-          <Link href={'/cart'} className="relative">
+          <Link href={'/cart'} className="relative hover-scale">
             <ShoppingCart size={20} />
             <div className='rounded-full p-1 font-bold text-green text-sm absolute left-4.5 -top-3.5'>{totalQuantity}</div>
           </Link>
