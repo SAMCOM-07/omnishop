@@ -21,7 +21,6 @@ export default function Home() {
         </Suspense>
         <Guarantee />
       </div>
-      <Newsletter />
     </div>
   )
 }

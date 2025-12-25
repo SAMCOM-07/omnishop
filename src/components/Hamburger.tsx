@@ -5,18 +5,21 @@ import { cn } from '@/lib/utils'
 import { Heart, HomeIcon, ShoppingBagIcon, ShoppingCart, User2Icon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { LogInButton } from './auth/AuthButtons'
+import { useAuth } from '@/hooks/useAuth'
+import { UserIconSkeleton } from './Skeletons'
 
 const Hamburger = () => {
 
   const pathname = usePathname();
   const { totalQuantity } = useCart();
+  const { isLoggedIn, loading } = useAuth();
 
   const links = [
     { name: 'Home', href: '/', icon: <HomeIcon size={20} /> },
     { name: 'Shop', href: '/shop', icon: <ShoppingBagIcon size={20} /> },
     { name: 'Cart', href: '/cart', icon: <ShoppingCart size={20} /> },
     { name: 'Wishlist', href: '/wishlist', icon: <Heart size={20} /> },
-    { name: 'Profile', href: '/profile', icon: <User2Icon size={20} /> },
   ]
 
   return (
@@ -31,6 +34,10 @@ const Hamburger = () => {
             </Link>)
         }
         )
+      }
+      {
+        isLoggedIn ? <Link href={'/profile'} className={cn('flex flex-col gap-0.5 items-center text-xs sm:text-sm', pathname === '/profile' ? 'text-green' : 'text-neutral-4')}><User2Icon size={20} /><span>Profile</span>
+        </Link> : loading ? <UserIconSkeleton /> : <LogInButton />
       }
     </div>
   )

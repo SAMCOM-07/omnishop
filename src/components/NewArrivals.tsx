@@ -45,7 +45,7 @@ const NewArrivals = async () => {
               </div>
             )
           }
-          ) : <p className='text-center w-full py-6'>No product found !</p>
+          ) : <p className='text-center w-full py-12'>No product found !</p>
         }
       </div>
     </section>

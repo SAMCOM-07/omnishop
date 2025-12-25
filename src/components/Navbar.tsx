@@ -5,9 +5,13 @@ import { cn } from "@/lib/utils"
 import { Search, ShoppingCart, UserCircleIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import SearchPage from "./SearchPage"
-import { Suspense, useState } from "react"
 import { useCart } from "@/context/CartContext"
+import { LogInButton } from "./auth/AuthButtons"
+import LogoText from './../../public/images/omnishop-text.png';
+import Image from "next/image"
+import { useAuth } from "@/hooks/useAuth"
+import { UserIconSkeleton } from "./Skeletons"
+
 
 
 const Navbar = () => {
@@ -15,14 +19,16 @@ const Navbar = () => {
   const pathname = usePathname();
   const { totalQuantity } = useCart();
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const { isLoggedIn, loading } = useAuth()
 
   return (
     <>
       <header className="container py-4 flex items-center gap-6 justify-between">
         <div className="flex items-center gap-6">
           {/* logo */}
-          <Link href={'/'} className="font-extrabold text-lg md:text-xl lg:text-2xl tracking-tight text-green">Omnishop</Link>
+          <Link href={'/'} className="font-extrabold text-lg md:text-xl lg:text-2xl tracking-tight text-green">
+            <Image src={LogoText} alt="Omnishop Logo" className="w-24" />
+          </Link>
           {/* nav links */}
           <nav className='hidden md:flex items-center gap-6 px-3 py-1 rounded-full '>
             {
@@ -42,28 +48,22 @@ const Navbar = () => {
           </nav>
         </div>
 
-        <button onClick={() => setIsSearchOpen(true)} className="flex text-neutral-4/70 hover:scale-105 active:scale-95 transition-all duration-300 items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 px-3 py-1.5 rounded-full grow max-w-sm font-inter">
+        <Link href="/search" className="flex text-neutral-4/70 hover:scale-105 active:scale-95 transition-all duration-300 items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 px-3 py-1.5 rounded-full grow max-w-sm font-inter">
           <Search size={20} />
           Search . . .
-        </button>
+        </Link>
 
-        <div className="hidden md:flex items-center gap-4">
-          <UserCircleIcon size={20} />
+        <div className="hidden md:flex items-center gap-6">
+
+          {
+            isLoggedIn ? <Link href={'/profile'}><UserCircleIcon size={24} /></Link> : loading ? <UserIconSkeleton /> : <LogInButton />
+          }
           <Link href={'/cart'} className="relative">
             <ShoppingCart size={20} />
             <div className='rounded-full p-1 font-bold text-green text-sm absolute left-4.5 -top-3.5'>{totalQuantity}</div>
           </Link>
         </div>
       </header>
-
-
-
-      {/* search page */}
-      <div className={cn("fixed inset-0 w-full h-screen bg-neutral-1 overflow-y-auto", isSearchOpen ? 'block' : 'hidden')}>
-        <Suspense >
-          <SearchPage setIsSearchOpen={setIsSearchOpen} />
-        </Suspense>
-      </div>
     </>
   )
 }

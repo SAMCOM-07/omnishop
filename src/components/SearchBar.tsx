@@ -2,13 +2,12 @@
 
 import { ArrowRightCircle, Search, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 
-const SearchBar = ({ setIsSearchOpen }: { setIsSearchOpen: Dispatch<SetStateAction<boolean>> }) => {
-
-  const router = useRouter()
+const SearchBar = ({ q }: { q?: string | null }) => {
 
   const [query, setQuery] = useState('')
+  const router = useRouter()
 
   return (
     <section className='flex items-center gap-2'>
@@ -30,19 +29,13 @@ const SearchBar = ({ setIsSearchOpen }: { setIsSearchOpen: Dispatch<SetStateActi
 
         <button onClick={() => {
           setQuery('');
-          router.push('/search')
+          router.push('/search');
         }}
           className={`${query ? 'block' : 'hidden'}`}><X size={18} /></button>
         <button onClick={() => router.push(`?q=${query}`)}
           className={`${query ? 'block' : 'hidden'}`}
-        ><ArrowRightCircle size={22} /></button>
+        ><ArrowRightCircle size={24} /></button>
       </div>
-      <button
-        onClick={() => {
-          setIsSearchOpen(false);
-        }}
-        className='font-inter hover:bg-neutral-4/50 hover:text-neutral-1 transition-colors duration-300 text-neutral-4/70 rounded-full px-3 py-1'
-      >Cancel</button>
     </section>
   )
 }

@@ -11,7 +11,17 @@ import { useEffect, useRef, useState } from 'react'
 const Filter = ({ category, min, max, sort }: { category: string, min: string, max: string, sort: string }) => {
 
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  }, [category, min, max, sort]);
 
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -30,8 +40,9 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
   }, []);
 
 
+
   return (
-    <section className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4 '>
+    <section ref={scrollRef} className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4 '>
       <div className='sticky inset-0 py-6 top-14'>
         <div className='flex gap-2 items-center'>
           <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
@@ -90,7 +101,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
               categoriesLinks.map((link, index) => {
                 const activeLink = `${pathname}?c=${category}` === link.href || link.href === '/shop?' && !category
                 return (
-                  <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:bg-neutral-3 bg-neutral-2 transition-all duration-500 w-fit inline border border-border', activeLink && 'font-bold text-neutral-7' )} key={index}
+                  <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:bg-neutral-3 bg-neutral-2 transition-all duration-500 w-fit inline border border-border', activeLink && 'font-bold text-neutral-7')} key={index}
                     href={`${link.href}${min || max ? `&min=${min}&max=${max}` : ''}${sort ? `&sort=${sort}` : ''}`}
                   >{link.name}</Link>
                 )

@@ -27,7 +27,7 @@ export const ProductSkeleton = () => {
 // skeleton for searched products
 export const SearchProductSkeleton = () => {
   return (
-    <div className="animate-pulse h-32 bg-neutral-1 rounded-lg shadow-sm overflow-hidden relative w-full flex items-center gap-2 p-2">
+    <div className="animate-pulse h-32 bg-neutral-1 rounded-lg shadow-sm overflow-hidden relative w-full flex items-center gap-2 p-2 mt-6">
       <div className="bg-neutral-3 h-full aspect-square rounded-md" />
       <div className="space-y-1.5 w-full grow">
         {/* Rating */}
@@ -42,5 +42,31 @@ export const SearchProductSkeleton = () => {
       </div>
       <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-linear-to-r from-transparent via-neutral-1/40 to-transparent" />
     </div>
+  )
+}
+
+export const ProfileSkeleton = () => {
+  return (
+    <div className="animate-pulse w-full max-w-md mx-auto mt-10 p-6 bg-neutral-1 rounded-lg shadow-sm relative">
+      {/* Profile Picture */}
+      <div className="bg-neutral-3 rounded-full h-24 w-24 mx-auto mb-6" />
+      {/* Name */}
+      <div className="h-6 bg-neutral-3 rounded w-1/2 mx-auto mb-4" />
+      {/* Email */}
+      <div className="h-4 bg-neutral-3 rounded w-3/4 mx-auto mb-6" />
+      {/* Other Info */}
+      <div className="space-y-4">
+        <div className="h-4 bg-neutral-3 rounded w-full" />
+        <div className="h-4 bg-neutral-3 rounded w-full" />
+        <div className="h-4 bg-neutral-3 rounded w-full" />
+      </div>  
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-linear-to-r from-transparent via-neutral-1/40 to-transparent" />
+    </div>
+  )
+}
+
+export const UserIconSkeleton = () => {
+  return (
+    <div className="animate-spin border-l-2 border-r-2 border-green rounded-full h-4 w-4" />
   )
 }

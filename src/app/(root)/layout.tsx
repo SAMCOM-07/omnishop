@@ -5,8 +5,8 @@ import Navbar from "@/components/Navbar";
 import './../styles/globals.css';
 import Footer from "@/components/Footer";
 import Hamburger from "@/components/Hamburger";
-import SearchPage from "@/components/SearchPage";
 import ToastProvider from "@/components/ui/ToastProvider";
+import Newsletter from "@/components/Newsletter";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,7 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Omnishop",
+  title: "Omnishop - Where You Get All Kinds Of Products",
   description: "Modern e-commerce built with Next.js",
 };
 
@@ -32,13 +32,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
-      <body className="font-poppins bg-neutral-1 text-neutral-7 min-h-screen antialiased relative">
+      <body className="font-poppins bg-neutral-1 text-neutral-7 antialiased relative">
         <ToastProvider />
         <Providers>
           <div className="sticky w-full inset-0 z-500 bg-white border-b border-border">
             <Navbar />
           </div>
           {children}
+          <div className="mt-18">
+            <Newsletter />
+          </div>
           <Footer />
           <div className="sticky bottom-0 left-0 w-full z-50 bg-white border-t border-border">
             <Hamburger />

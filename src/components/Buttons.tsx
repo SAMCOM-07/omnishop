@@ -2,7 +2,7 @@
 
 import { useCart } from "@/context/CartContext";
 import { ProductType } from "@/types/types";
-import { ArrowRight, ChevronLeft, Heart } from "lucide-react";
+import { ArrowRight, ChevronLeft, Heart, LogInIcon } from "lucide-react";
 import Link from "next/link";
 
 
@@ -52,10 +52,13 @@ export const GoBackButton = () => {
   return (
     <button
       onClick={() => window.history.back()}
-      className="w-fit text-neutral-4 flex items-center gap-1 group text-sm md:text-base group [direction:ltr] font-inter"
+      className="sticky top-16 z-50 py-3 w-full bg-neutral-1 text-neutral-4 flex items-center gap-1 group text-sm md:text-base group [direction:ltr] font-inter"
     >
       <ChevronLeft size={18} className="group-hover:-translate-x-0.5 group-active:translate-0 transition-transform duration-200" />
       <span>back</span>
     </button>
   );
 }
+
+
+

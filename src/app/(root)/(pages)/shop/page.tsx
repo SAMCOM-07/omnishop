@@ -80,7 +80,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
         <Filter category={c} min={min} max={max} sort={sort} />
         <div className='w-full'>
           <div className='flex items-center justify-between sticky inset-0 top-32 md:top-14 pt-6 pb-3 z-30 bg-neutral-1'>
-            {c ? <h3 className='capitalize'>{c} {min && max ? ` ($${min} - $${max})` : ''}</h3> : <h3 className=''>All Products {min && max ? ` ($${min} - $${max})` : ''}</h3>}
+            <h3>{c ? c : 'All Products'} {min && max ? ` ($${min} - $${max})` : ''}</h3>
             <Sort category={c} min={min} max={max} sort={sort} />
           </div>
 

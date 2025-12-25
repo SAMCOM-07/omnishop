@@ -7,6 +7,7 @@ import { getProductById, getRelatedProducts } from "@/lib/getProducts";
 import { Minus, Plus } from "lucide-react";
 import { Suspense } from "react";
 import { ProductType } from "@/types/types";
+import Link from "next/link";
 
 export default async function ProductDetailsPage({ params }: { params: { productId: string } }) {
 
@@ -36,10 +37,10 @@ export default async function ProductDetailsPage({ params }: { params: { product
           <div className="flex items-center gap-2 flex-wrap">
             {
               product.tags && product.tags.map((tag, i) =>
-                <span
+                <Link href={`/search?q=${encodeURIComponent(tag)}`}
                   key={i}
                   className="bg-blue text-neutral-1 rounded-md py-1 px-3 text-xs font-inter"
-                >{tag}</span>
+                >{tag}</Link>
               )
             }
           </div>
