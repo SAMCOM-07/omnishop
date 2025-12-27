@@ -87,11 +87,31 @@ export const QuantityUpdateButton = () => {
   )
 }
 
+
+// remove from cart button
 export const RemoveFromCartButton = ({ productId }: { productId: string }) => {
 
   const { removeFromCart } = useCart();
 
   return (
     <button onClick={() => removeFromCart(productId)} className="text-xl">Remove</button>
+  )
+}
+
+
+export const IncreaseAndDecreaseButton = ({ productId, quantity }: { productId: string | undefined, quantity: number }) => {
+
+  const { increaseQuantity, decreaseQuantity } = useCart();
+  return (
+    <div className="bg-neutral-2 max-w-28 min-w-28 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
+      <button
+        disabled={quantity <= 1}
+        onClick={() => decreaseQuantity(productId!)}
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale disabled:opacity-50 disabled:cursor-not-allowed"><Minus className="hover-scale" size={16} /></button>
+      <span className="font-bold text-sm">{quantity}</span>
+      <button
+        onClick={() => increaseQuantity(productId!)}
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale"><Plus className="hover-scale" size={16} /></button>
+    </div >
   )
 }
