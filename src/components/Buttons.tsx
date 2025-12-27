@@ -87,3 +87,11 @@ export const QuantityUpdateButton = () => {
   )
 }
 
+export const RemoveFromCartButton = ({ productId }: { productId: string }) => {
+
+  const { removeFromCart } = useCart();
+
+  return (
+    <button onClick={() => removeFromCart(productId)} className="text-xl">Remove</button>
+  )
+}

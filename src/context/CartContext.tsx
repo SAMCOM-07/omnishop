@@ -22,6 +22,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // total quantity
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
   //   // Add item to cart
   const addToCart = (product: ProductType) => {
     try {
@@ -67,20 +69,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prev) => prev.filter((item) => item.id !== productId));
   };
 
-
-
   //save to localstorage before syncing (or while no user yet)
+
   useEffect(() => {
-    const timeout = setTimeout(syncCartToFirestore, 1500); // wait for 1.5s
     cartItems.length > 0 && localStorage.setItem("cart", JSON.stringify(cartItems));
-    return () => clearTimeout(timeout);
   }, [cartItems]);
 
+
+  // Load from localstorage on initial load
   useEffect(() => {
     const localCart = localStorage.getItem("cart");
-    if (localCart && (!user || !user.uid)) {
-      setCartItems(JSON.parse(localCart));
-    }
+    if (localCart && (!user || !user.uid)) setCartItems(JSON.parse(localCart));
   }, []);
 
 
@@ -90,7 +89,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setIsSyncing(true);
 
     try {
-      await setDoc(doc(db, "cart", user.uid), { items: cartItems });
+      await setDoc(doc(db, "cart", user?.uid), { items: cartItems });
     } catch (err) {
       console.error("Error syncing cart:", err);
     } finally {
@@ -101,7 +100,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // 🧠 Debounce sync (wait a bit after user stops clicking)
   useEffect(() => {
     if (!user?.uid) return;
-    const timeout = setTimeout(syncCartToFirestore, 1000); // sync 1.5s after last change
+    const timeout = setTimeout(syncCartToFirestore, 1000); // sync 1s after last change
     return () => clearTimeout(timeout);
   }, [cartItems, user, syncCartToFirestore]);
 
@@ -112,11 +111,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       try {
         const docRef = doc(db, "cart", user.uid);
         const snap = await getDoc(docRef);
-        if (snap.exists()) {
-          setCartItems(snap.data()?.items || []);
-        } else {
-          setCartItems([]);
-        }
+        if (snap.exists()) setCartItems(snap.data()?.items);
+
       } catch (err) {
         console.error("Error loading cart:", err);
       }
@@ -137,6 +133,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         totalQuantity,
         setCount,
         count,
+        totalPrice,
       }}
     >
       {children}
