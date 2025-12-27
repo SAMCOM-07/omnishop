@@ -52,7 +52,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-// decrease quantity
+  // decrease quantity
   const decreaseQuantity = (productId: string) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -71,7 +71,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   //save to localstorage before syncing (or while no user yet)
   useEffect(() => {
+    const timeout = setTimeout(syncCartToFirestore, 1500); // wait for 1.5s
     cartItems.length > 0 && localStorage.setItem("cart", JSON.stringify(cartItems));
+    return () => clearTimeout(timeout);
   }, [cartItems]);
 
   useEffect(() => {
@@ -99,7 +101,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // 🧠 Debounce sync (wait a bit after user stops clicking)
   useEffect(() => {
     if (!user?.uid) return;
-    const timeout = setTimeout(syncCartToFirestore, 1500); // sync 1.5s after last change
+    const timeout = setTimeout(syncCartToFirestore, 1000); // sync 1.5s after last change
     return () => clearTimeout(timeout);
   }, [cartItems, user, syncCartToFirestore]);
 
@@ -111,7 +113,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         const docRef = doc(db, "cart", user.uid);
         const snap = await getDoc(docRef);
         if (snap.exists()) {
-          setCartItems(snap.data().items || []);
+          setCartItems(snap.data()?.items || []);
         } else {
           setCartItems([]);
         }
