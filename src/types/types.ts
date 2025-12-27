@@ -41,7 +41,12 @@ export type ProductContextType = {
 export type CartContextType = {
   cartItems: CartProductType[] | null;
   addToCart: (product: ProductType) => void;
+  removeFromCart: (productId: string) => void;
+  increaseQuantity: (productId: string) => void;
+  decreaseQuantity: (productId: string) => void;
   totalQuantity: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  count: number;
 };
 
 export function getCreatedAtSeconds(

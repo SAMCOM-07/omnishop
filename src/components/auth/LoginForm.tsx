@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Check, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AuthButton, GoogleSignInButton } from "./AuthButtons";
+import { getUserRole } from "@/lib/getUserRole";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -21,21 +22,54 @@ export default function LoginForm() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
+
     try {
       const user = await loginUser(email, password);
+
       const token = await user.getIdToken();
       await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
       });
-      router.push("/");
+
+      const role = await getUserRole(user.uid);
+
+      console.log('User role:', role);
+      
+      router.push(role === "admin" ? "/admin" : "/");
     } catch (e: any) {
-      toast.error("Error Signing In")
+      toast.error(e.message);
     } finally {
       setLoading(false);
     }
   }
+
+  // async function handleLogin(e: React.FormEvent) {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   try {
+  //     const user = await loginUser(email, password);
+  //     const token = await user.getIdToken();
+
+  //     const res = await fetch("/api/login", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ token }),
+  //     });
+
+  //     if (!res.ok) throw new Error("Unauthorized");
+
+  //     router.push("/admin");
+  //   } catch (e: any) {
+  //     toast.error(e.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
+
+
 
   async function handleGoogle() {
     setLoading(true);
@@ -49,7 +83,7 @@ export default function LoginForm() {
       });
       router.push("/");
     } catch (e: any) {
-      toast.error("Error Signing In")
+      toast.error("Error: " + e.message);
       console.log('Error: ' + e);
     } finally {
       setLoading(false);
@@ -63,10 +97,10 @@ export default function LoginForm() {
 
         <input
           type="email"
-          placeholder="Username or Email"
+          placeholder="Enter email"
           required
           onChange={(e) => setEmail(e.target.value)}
-          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-5 placeholder:text-sm"
+          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-5 placeholder:text-sm highlight-red"
         />
 
         <div
@@ -74,7 +108,7 @@ export default function LoginForm() {
         >
           <input
             type={isOpen ? 'text' : 'password'}
-            placeholder="Password"
+            placeholder="Enter password"
             required
             onChange={(e) => setPassword(e.target.value)}
             className="w-full outline-none text-neutral-5 placeholder:text-sm"

@@ -31,7 +31,7 @@ export const GoogleSignInButton = ({ handleGoogle, loading }: { handleGoogle: Mo
       className="w-full p-3 border border-neutral-3 gap-2 text-sm ld bg-neutral-2 rounded-full relative hover:bg-neutral-3 active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-wait"
     >
       <Image src={GoogleLogo} alt="Google Logo" width={20} height={20} className="absolute left-3" />
-      <span>{loading ? 'Processing...' : 'Continue with Google'}</span>
+      <span>Continue with Google</span>
     </button>
   )
 }
@@ -63,7 +63,7 @@ export const LogOutButton = () => {
 // login/register button
 export const AuthButton = ({ text, loading }: { text: string, loading: boolean }) => {
   return (
-    <button type="submit" disabled={loading} className="bg-green text-neutral-1 text-sm w-full p-3 rounded-full hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-wait">
+    <button type="submit" disabled={loading} className="bg-green text-neutral-1 text-sm w-full p-3 rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 disabled:opacity-50 disabled:cursor-wait">
       {
         loading ? 'Processing...' : text
       }

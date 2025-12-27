@@ -1,10 +1,9 @@
-import { AddToCartBtn, GoBackButton, LinkButton, WishListBtnWithText } from "@/components/Buttons";
+import { AddToCartBtn, GoBackButton, LinkButton, QuantityUpdateButton, WishListBtnWithText } from "@/components/Buttons";
 import ProductCard from "@/components/ProductCard";
 import ProductDetailsImages from "@/components/ProductDetailsImages";
 import { ProductSkeleton } from "@/components/Skeletons";
 import Rating from "@/components/Rating";
 import { getProductById, getRelatedProducts } from "@/lib/getProducts";
-import { Minus, Plus } from "lucide-react";
 import { Suspense } from "react";
 import { ProductType } from "@/types/types";
 import Link from "next/link";
@@ -49,11 +48,7 @@ export default async function ProductDetailsPage({ params }: { params: { product
             <span className='ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
           </div>
           <div className="flex gap-4 items-center">
-            <div className="bg-neutral-2 max-w-28 min-w-28 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
-              <button className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-4 hover-scale"><Minus className="hover-scale" size={16} /></button>
-              <span className="font-bold text-sm">1</span>
-              <button className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-4 hover-scale"><Plus className="hover-scale" size={16} /></button>
-            </div>
+            <QuantityUpdateButton />
             <WishListBtnWithText productId={product.id} />
           </div>
           <AddToCartBtn product={product} />

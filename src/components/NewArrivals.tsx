@@ -28,7 +28,7 @@ const NewArrivals = async () => {
                     <WishListBtn productId={product.id} />
                   </div>
                   {product.discount !== 0 ? <h5 className='bg-green text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2.5'>-{product.discount}%</h5> : <h5 className='h-5'></h5>}
-                  <Link href={`/shop/${product.id}`} className='overflow-hidden block w-[250px] h-[250px] rounded-md'>
+                  <Link href={`/shop/${product.id}`} className='overflow-hidden block w-62.5 h-62.5 rounded-md'>
                     <Image width={400} height={400} priority src={product.images[0].url.replace(
                       "/upload/",
                       "/upload/f_auto,q_auto,w_600/"

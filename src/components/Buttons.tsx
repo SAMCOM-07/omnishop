@@ -2,8 +2,9 @@
 
 import { useCart } from "@/context/CartContext";
 import { ProductType } from "@/types/types";
-import { ArrowRight, ChevronLeft, Heart, LogInIcon } from "lucide-react";
+import { ArrowRight, ChevronLeft, Heart, Minus, Plus } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 
 // link button
@@ -25,10 +26,13 @@ export const LinkButton = ({ text, href }: { text: string, href: string }) => {
 // add to cart button
 export const AddToCartBtn = ({ product }: { product: ProductType }) => {
 
-  const { addToCart } = useCart();
+  const { addToCart, setCount } = useCart();
 
   return (
-    <button onClick={() => addToCart(product)} className='hover:scale-105 active:scale-95 transition-transform duration-300 bg-neutral-7 text-xs md:textbase text-neutral-1 p-3 rounded-md w-full text-center font-inter'>Add to Cart</button>
+    <button onClick={() => {
+      addToCart(product);
+      setCount(1);
+    }} className='hover:scale-105 active:scale-95 transition-transform duration-300 bg-neutral-7 text-xs md:textbase text-neutral-1 p-3 rounded-md w-full text-center font-inter'>Add to Cart</button>
   )
 }
 
@@ -61,4 +65,25 @@ export const GoBackButton = () => {
 }
 
 
+// quantity update button
+export const QuantityUpdateButton = () => {
+  const { count, setCount } = useCart()
+
+  return (
+    <div className="bg-neutral-2 max-w-28 min-w-28 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
+      <button
+        disabled={count <= 1}
+        onClick={() => {
+          setCount(prev => prev <= 1 ? 1 : prev - 1);
+        }}
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale disabled:opacity-50 disabled:cursor-not-allowed"><Minus className="hover-scale" size={16} /></button>
+      <span className="font-bold text-sm">{count}</span>
+      <button
+        onClick={() => {
+          setCount(prev => prev + 1);
+        }}
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale"><Plus className="hover-scale" size={16} /></button>
+    </div >
+  )
+}
 

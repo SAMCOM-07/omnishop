@@ -20,7 +20,7 @@ export default function RegisterForm() {
     e.preventDefault();
     setLoading(true);
     try {
-       const user = await registerUser(email, password);
+      const user = await registerUser(email, password);
       const token = await user.getIdToken();
       await fetch("/api/login", {
         method: "POST",
@@ -29,7 +29,7 @@ export default function RegisterForm() {
       });
       router.push("/");
     } catch (e: any) {
-      toast.error("Error Signing In")
+      toast.error("Error: " + e.message);
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,7 @@ export default function RegisterForm() {
       });
       router.push("/");
     } catch (e: any) {
-      toast.error("Error Signing In")
+      toast.error("Error: " + e.message);
     } finally {
       setLoading(false);
     }
@@ -57,14 +57,6 @@ export default function RegisterForm() {
     <div className="space-y-4 w-full max-w-sm mx-auto">
       <form onSubmit={handleRegister} className="space-y-6 font-inter">
         <span className="text-green text-center block text-2xl font-semibold font-poppins">Welcome to Omnishop</span>
-
-        <input
-          type="text"
-          placeholder="Username"
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-5 placeholder:text-sm"
-        />
 
         <input
           type="email"

@@ -18,7 +18,7 @@ export default function AuthRedirectHandler() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ token }),
           });
-          router.push("/");
+          // router.push("/");
         }
       })
       .catch((error) => {

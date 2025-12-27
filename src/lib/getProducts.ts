@@ -8,87 +8,9 @@ import {
   getDocs,
   orderBy,
   query,
-  where,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { serializeData } from "./serialize";
-
-// export const getProducts = async (c?: string): Promise<ProductType[]> => {
-//   if (c) {
-//     const productsRef = collection(db, "products");
-//     const qRef = query(
-//       productsRef,
-//       where("category", "==", c.toLowerCase()),
-//       orderBy("createdAt", "desc")
-//     );
-//     const querySnapshot = await getDocs(qRef);
-//     const products = querySnapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       ...doc.data(),
-//     })) as ProductType[];
-//     return products;
-
-//   } else {
-//     const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
-//     const querySnapshot = await getDocs(q);
-//     const products = querySnapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       ...doc.data(),
-//     })) as ProductType[];
-//     return products;
-//   }
-// };
-
-// export const getProducts = async (
-//   c?: string,        // category
-//   min?: number,      // min price
-//   max?: number,      // max price
-// ): Promise<ProductType[]> => {
-//   const productsRef = collection(db, "products");
-
-//   let q;
-
-//   // CASE 1 — If there's category + price filters
-//   if (c && (min || max)) {
-//     const conditions = [
-//       where("category", "==", c.toLowerCase()),
-//       ...(min ? [where("price", ">=", min)] : []),
-//       ...(max ? [where("price", "<=", max)] : []),
-//     ];
-//     q = query(productsRef, ...conditions, orderBy("createdAt", "desc"));
-//   }
-
-//   // CASE 2 — If only category
-//   else if (c) {
-//     q = query(
-//       productsRef,
-//       where("category", "==", c.toLowerCase()),
-//       orderBy("createdAt", "desc")
-//     );
-//   }
-
-//   // CASE 3 — If only price range
-//   else if (min || max) {
-//     const conditions = [
-//       ...(min ? [where("price", ">=", min)] : []),
-//       ...(max ? [where("price", "<=", max)] : []),
-//     ];
-//     q = query(productsRef, ...conditions, orderBy("createdAt", "desc"));
-//   }
-
-//   // CASE 4 — Default: return all products
-//   else {
-//     q = query(productsRef, orderBy("createdAt", "desc"));
-//   }
-
-//   const querySnapshot = await getDocs(q);
-//   const products = querySnapshot.docs.map((doc) => ({
-//     id: doc.id,
-//     ...doc.data(),
-//   })) as ProductType[];
-
-//   return products;
-// };
 
 // get all products
 export const getAllProducts = async () => {

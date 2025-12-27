@@ -35,14 +35,42 @@ export async function proxy(req: NextRequest) {
 
     const data = await roleRes.json();
 
-    if (data.role !== "admin") {
-      return NextResponse.redirect(new URL("/", req.url));
-    }
+    if (data.role !== "admin") return NextResponse.redirect(new URL("/", req.url));
+    return
+
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/profile/:path*", "/cart/:path*"],
+  matcher: ["/admin/:path*", "/profile/:path*"],
 };
+
+// import { NextRequest, NextResponse } from "next/server";
+// import { adminAuth } from "@/lib/firebase-admin";
+
+// export async function proxy(req: NextRequest) {
+//   const session = req.cookies.get("session")?.value;
+
+//   if (!session) {
+//     return NextResponse.redirect(new URL("/login", req.url));
+//   }
+
+//   try {
+//     const decoded = await adminAuth.verifySessionCookie(session, true);
+
+//     if (decoded.role !== "admin") {
+//       return NextResponse.redirect(new URL("/", req.url));
+//     }
+
+//     console.log('ROLE = '+decoded.role)
+//     return NextResponse.next();
+//   } catch {
+//     return NextResponse.redirect(new URL("/login", req.url));
+//   }
+// }
+
+// export const config = {
+//   matcher: ["/admin/:path*"],
+// };
