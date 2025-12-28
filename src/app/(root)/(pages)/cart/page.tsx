@@ -3,7 +3,7 @@ import ShoppingCart from '@/components/cart/ShoppingCart';
 const CartPage = () => {
 
   return (
-    <div className='container'>
+    <div className=''>
       <ShoppingCart />
     </div>
   )

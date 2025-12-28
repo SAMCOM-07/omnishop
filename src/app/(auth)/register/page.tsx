@@ -16,7 +16,9 @@ export default function RegisterPage() {
       </div>
       <div className="mx-auto w-full h-full flex flex-col gap-4 items-center relative justify-center px-6 lg:px-0">
 
-        <Image src={Logo3} width={120} height={120} alt="Product Picture" />
+        <Link href="/">
+          <Image src={Logo3} width={120} height={120} alt="Product Picture" />
+        </Link>
         <RegisterForm />
       </div>
       <Link href="/" className="absolute top-6 -translate-x-1/2 left-1/2 lg:hidden">
