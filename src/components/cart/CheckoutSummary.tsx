@@ -47,7 +47,7 @@ const CheckoutSummary = () => {
             <label className='w-full'><span className='font-semibold block'>CVV *</span><input required type="text" placeholder='CVV' className="input-field" /></label>
           </div>
         </div>
-        <Link href="/completed" className="w-full block bg-neutral-5 text-white p-3 rounded-md hover:bg-neutral-7 transition-all duration-300 text-center mt-4 active:scale-95">Place Order</Link>
+        <Link href="/completed" className="w-full block bg-neutral-7 text-white p-3 rounded-md hover:bg-neutral-5 transition-all duration-300 text-center mt-4 active:scale-95">Place Order</Link>
       </form>
     </div>
   )

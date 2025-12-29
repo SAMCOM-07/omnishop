@@ -134,7 +134,7 @@
   }
 
   .input-field {
-    @apply border border-neutral-4/50 rounded-md w-full grow py-2 px-3 flex-1 mt-2 focus:ring-3 ring-neutral-3 outline-none transition-all duration-300 font-inter
+    @apply border border-neutral-4/50 rounded-md w-full grow py-2 px-3 flex-1 mt-2 focus:ring-3 ring-neutral-3 outline-none transition-all duration-300 font-inter text-neutral-6
   }
 }
 

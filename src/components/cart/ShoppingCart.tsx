@@ -100,7 +100,7 @@ const ShoppingCart = () => {
           <span>${subTotalPrice.toFixed(2)}</span>
         </div>
 
-        <Link href="/checkout" className="w-full block bg-neutral-5 text-white p-3 rounded-md hover:bg-neutral-7 transition-all duration-300 text-center mt-4 active:scale-95">Checkout</Link>
+        <Link href="/checkout" className="w-full block bg-neutral-7 text-white p-3 rounded-md hover:bg-neutral-5 transition-all duration-300 text-center mt-4 active:scale-95">Checkout</Link>
       </div>
     </div>
   )
