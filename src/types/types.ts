@@ -47,7 +47,8 @@ export type CartContextType = {
   totalQuantity: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   count: number;
-  totalPrice: number;
+  subTotalPrice: number;
+  loading: boolean;
 };
 
 export function getCreatedAtSeconds(

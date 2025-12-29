@@ -10,7 +10,8 @@
   --neutral-1: #FEFEFE;
   --neutral-2: #F3F5F7;
   --neutral-3: #E8ECEF;
-  --neutral-4: #9aa0a2;  /*9aa0a2 6C7275*/
+  --neutral-4: #9aa0a2;
+  /*9aa0a2 6C7275*/
   --neutral-5: #343839;
   --neutral-6: #232627;
   --neutral-7: #141718;
@@ -123,8 +124,17 @@
   .product-grid {
     @apply mx-auto grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4
   }
-  .cart-header{
+
+  .cart-header {
     @apply text-center my-8
+  }
+
+  .border-card {
+    @apply border border-neutral-4 rounded-md p-6 w-full flex flex-col gap-6
+  }
+
+  .input-field {
+    @apply border border-neutral-4/50 rounded-md w-full grow py-2 px-3 flex-1 mt-2 focus:ring-3 ring-neutral-3 outline-none transition-all duration-300 font-inter
   }
 }
 

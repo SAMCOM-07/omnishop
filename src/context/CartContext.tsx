@@ -14,10 +14,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [count, setCount] = useState(1);
   const { user } = useAuth();
   const [isSyncing, setIsSyncing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Calculate total quantity and price
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subTotalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const addToCart = (product: ProductType) => {
     try {
@@ -74,9 +75,18 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   // Load cart from localStorage on initial load if user is not logged in
   useEffect(() => {
-    const localCart = localStorage.getItem("cart");
-    if (localCart && (!user || !user.uid)) {
-      setCartItems(JSON.parse(localCart));
+    setLoading(true);
+    try {
+      const localCart = localStorage.getItem("cart");
+      if (localCart && (!user || !user.uid)) {
+        setCartItems(JSON.parse(localCart));
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Failed to load cart from localStorage:", error);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -88,6 +98,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         return
       };
 
+      setLoading(true);
 
       try {
         const docRef = doc(db, "cart", user.uid);
@@ -115,8 +126,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           // No Firestore cart, just use local cart
           setCartItems([]);
         }
+        setLoading(false);
       } catch (err) {
         console.error("Error loading cart from Firestore:", err);
+      } finally {
+        setLoading(false);
       }
 
     };
@@ -157,7 +171,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         totalQuantity,
         setCount,
         count,
-        totalPrice,
+        subTotalPrice,
+        loading,
       }}
     >
       {children}
