@@ -25,7 +25,7 @@ const CartBreadCrumb = () => {
         return (
           <div key={page.id} className={cn('flex items-center gap-2 text-sm min-w-70 md:min-w-auto pb-4', isActive && 'border-b-2 border-neutral-7')}>
             <span className={cn('w-8 h-8 grid place-content-center p-1.5 rounded-full text-neutral-1', isActive ? 'bg-neutral-7' : 'bg-neutral-4', isCompleted && 'bg-green')}>{page.id}</span>
-            <Link href={page.href} className={cn(isActive ? 'text-neutral-7 font-semibold' : 'text-neutral-4', isCompleted && 'text-green font-bold')}>{page.title}</Link>
+            <span className={cn(isActive ? 'text-neutral-7 font-semibold' : 'text-neutral-4', isCompleted && 'text-green font-bold')}>{page.title}</span>
           </div>
         )
       })}

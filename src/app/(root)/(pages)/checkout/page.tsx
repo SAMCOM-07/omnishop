@@ -1,4 +1,5 @@
 import CheckoutSummary from '@/components/cart/CheckoutSummary'
+import OrderSummary from '@/components/cart/OrderSummary'
 import CartBreadCrumb from '@/components/CartBreadCrumb'
 import React from 'react'
 
@@ -8,9 +9,10 @@ const CheckOutPage = () => {
       <h1 className='cart-header'>Checkout</h1>
       <CartBreadCrumb />
 
-      <div className='mt-24'>
+      
         <CheckoutSummary />
-      </div>
+        
+     
     </div>
   )
 }

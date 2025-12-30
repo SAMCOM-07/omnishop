@@ -48,7 +48,7 @@ const ShoppingCart = () => {
                   </div>
                 </div>
                 <div className='flex flex-col gap-2 items-end'>
-                  <span className='font-semibold text-sm'>${item.discountedAmount ? item.discountedAmount * item.quantity : item.price * item.quantity}</span>
+                  <span className='font-semibold text-sm'>${item.discountedAmount ? (item.discountedAmount * item.quantity).toFixed(2) : (item.price * item.quantity).toFixed(2)}</span>
                   <RemoveFromCartButton productId={item.id} />
                 </div>
               </div>

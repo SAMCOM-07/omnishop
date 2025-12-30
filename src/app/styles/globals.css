@@ -136,6 +136,10 @@
   .input-field {
     @apply border border-neutral-4/50 rounded-md w-full grow py-2 px-3 flex-1 mt-2 focus:ring-3 ring-neutral-3 outline-none transition-all duration-300 font-inter text-neutral-6
   }
+
+  .form-title {
+    @apply font-semibold block text-xs text-neutral-5
+  }
 }
 
 
@@ -151,3 +155,24 @@
     --foreground: #ededed;
   }
 } */
+
+
+/* scrollbar */
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-4);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-5);
+}
