@@ -13,7 +13,7 @@ const Hamburger = () => {
 
   const pathname = usePathname();
   const { totalQuantity } = useCart();
-  const { isLoggedIn, loading } = useAuth();
+  const { isLoggedIn, loadingUser } = useAuth();
 
   const links = [
     { name: 'Home', href: '/', icon: <HomeIcon size={20} /> },
@@ -37,7 +37,7 @@ const Hamburger = () => {
       }
       {
         isLoggedIn ? <Link href={'/profile'} className={cn('flex flex-col gap-0.5 items-center text-xs sm:text-sm', pathname === '/profile' ? 'text-green' : 'text-neutral-4')}><User2Icon size={20} /><span>Profile</span>
-        </Link> : loading ? <UserIconSkeleton /> : <LogInButton />
+        </Link> : loadingUser ? <UserIconSkeleton /> : <LogInButton />
       }
     </div>
   )

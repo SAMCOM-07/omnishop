@@ -1,20 +1,20 @@
 'use client';
 
-import CartBreadCrumb from '../CartBreadCrumb';
-import { useCart } from '@/context/CartContext';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import OrderSummary from './OrderSummary';
+import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/hooks/useAuth';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const CheckoutSummary = () => {
-  const pathname = usePathname()
   const router = useRouter();
-
-  const { cartItems } = useCart();
+   const { cartItems, loadingCart } = useCart();
+     const { isLoggedIn, loadingUser } = useAuth();
 
   const handleSubmit = (formData: FormData) => {
-    // e.preventDefault();
-    // Handle form submission logic here
+    const data = Object.fromEntries(formData)
+    console.log(data)
     try {
       router.push('/completed');
     } catch (error) {
@@ -22,6 +22,22 @@ const CheckoutSummary = () => {
     }
   };
 
+  useEffect(() => {
+  if (!loadingUser && !isLoggedIn) {
+    router.replace("/login");
+    toast.error("Login to continue");
+  }
+}, [isLoggedIn, loadingUser]);
+
+useEffect(() => {
+  if (!loadingCart && (!cartItems || cartItems.length === 0)) {
+    router.replace("/shop");
+    toast.info("Your cart is empty");
+  }
+}, [cartItems]);
+
+
+  
   return (
     <div className='w-full'>
       <form action={handleSubmit} className='text-sm space-y-6 pt-24 flex flex-col lg:flex-row gap-8 w-full'>
@@ -54,7 +70,7 @@ const CheckoutSummary = () => {
           {/* Payment Method */}
           <div className="border-card">
             <span className='text-neutral-7 text-lg font-semibold'>Payment Method</span>
-            <label className='w-full'><span className='form-title'>CARD NUMBER *</span><input required min={16}max={16} type="text" placeholder='0000 0000 0000 0000' className="input-field" /></label>
+            <label className='w-full'><span className='form-title'>CARD NUMBER *</span><input required min={16} max={16} type="text" placeholder='0000 0000 0000 0000' className="input-field" /></label>
             <div className='flex items-center gap-4'>
               <label className='w-full'><span className='form-title'>EXPIRY DATE *</span><input required min={4} max={4} type="text" placeholder='MM/YY' className="input-field" /></label>
               <label className='w-full'><span className='form-title'>CVV *</span><input required min={3} max={3} type="text" placeholder='CVV' className="input-field" /></label>
@@ -63,7 +79,7 @@ const CheckoutSummary = () => {
         </div>
         <div className='lg:w-[40%]'>
           <OrderSummary />
-          <button className="w-full block bg-neutral-7 text-white p-3 rounded-md hover:bg-neutral-5 transition-all duration-300 text-center mt-4 active:scale-95 lg:">Place Order</button>
+          <button className="w-full block mt-4 submit-button">Place Order</button>
         </div>
       </form>
     </div>
@@ -96,9 +112,9 @@ export default CheckoutSummary
 //   city: z.string().min(1, { message: 'Town/City is required' }),
 //   state: z.string().min(1, { message: 'State is required' }),
 //   zip: z.string().min(1, { message: 'Zip code is required' }),
-//   cardNumber: z.string().min(1, { message: 'Card number is required' }),
-//   expiry: z.string().min(1, { message: 'Expiry date is required' }),
-//   cvv: z.string().min(1, { message: 'CVV is required' }),
+//   cardNumber: z.string().min(1, { message: 'Card number is required' }).max(16, { message: 'Card number must be at most 16 digits' }),
+//   expiry: z.string().min(1, { message: 'Expiry date is required' }).max(4, { message: 'Expiry date must be in MM/YY format' }),
+//   cvv: z.string().min(1, { message: 'CVV is required' }).max(3, { message: 'CVV must be at most 3 digits' }),
 // });
 
 // const CheckoutSummary = () => {

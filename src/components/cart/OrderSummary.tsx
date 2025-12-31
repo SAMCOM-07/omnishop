@@ -3,14 +3,16 @@
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
-import { IncreaseAndDecreaseButton, RemoveFromCartButton } from "../Buttons";
 import { useState } from "react";
 
 const OrderSummary = () => {
 
   const { cartItems, subTotalPrice } = useCart();
-  const cartItemsReversed = cartItems?.slice().reverse();
-  const [shippingCost, setShippingCost] = useState(0);
+
+  const [shippingMethod, setShippingMethod] = useState<{ method: string, cost: number }>({
+    method: 'Free Shipping',
+    cost: 0.00
+  });
 
   const shippingOptions = [
     { id: 1, name: 'Free Shipping', cost: 0.00 },
@@ -22,9 +24,9 @@ const OrderSummary = () => {
     <div className="w-full h-fit border border-neutral-4 p-4 rounded-md flex flex-col gap-3">
       <h3>Order Summary</h3>
 
-      <section className="flex flex-col overflow-y-auto max-h-150">
+      <section className="flex flex-col overflow-y-auto max-h-150 pr-2">
         {
-          cartItemsReversed && cartItemsReversed.length !== 0 && cartItemsReversed?.map((item =>
+          cartItems && cartItems.length !== 0 && [...cartItems].reverse()?.map((item =>
             <div key={item.id} className='flex items-center gap-12 justify-between py-6 border-b border-neutral-3'>
               <div className='flex items-center gap-3'>
                 <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
@@ -50,8 +52,8 @@ const OrderSummary = () => {
       <div className="space-y-4 font-inter mt-8">
         <div className="space-y-3 text-sm">
           {shippingOptions.map((option) => (
-            <button type="button" className="w-full" onClick={() => setShippingCost(option.cost)}>
-              <label key={option.id} className="flex items-center gap-4 justify-between p-3 border border-neutral-4/50 rounded-md checked:bg-neutral-2/50 hover:bg-neutral-2/50 transition-all duration-300 cursor-pointer">
+            <button key={option.id} type="button" className="w-full" onClick={() => setShippingMethod({ method: option.name, cost: option.cost })}>
+              <label className="flex items-center gap-4 justify-between p-3 border border-neutral-4/50 rounded-md checked:bg-neutral-2/50 hover:bg-neutral-2/50 transition-all duration-300 cursor-pointer">
                 <div className='flex items-center gap-3'>
                   <input type="radio" name="shipping" value={option.name} defaultChecked={option.id === 1} />
                   <span>{option.name}</span>
@@ -67,7 +69,7 @@ const OrderSummary = () => {
             </div>
             <div className="flex items-center justify-between font-semibold">
               <span>Total:</span>
-              <span>${(subTotalPrice + shippingCost).toFixed(2)}</span>
+              <span>${(subTotalPrice + shippingMethod.cost).toFixed(2)}</span>
             </div>
           </div>
         </div>

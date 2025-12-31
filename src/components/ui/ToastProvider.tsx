@@ -10,6 +10,8 @@ export default function ToastProvider() {
       autoClose={1500}
     //   pauseOnHover
     //   theme="colored"
+      hideProgressBar
+      closeButton={false}
       className='font-bold text-sm mx-auto pt-6 px-12 container'
     />
   );

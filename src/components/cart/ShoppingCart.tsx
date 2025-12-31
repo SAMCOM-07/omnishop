@@ -12,15 +12,14 @@ const ShoppingCart = () => {
 
   const pathname = usePathname()
 
-  const { cartItems, loading, subTotalPrice } = useCart();
-
-  const cartItemsReversed = cartItems?.slice().reverse();
+  const { cartItems, loadingCart, subTotalPrice } = useCart();
   const tableHead = ['Product', 'Quantity', 'Price', 'Subtotal']
 
-  if (cartItemsReversed?.length === 0) {
+  if (cartItems?.length === 0) {
     return (
       <div className='container py-24'>
         <p className='text-center mt-16 text-neutral-4'>Your cart is empty.</p>
+        <Link href="/shop" className='block w-fit mx-auto mt-6 submit-button'>Go to Shop</Link>
       </div>
     )
   }
@@ -30,9 +29,9 @@ const ShoppingCart = () => {
       {/* cart items display for sm & md width */}
       <section className='lg:hidden'>
         <span className='py-4 border-b-2 border-neutral-3 block'>Product</span>
-        <div className='flex flex-col overflow-y-auto max-h-150'>
+        <div className='flex flex-col overflow-y-auto max-h-150 pr-2'>
           {
-            cartItemsReversed && cartItemsReversed.length !== 0 && cartItemsReversed?.map((item =>
+            cartItems && cartItems.length !== 0 && [...cartItems].reverse()?.map((item =>
               <div key={item.id} className='flex items-center gap-12 justify-between py-6 border-b border-neutral-3'>
                 <div className='flex items-center gap-3'>
                   <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
@@ -58,7 +57,7 @@ const ShoppingCart = () => {
       </section>
 
       {/* cart items display for width above md */}
-      <section className='hidden lg:block overflow-y-auto max-h-150'>
+      <section className='hidden lg:block overflow-y-auto max-h-150 pr-2'>
         <table className='w-full '>
           <thead>
             <tr className='border-b-2 border-neutral-3'>

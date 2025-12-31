@@ -14,7 +14,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [count, setCount] = useState(1);
   const { user } = useAuth();
   const [isSyncing, setIsSyncing] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingCart, setLoadingCart] = useState(true);
 
   // Calculate total quantity and price
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -75,18 +75,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   // Load cart from localStorage on initial load if user is not logged in
   useEffect(() => {
-    setLoading(true);
     try {
       const localCart = localStorage.getItem("cart");
       if (localCart && (!user || !user.uid)) {
         setCartItems(JSON.parse(localCart));
       }
-      setLoading(false);
+      setLoadingCart(false);
     } catch (error) {
-      setLoading(false);
+      setLoadingCart(false);
       console.error("Failed to load cart from localStorage:", error);
     } finally {
-      setLoading(false);
+      setLoadingCart(false);
     }
   }, []);
 
@@ -97,8 +96,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem("cart");
         return
       };
-
-      setLoading(true);
 
       try {
         const docRef = doc(db, "cart", user.uid);
@@ -126,11 +123,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           // No Firestore cart, just use local cart
           setCartItems([]);
         }
-        setLoading(false);
+        setLoadingCart(false);
       } catch (err) {
         console.error("Error loading cart from Firestore:", err);
+        setLoadingCart(false);
       } finally {
-        setLoading(false);
+        setLoadingCart(false);
       }
 
     };
@@ -164,6 +162,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     <CartContext.Provider
       value={{
         cartItems,
+        setCartItems,
         addToCart,
         removeFromCart,
         increaseQuantity,
@@ -172,7 +171,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCount,
         count,
         subTotalPrice,
-        loading,
+        loadingCart,
       }}
     >
       {children}

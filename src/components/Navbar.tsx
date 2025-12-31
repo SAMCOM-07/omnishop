@@ -19,7 +19,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const { totalQuantity } = useCart();
 
-  const { isLoggedIn, loading } = useAuth();
+  const { isLoggedIn, loadingUser, user } = useAuth();
 
   return (
     <>
@@ -56,7 +56,9 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-6">
 
           {
-            isLoggedIn ? <Link href={'/profile'}><User2 size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" /></Link> : loading ? <UserIconSkeleton /> : <LogInButton />
+            isLoggedIn ? <Link href={'/profile'}><User2 size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" /></Link> : loadingUser ? <div>
+              <Image src={user?.photoURL ?? '/images/default-profile.png'} alt="User Profile" width={40} height={40} className="rounded-full bg-neutral-3 hover-scale object-cover w-8 h-8" />
+            </div> : <LogInButton />
           }
           <Link href={'/cart'} className="relative hover-scale">
             <ShoppingCart size={20} />
