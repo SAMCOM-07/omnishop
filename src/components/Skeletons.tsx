@@ -1,5 +1,7 @@
 // skeleton for shop page products
 
+import Link from "next/link";
+
 export const ProductSkeleton = () => {
   return (
     <div className="animate-pulse bg-neutral-1 rounded-lg shadow-sm overflow-hidden relative w-full">
@@ -67,6 +69,8 @@ export const ProfileSkeleton = () => {
 
 export const UserIconSkeleton = () => {
   return (
-    <div className="animate-spin border-l-2 border-r-2 border-green rounded-full h-4 w-4" />
+    <div className="w-8 grid place-content-center">
+      <Link href={'/profile'} className="animate-spin border-l-2 border-r-2 border-green rounded-full h-4 w-4" />
+    </div>
   )
 }
