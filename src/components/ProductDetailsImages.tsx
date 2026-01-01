@@ -15,7 +15,7 @@ const ProductDetailsImages = ({ productImages, discount }: ProductDetailsImagesP
 
   return (
     <div className='grid grid-cols-1 gap-2 max-w-lg mx-auto min-h-96'>
-      <div className='w-full aspect-square bg-neutral-2 relative'>
+      <div className='w-full h-full aspect-square bg-neutral-2 relative'>
         <Image src={productImages[count]?.url} alt={`Product Image`} width={400} height={400} className='w-full h-full object-cover object-center' />
       {/* discount indicator */}
       {discount !== 0 && <h4 className='bg-green rounded-small text-center text-neutral-1 font-semibold rounded-sm w-fit px-2.5 absolute top-5 left-5'>-{discount}%</h4> }

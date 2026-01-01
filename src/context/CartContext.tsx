@@ -18,7 +18,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   // Calculate total quantity and price
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const subTotalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subTotalPrice = cartItems.reduce((sum, item) => sum + (item.discountedAmount ? item.discountedAmount : item.price) * item.quantity, 0);
 
   const addToCart = (product: ProductType) => {
     try {

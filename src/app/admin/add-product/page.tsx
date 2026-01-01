@@ -33,75 +33,76 @@ export default function AddProduct() {
   };
 
   const handleUpload = async () => {
-  const { name, price } = product;
-  if (!name || !price || files.length === 0) {
-    alert("Please fill required fields and add at least one image.");
-    return;
-  }
-
-  setLoading(true);
-  const productId = Date.now().toString();
-
-  const formData = new FormData();
-  files.forEach((f) => formData.append("files", f));
-  formData.append("productId", productId);
-
-  try {
-    const res = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
-    const data = await res.json();
-
-    if (data?.images?.length) {
-      const newProduct = {
-        ...product,
-        price: Number(product.price).toFixed(2),
-        discount: Number(product.discount) || 0,
-        discountedAmount: (
-          Number(price) - (Number(product.discount) * Number(price)) / 100
-        ).toFixed(2),
-        tax: Number(product.tax) || 0,
-        unit: Number(product.unit) || 1,
-        rating: Number(product.rating) || 0,
-        tags: product.tags
-          ? product.tags.split(",").map((t) => t.trim().toLowerCase())
-          : [],
-        images: data.images ?? [],
-        reviews: [],
-      };
-
-      // ✅ Call server action
-      const result = await addProductAction(newProduct);
-
-      if (result.success) {
-        alert("✅ Product added successfully!");
-        setProduct({
-          name: "",
-          description: "",
-          category: "",
-          price: "",
-          discount: "",
-          tax: "",
-          unit: "",
-          tags: "",
-          shippingInfo: "",
-          availability: "in stock",
-          rating: 0,
-        });
-        setFiles([]);
-        router.push("/admin");
-      } else {
-        alert(result.error);
-      }
+    const { name, price } = product;
+    if (!name || !price || files.length === 0) {
+      alert("Please fill required fields and add at least one image.");
+      return;
     }
-  } catch (error) {
-    console.error(error);
-    alert("Failed to upload product.");
-  } finally {
-    setLoading(false);
-  }
-};
+
+    setLoading(true);
+    const productId = Date.now().toString();
+
+    const formData = new FormData();
+    files.forEach((f) => formData.append("files", f));
+    formData.append("productId", productId);
+
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data?.images?.length) {
+        const newProduct = {
+          ...product,
+          price: Number(product.price).toFixed(2),
+          discount: Number(product.discount) || 0,
+          discountedAmount: (
+            Number(price) - (Number(product.discount) * Number(price)) / 100
+          ).toFixed(2),
+          tax: Number(product.tax) || 0,
+          unit: Number(product.unit) || 1,
+          rating: Number(product.rating) || 0,
+          tags: product.tags
+            ? product.tags.split(",").map((t) => t.trim().toLowerCase())
+            : [],
+          images: data.images ?? [],
+          reviews: [],
+        };
+
+        // ✅ Call server action
+        const result = await addProductAction(newProduct);
+
+        if (result.success) {
+          alert("✅ Product added successfully!");
+          setProduct({
+            name: "",
+            description: "",
+            category: "",
+            price: "",
+            discount: "",
+            tax: "",
+            unit: "",
+            tags: "",
+            shippingInfo: "",
+            availability: "in stock",
+            rating: 0,
+          });
+          setFiles([]);
+          router.push("/admin");
+        } else {
+          alert(result.error);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to upload product.");
+      console.log('Error Message: ' + error)
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white shadow rounded-lg">

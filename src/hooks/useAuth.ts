@@ -15,8 +15,9 @@ export function useAuth() {
       console.log(user);
     });
 
-
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return { user, loadingUser, isLoggedIn: !!user };

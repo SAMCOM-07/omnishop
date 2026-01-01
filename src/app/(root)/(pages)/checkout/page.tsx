@@ -7,7 +7,7 @@ const CheckOutPage = () => {
   return (
     <div className='container'>
       <h1 className='cart-header'>Checkout</h1>
-      <CartBreadCrumb />
+      <CartBreadCrumb pageId={2} />
 
       
         <CheckoutSummary />

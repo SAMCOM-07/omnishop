@@ -33,6 +33,7 @@ export default async function AdminDashboard() {
               <span>{index + 1}</span>
               <span>{p.name}</span>
               <span>${p.price}</span>
+              <span>{p.category}</span>
             </div>
           ))}
         </div>

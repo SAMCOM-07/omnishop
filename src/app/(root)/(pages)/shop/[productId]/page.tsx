@@ -28,7 +28,7 @@ export default async function ProductDetailsPage({ params }: { params: { product
     <div className="container mt-4">
       <GoBackButton />
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-12">
-        <ProductDetailsImages productImages={product.images} discount={product.discount} />
+        {product.images && product.images.length > 0 && <ProductDetailsImages productImages={product.images} discount={product.discount} />}
         <div className="mt-6 md:mt-0 space-y-4 max-w-xl">
           <Rating rating={product.rating} />
           <h1 className="text font-bold">{product.name}</h1>

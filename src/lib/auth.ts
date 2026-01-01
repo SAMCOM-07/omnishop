@@ -37,19 +37,6 @@ export async function signInWithGoogle() {
   return credential.user;
 }
 
-// const googleProvider = new GoogleAuthProvider();
-
-// export async function signInWithGoogle() {
-//   const isMobile = window.innerWidth < 768;
-//   if (typeof window === "undefined") return;
-
-//   const credential = isMobile
-//     ? await signInWithRedirect(auth, googleProvider)
-//     : await signInWithPopup(auth, googleProvider);
-//   await createUserIfNotExists(credential.user);
-//   return credential.user;
-// }
-
 /* ---------------- USER DOC ---------------- */
 async function createUserIfNotExists(user: any) {
   const ref = doc(db, "users", user.uid);

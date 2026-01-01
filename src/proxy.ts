@@ -44,7 +44,7 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/profile/:path*"],
+  matcher: ["/profile/:path*"],
 };
 
 // import { NextRequest, NextResponse } from "next/server";

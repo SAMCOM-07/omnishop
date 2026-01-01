@@ -15,11 +15,19 @@ const ShoppingCart = () => {
   const { cartItems, loadingCart, subTotalPrice } = useCart();
   const tableHead = ['Product', 'Quantity', 'Price', 'Subtotal']
 
-  if (cartItems?.length === 0) {
+  if (cartItems?.length === 0 && !loadingCart) {
     return (
       <div className='container py-24'>
         <p className='text-center mt-16 text-neutral-4'>Your cart is empty.</p>
         <Link href="/shop" className='block w-fit mx-auto mt-6 submit-button'>Go to Shop</Link>
+      </div>
+    )
+  }
+
+  if (loadingCart) {
+    return (
+      <div className='container py-24 grid place-content-center'>
+        <p className='text-center text-neutral-4'>Loading Cart . . .</p>
       </div>
     )
   }

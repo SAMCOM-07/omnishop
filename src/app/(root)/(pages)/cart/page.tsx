@@ -6,7 +6,7 @@ const CartPage = () => {
   return (
     <div className='container font-inter'>
       <h1 className='cart-header'>Cart</h1>
-      <CartBreadCrumb />
+      <CartBreadCrumb pageId={1} />
       
       <div className='mt-24'>
         <ShoppingCart />

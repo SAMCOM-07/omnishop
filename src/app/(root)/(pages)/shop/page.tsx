@@ -98,9 +98,6 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
           </Suspense>
         </div>
       </div>
-
-
-      <Newsletter />
     </>
   )
 }

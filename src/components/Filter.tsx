@@ -16,10 +16,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [category, min, max, sort]);
 
