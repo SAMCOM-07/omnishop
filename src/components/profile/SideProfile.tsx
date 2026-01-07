@@ -21,7 +21,7 @@ const SideProfile = () => {
   ]
 
   return (
-    <aside className='w-full h-fit px-6 py-12 flex flex-col gap-4 md:shadow-lg rounded-md md:max-w-md font-inter'>
+    <aside className='w-full h-fit p-6 flex flex-col gap-4 md:shadow-lg rounded-md md:max-w-md font-inter'>
       <div className='w-24 h-24 rounded-full bg-neutral-3 text-green overflow-hidden grid place-content-center self-center'>{user?.photoURL ? <img src={user?.photoURL!} alt="Profile Picture" width={96} height={96} /> : <User2Icon size={45} />}</div>
       <h3 className='text-center self-center'>{user?.displayName ?? 'User'}</h3>
 
