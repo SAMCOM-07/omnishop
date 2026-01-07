@@ -4,11 +4,16 @@ import { categoriesLinks, priceLinks } from '@/data/links'
 import { cn } from '@/lib/utils'
 import { Check, ListFilter, X } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 
 const Filter = ({ category, min, max, sort }: { category: string, min: string, max: string, sort: string }) => {
+
+  const router = useRouter();
+
+  const [selectedCategory, setSelectedCategory] = useState(category || '');
+  const [priceState, setPriceState] = useState('');
 
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -41,12 +46,11 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
   return (
     <section ref={scrollRef} className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4 '>
       <div className='sticky inset-0 py-6 top-14'>
-        <div className='flex gap-2 items-center'>
-          <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
-            onClick={() => setIsOpen(true)}
-          ><ListFilter size={16} />Filter</button>
-          {(category || min || max) && <Link href={`/shop${sort ? `?sort=${sort}` : ''}`}><X size={16} /></Link>}
-        </div>
+        <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
+          onClick={() => setIsOpen(true)}
+        >
+          <ListFilter size={16} />Filter
+        </button>
 
         {/* filter(side bar) from medium upward */}
         <aside className='hidden md:block'>
@@ -55,12 +59,22 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
           <h3 className='mt-6 mb-4'>CATEGORIES</h3>
           <div className='flex flex-col overflow-y-scroll gap-4 h-60'>
             {
-              categoriesLinks.map((link, index) => {
-                const activeLink = `${pathname}?c=${category}` === link.href || link.href === '/shop?' && !category
+              categoriesLinks.map((link) => {
+                const isActive = selectedCategory === link.href || link.href === '/shop' && !selectedCategory
                 return (
-                  <Link className={cn('text-neutral-4 text-sm hover:font-bold transition-all duration-500 w-fit inline', activeLink && 'border-b font-semibold text-neutral-7')} key={index}
-                    href={`${link.href}${min || max ? `&min=${min}&max=${max}` : ''}${sort ? `&sort=${sort}` : ''}`}
-                  >{link.name}</Link>
+                  <label key={link.name} className="flex gap-2 items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name='category'
+                      checked={isActive}
+                      onChange={() => setSelectedCategory(link.href)}
+                      className='hidden'
+                    />
+                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
+                      {isActive ? <Check className='p-1' /> : ''}
+                    </span>
+                    {link.name}
+                  </label>
                 )
               }
               )
@@ -69,18 +83,47 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
           {/* filter by prices */}
           <h3 className='mt-6 mb-4'>PRICES</h3>
-          <div className='flex flex-col gap-3 pr-4'>
+          <div className='flex flex-col gap-3'>
             {
-              priceLinks.map((link, index) => {
-                const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && (!min || !max);
+              priceLinks.map((link) => {
+                const isActive = priceState === link.href || link.price === 'All Prices' && !priceState;
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between transition-all duration-500 w-full hover:font-bold', activeLink ? 'text-neutral-7 font-bold' : 'text-neutral-4')} key={index}
-                    href={`${pathname}?${category ? `c=${category}` : ''}&${link.href}${sort ? `&sort=${sort}` : ''}`}
-                  >{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? <Check className='p-1' /> : ''}</span></Link>
+                  <label key={link.price} className="flex justify-between gap-2 items-center cursor-pointer">
+                    {link.price}
+                    <input
+                      type="radio"
+                      name='price'
+                      checked={isActive}
+                      onChange={() => setPriceState(link.href)}
+                      className='hidden'
+                    />
+                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
+                      {isActive ? <Check className='p-1' /> : ''}
+                    </span>
+                  </label>
                 )
               }
               )
             }
+          </div>
+          <div className='flex flex-col gap-3 mt-8'>
+            <button
+              onClick={() => {
+                setSelectedCategory('');
+                setPriceState('');
+                setIsOpen(false);
+                router.push(`/shop${sort ? `?sort=${sort}` : ''}`);
+              }}
+              className='text-sm text-red hover:underline font-medium transition-all duration-500'
+            >
+              Clear All Filters
+            </button>
+            <Link
+              href={`${pathname}?${selectedCategory ? `c=${selectedCategory}` : ''}${selectedCategory && priceState ? '&' : ''}${priceState}${(selectedCategory || priceState) && sort ? '&' : ''}${sort ? `sort=${sort}` : ''}`}
+              className='submit-button py-1.5'
+            >
+              Apply Filter
+            </Link>
           </div>
         </aside>
 
@@ -93,16 +136,11 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
           {/* filter by cateogories */}
           <h3 className='mb-4 flex items-center justify-between'>CATEGORIES<button onClick={() => setIsOpen(false)}><X size={18} /></button></h3>
-          <div className='flex flex-wrap gap-2'>
+
+          <div className='flex flex-col overflow-y-scroll gap-3 h-60 text-sm'>
             {
-              categoriesLinks.map((link, index) => {
-                const activeLink = `${pathname}?c=${category}` === link.href || link.href === '/shop?' && !category
-                return (
-                  <Link className={cn('text-neutral-4 text-xs py-1 px-2 rounded-full hover:bg-neutral-3 bg-neutral-2 transition-all duration-500 w-fit inline border border-border', activeLink && 'font-bold text-neutral-7')} key={index}
-                    href={`${link.href}${min || max ? `&min=${min}&max=${max}` : ''}${sort ? `&sort=${sort}` : ''}`}
-                  >{link.name}</Link>
-                )
-              }
+              categoriesLinks.map(link =>
+                <label key={link.name} className="flex gap-2 items-center cursor-pointer"><input type="radio" name='category' checked={selectedCategory === link.href} onChange={() => setSelectedCategory(encodeURIComponent(link.href))} className='hidden' /><span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', selectedCategory === link.href && 'text-neutral-1 bg-neutral-7')}>{selectedCategory === link.href ? <Check className='p-1' /> : ''}</span>{link.name}</label>
               )
             }
           </div>
@@ -110,18 +148,47 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
           {/* filter by prices */}
           <h3 className='mb-4 mt-8'>PRICES</h3>
-          <div className='flex flex-wrap gap-3'>
+          <div className='flex flex-col gap-3 text-sm'>
             {
-              priceLinks.map((link, index) => {
-                const activeLink = `${pathname}?min=${min}&max=${max}` === `${pathname}?${link.href}` || link.price === 'All Prices' && (!min || !max);
+              priceLinks.map((link) => {
+                const isActive = priceState === link.href || (link.price === 'All Prices' && !priceState);
                 return (
-                  <Link className={cn(' text-sm inline-flex items-center justify-between transition-all duration-500 w-full hover:font-bold', activeLink ? 'text-neutral-7 font-bold' : 'text-neutral-4')} key={index}
-                    href={`${pathname}?${category ? `c=${category}` : ''}&${link.href}${sort ? `&sort=${sort}` : ''}`}
-                  >{link.price}<span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', activeLink && 'text-neutral-1 bg-neutral-7')}>{activeLink ? <Check className='p-1' /> : ''}</span></Link>
+                  <label key={link.price} className="flex justify-between gap-2 items-center cursor-pointer">
+                    {link.price}
+                    <input
+                      type="radio"
+                      name='price'
+                      checked={isActive}
+                      onChange={() => setPriceState(link.href)}
+                      className='hidden'
+                    />
+                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
+                      {isActive ? <Check className='p-1' /> : ''}
+                    </span>
+                  </label>
                 )
-              }
-              )
+              })
             }
+          </div>
+          <div className='flex flex-col gap-3 mt-8'>
+            <button
+              onClick={() => {
+                setSelectedCategory('');
+                setPriceState('');
+                setIsOpen(false);
+                router.push(`/shop${sort ? `?sort=${sort}` : ''}`);
+              }}
+              className='text-sm text-red hover:underline font-medium transition-all duration-500'
+            >
+              Clear All Filters
+            </button>
+            <Link
+              href={`${pathname}?${selectedCategory ? `c=${selectedCategory}` : ''}${selectedCategory && priceState ? '&' : ''}${priceState}${(selectedCategory || priceState) && sort ? '&' : ''}${sort ? `sort=${sort}` : ''}`}
+              onClick={() => setIsOpen(false)}
+              className='submit-button py-1.5'
+            >
+              Apply Filter
+            </Link>
           </div>
         </div>
       </div>

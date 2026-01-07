@@ -1,17 +1,15 @@
-import MyAccount from '@/components/profile/MyAccount'
 import SideProfile from '@/components/profile/SideProfile'
-import React from 'react'
 
-const ProfilePage = () => {
+const WishListPage = () => {
   return (
     <div className='container'>
-      <h1 className='text-center my-18'>My Account</h1>
+      <h1 className='text-center my-18'>My Wishlist</h1>
       <div className='flex flex-col md:flex-row gap-12 lg:gap-18 w-full'>
         <SideProfile />
-        <MyAccount />
+        My wish list component to be added here
       </div>
     </div>
   )
 }
 
-export default ProfilePage
+export default WishListPage

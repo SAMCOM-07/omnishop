@@ -79,7 +79,7 @@ export default function RegisterForm() {
           <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <EyeOff size={18} /> : <Eye size={18} />}</button>
         </div>
 
-        <p className="-mt-4 text-xs text-neutral-4">Password must include uppercase, lowercase, symbol and number</p>
+        <p className="-mt-4 text-xs text-neutral-4 font-extralight italic">Password must include uppercase, lowercase, symbol and number</p>
 
         <AuthButton text="Sign Up" loading={loading} />
       </form>

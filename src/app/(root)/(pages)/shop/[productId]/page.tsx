@@ -1,4 +1,4 @@
-import { AddToCartBtn, GoBackButton, LinkButton, QuantityUpdateButton, RemoveFromCartButton, WishListBtnWithText } from "@/components/Buttons";
+import { AddToCartBtn, GoBackButton, LinkButton, QuantityUpdateButton, WishListBtnWithText } from "@/components/Buttons";
 import ProductCard from "@/components/ProductCard";
 import ProductDetailsImages from "@/components/ProductDetailsImages";
 import { ProductSkeleton } from "@/components/Skeletons";

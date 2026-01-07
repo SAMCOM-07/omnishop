@@ -1,17 +1,15 @@
-import MyAccount from '@/components/profile/MyAccount'
 import SideProfile from '@/components/profile/SideProfile'
-import React from 'react'
 
-const ProfilePage = () => {
+const OrderPage = () => {
   return (
     <div className='container'>
-      <h1 className='text-center my-18'>My Account</h1>
+      <h1 className='text-center my-18'>Order History</h1>
       <div className='flex flex-col md:flex-row gap-12 lg:gap-18 w-full'>
         <SideProfile />
-        <MyAccount />
+        My order history component to be added here
       </div>
     </div>
   )
 }
 
-export default ProfilePage
+export default OrderPage

@@ -1,7 +1,7 @@
 // login button
 
 import { logoutUser } from "@/lib/auth";
-import { LogInIcon } from "lucide-react";
+import { LogInIcon, LogOutIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MouseEventHandler } from "react";
@@ -52,10 +52,10 @@ export const LogOutButton = () => {
   }
   return (
     <button
-      className="bg-red-600 text-neutral-1 text-sm py-2 px-4 rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2"
       onClick={handleLogout}
+      className="bg-red text-neutral-1 text-sm py-2 px-4 rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2 w-fit"
     >
-      Logout
+      <LogOutIcon size={18} /> Logout
     </button>
   );
 }

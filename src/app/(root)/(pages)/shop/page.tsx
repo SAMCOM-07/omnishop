@@ -7,48 +7,34 @@ import Image from 'next/image';
 import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
-import Newsletter from '@/components/Newsletter';
 import { ProductType } from '@/types/types';
+
+const sortProducts = (products: ProductType[], sortOrder?: string): ProductType[] => {
+  if (!sortOrder) return products;
+  return products.sort((a, b) => 
+    sortOrder === 'low' 
+      ? a.discountedAmount - b.discountedAmount 
+      : b.discountedAmount - a.discountedAmount
+  );
+};
 
 const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: string, max: string, sort: string } }) => {
 
   const { c, min, max, sort } = await searchParams;
 
-  let products;
+  let productsData: ProductType[];
 
   if (c && (min && max)) {
-    const p: ProductType[] = await getProductsByCategoryAndPriceRange(c, min, max);
-    if (sort) {
-      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
-    }
-    else {
-      products = p;
-    }
+    productsData = await getProductsByCategoryAndPriceRange(c, min, max);
   } else if (c && (!min && !max)) {
-    const p: ProductType[] = await getProductsByCategory(c);
-    if (sort) {
-      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
-    }
-    else {
-      products = p;
-    }
+    productsData = await getProductsByCategory(c);
   } else if ((min && max) && !c) {
-    const p: ProductType[] = await getProductsByPriceRange(min, max);
-    if (sort) {
-      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
-    }
-    else {
-      products = p;
-    }
+    productsData = await getProductsByPriceRange(min, max);
   } else {
-    const p: ProductType[] = await getAllProducts();
-    if (sort) {
-      products = p.sort((a, b) => sort === 'low' ? a.discountedAmount - b.discountedAmount : b.discountedAmount - a.discountedAmount)
-    }
-    else {
-      products = p;
-    }
+    productsData = await getAllProducts();
   }
+
+  const products = sortProducts(productsData, sort);
 
 
 
@@ -56,7 +42,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
     <>
       <section className='flex items-center justify-center overflow-hidden bg-gray-500 relative '>
         <div
-          className='w-full lg:h-[600px] h-[400px] bg-gray-200 transition-all duration-500'>
+          className='w-full lg:h-15 h-100 bg-gray-200 transition-all duration-500'>
           <Image
             src={bannerImg}
             alt='banner Image'
@@ -80,7 +66,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
         <Filter category={c} min={min} max={max} sort={sort} />
         <div className='w-full'>
           <div className='flex items-center justify-between sticky inset-0 top-32 md:top-14 pt-6 pb-3 z-30 bg-neutral-1'>
-            <h3>{c ? c : 'All Products'} {min && max ? ` ($${min} - $${max})` : ''}</h3>
+            <h3 className='capitalize'>{c ? c : 'All Products'} {min && max ? ` ($${min} - $${max})` : '(All Prices)'}</h3>
             <Sort category={c} min={min} max={max} sort={sort} />
           </div>
 

@@ -13,51 +13,51 @@ export const navLinks = [
 export const categoriesLinks = [
   {
     name: "All Products",
-    href: "/shop?",
+    href: "",
   },
   {
     name: "Electronics",
-    href: `/shop?c=${encodeURIComponent("electronics")}`,
+    href: "electronics",
   },
   {
     name: "Fashion",
-    href: `/shop?c=${encodeURIComponent("fashion")}`,
+    href: "fashion",
   },
   {
     name: "Furniture",
-    href: `/shop?c=${encodeURIComponent("furniture")}`,
+    href: "furniture",
   },
   {
     name: "Accessories",
-    href: `/shop?c=${encodeURIComponent("accessories")}`,
+    href: "accessories",
   },
   {
     name: "Health & Wellness",
-    href: `/shop?c=${encodeURIComponent("health & wellness")}`,
+    href: "health & wellness",
   },
   {
     name: "Home & Kitchen",
-    href: `/shop?c=${encodeURIComponent("home & kitchen")}`,
+    href: "home & kitchen",
   },
   {
     name: "Groceries",
-    href: `/shop?c=${encodeURIComponent("groceries")}`,
+    href: "groceries",
   },
   {
     name: "Beauty & Personal Care",
-    href: `/shop?c=${encodeURIComponent("beauty & personal care")}`,
+    href: "beauty & personal care",
   },
   {
     name: "Baby & Kids",
-    href: `/shop?c=${encodeURIComponent("baby & kids")}`,
+    href: "baby & kids",
   },
   {
     name: "Sports & Outdoor",
-    href: `/shop?c=${encodeURIComponent("sports & outdoor")}`,
+    href: "sports & outdoor",
   },
   {
     name: "Automotive",
-    href: `/shop?c=${encodeURIComponent("automotive")}`,
+    href: "automotive",
   },
 ];
 

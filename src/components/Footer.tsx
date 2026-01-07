@@ -1,30 +1,33 @@
 'use client'
 
-import React from 'react'
-import { LogOutButton } from './auth/AuthButtons'
 import Link from 'next/link'
 import Image from 'next/image'
 import LogoText from './../../public/images/omnishop-text.png';
+import { cn } from '@/lib/utils'
+import { usePathname } from 'next/navigation'
 
 
 const Footer = () => {
+
+  const pathname = usePathname()
+
   return (
     <div className='bg-neutral-7 text-neutral-1 py-20 w-full gap-4 text-sm'>
-      <div className='container flex flex-col md:flex-row justify-between items-start md:items-center gap-12'>
-        <div className='flex items-center gap-6'>
+      <div className='container flex flex-col md:flex-row justify-between items-center md:items-center gap-12'>
+        <div className='flex flex-col md:flex-row items-center gap-6'>
           <Link href="/" className="inline-block brightness-100">
             <Image src={LogoText} width={120} height={120} alt="Product Picture" />
           </Link>
-          <div className='h-6 w-0.5 bg bg-neutral-4'></div>
+          <div className='md:h-6 md:w-0.5 w-6 h-0.5 -mt-2 md:m-0 bg bg-neutral-4 '></div>
           <h6 className='font-extralight text-neutral-3'>Where you get all Products</h6>
         </div>
 
-        <ul className='flex items-center gap-6'>
-          <li><Link href="/" className='hover:text-green transition-colors duration-300'>Home</Link></li>
-          <li><Link href="/shop" className='hover:text-green transition-colors duration-300'>Shop</Link></li>
-          
+        <ul className='flex flex-col md:flex-row items-center gap-6'>
+          <li><Link href="/" className={cn('hover:text-green/50 transition-colors duration-300', pathname === '/' && 'text-green')}>Home</Link></li>
+          <li><Link href="/shop" className={cn('hover:text-green/50 transition-colors duration-300', pathname === '/shop' && 'text-green')}>Shop</Link></li>
+
         </ul>
-        <LogOutButton />
+        <span>Developed by: <Link href={'samuelshonde.vercel.app'} className='text-blue italic underline'>Samuel</Link></span>
       </div>
     </div>
   )
