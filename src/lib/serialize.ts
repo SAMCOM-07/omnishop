@@ -1,6 +1,8 @@
 import { ProductType } from "@/types/types";
+import { UserProfileType } from "@/types/user";
+import { UserProfile } from "firebase/auth";
 
-export function serializeData(data: ProductType | ProductType[]) {
+export function serializeData(data: ProductType | ProductType[] | UserProfileType | UserProfileType[]) {
   return JSON.parse(
     JSON.stringify(data, (_, value) => {
       // Convert Firestore Timestamps to ISO strings

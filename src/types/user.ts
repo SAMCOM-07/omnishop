@@ -6,3 +6,11 @@ export interface AppUser {
   role: UserRole;
   createdAt: Date;
 }
+
+export interface UserProfileType {
+  id: string;
+  email: string;
+  role: UserRole;
+  username: string;
+  createdAt: Date;
+}

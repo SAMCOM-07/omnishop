@@ -1,19 +1,14 @@
 'use client'
 
 import { IncreaseAndDecreaseButton, RemoveFromCartButton } from '@/components/Buttons';
-import CartBreadCrumb from '@/components/CartBreadCrumb'
 import { useCart } from '@/context/CartContext';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 const ShoppingCart = () => {
 
-  const pathname = usePathname()
-
   const { cartItems, loadingCart, subTotalPrice } = useCart();
-  const tableHead = ['Product', 'Quantity', 'Price', 'Subtotal']
 
   if (cartItems?.length === 0 && !loadingCart) {
     return (
@@ -36,7 +31,10 @@ const ShoppingCart = () => {
     <div className='flex-1 w-full'>
       {/* cart items display for sm & md width */}
       <section className='lg:hidden'>
-        <span className='py-4 border-b-2 border-neutral-3 block'>Product</span>
+        <div className='py-4 border-b-2 border-neutral-3 block font-semibold flex items-center justify-between'>
+          <span>Product</span>
+          <span>Price / Action</span>
+        </div>
         <div className='flex flex-col overflow-y-auto max-h-150 pr-2'>
           {
             cartItems && cartItems.length !== 0 && [...cartItems].reverse()?.map((item =>
@@ -69,7 +67,7 @@ const ShoppingCart = () => {
         <table className='w-full '>
           <thead>
             <tr className='border-b-2 border-neutral-3'>
-              {tableHead.map((head) => (
+              {['Product', 'Quantity', 'Price', 'Subtotal'].map((head) => (
                 <th key={head} className={cn('text-center pb-4 font-bold', head === 'Product' && 'text-left', head === 'Quantity' && 'lg:text-left pl-4')}>{head}</th>
               ))}
             </tr>

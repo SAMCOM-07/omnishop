@@ -34,7 +34,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           return [...prev, { ...product, quantity: count }];
         }
       });
-      toast.success("Product Successfully Added !");
+      toast.success("Product Added to Cart");
     } catch (error) {
       toast.error("Something went wrong !");
     }
@@ -59,11 +59,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFromCart = (productId: string) => {
-    setCartItems((prev) => {
-      const updatedCart = prev.filter((item) => item.id !== productId);
-      localStorage.setItem("cart", JSON.stringify(updatedCart)); // Sync to localStorage
-      return updatedCart;
-    });
+    try {
+      setCartItems((prev) => {
+        const updatedCart = prev.filter((item) => item.id !== productId);
+        localStorage.setItem("cart", JSON.stringify(updatedCart)); // Sync to localStorage
+        return updatedCart;
+      });
+      toast.info("Product Removed from Cart");
+    } catch (error) {
+      toast.error("Something went wrong !");
+    }
+
   };
 
   // Save to localStorage when items change

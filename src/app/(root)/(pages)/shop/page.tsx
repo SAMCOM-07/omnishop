@@ -11,9 +11,9 @@ import { ProductType } from '@/types/types';
 
 const sortProducts = (products: ProductType[], sortOrder?: string): ProductType[] => {
   if (!sortOrder) return products;
-  return products.sort((a, b) => 
-    sortOrder === 'low' 
-      ? a.discountedAmount - b.discountedAmount 
+  return products.sort((a, b) =>
+    sortOrder === 'low'
+      ? a.discountedAmount - b.discountedAmount
       : b.discountedAmount - a.discountedAmount
   );
 };
@@ -42,7 +42,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
     <>
       <section className='flex items-center justify-center overflow-hidden bg-gray-500 relative '>
         <div
-          className='w-full lg:h-15 h-100 bg-gray-200 transition-all duration-500'>
+          className='w-full lg:h-150 h-100 bg-gray-200 transition-all duration-500'>
           <Image
             src={bannerImg}
             alt='banner Image'
@@ -63,9 +63,11 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
       {/* filter, sort and category-title */}
 
       <div className='container flex flex-col md:flex-row mt-8 mb-18'>
-        <Filter category={c} min={min} max={max} sort={sort} />
+        <div className='md:min-w-[16rem] md:max-w-[16rem] sticky top-14 z-40 bg-neutral-1 mr-4 '>
+          <Filter category={c} min={min} max={max} sort={sort} />
+        </div>
         <div className='w-full'>
-          <div className='flex items-center justify-between sticky inset-0 top-32 md:top-14 pt-6 pb-3 z-30 bg-neutral-1'>
+          <div className='flex items-center justify-between sticky top-32 md:top-14 pt-6 pb-3 z-30 bg-neutral-1'>
             <h3 className='capitalize'>{c ? c : 'All Products'} {min && max ? ` ($${min} - $${max})` : '(All Prices)'}</h3>
             <Sort category={c} min={min} max={max} sort={sort} />
           </div>

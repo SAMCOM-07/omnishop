@@ -25,7 +25,10 @@ const NewArrivals = async () => {
                 <div className='p-3 bg-neutral-2 space-y-3'>
                   <div className='flex item-start justify-between'>
                     <h4 className='px-2.5 py-0.5 rounded-sm bg-neutral-1 font-bold h-fit'>NEW</h4>
-                    <WishListBtn productId={product.id} />
+                    <div className='lg:opacity-0 group-hover:opacity-100 transition-all duration-500'>
+
+                    <WishListBtn product={product} />
+                    </div>
                   </div>
                   {product.discount !== 0 ? <h5 className='bg-green text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2.5'>-{product.discount}%</h5> : <h5 className='h-5'></h5>}
                   <Link href={`/shop/${product.id}`} className='overflow-hidden block w-62.5 h-62.5 rounded-md'>

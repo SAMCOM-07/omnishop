@@ -4,19 +4,23 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  } from "firebase/auth";
+} from "firebase/auth";
 import { auth, db } from "./firebase";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
 /* ---------------- EMAIL REGISTER ---------------- */
-export async function registerUser(email: string, password: string) {
+export async function registerUser(
+  email: string,
+  password: string,
+  username: string
+) {
   const credential = await createUserWithEmailAndPassword(
     auth,
     email,
     password
   );
 
-  await createUserIfNotExists(credential.user);
+  await createUserIfNotExists(credential.user, username);
   return credential.user;
 }
 
@@ -37,7 +41,7 @@ export async function signInWithGoogle() {
 }
 
 /* ---------------- USER DOC ---------------- */
-async function createUserIfNotExists(user: any) {
+async function createUserIfNotExists(user: any, username?: string) {
   const ref = doc(db, "users", user.uid);
   const snap = await getDoc(ref);
 
@@ -45,6 +49,7 @@ async function createUserIfNotExists(user: any) {
     await setDoc(ref, {
       email: user.email,
       role: "user",
+      username,
       createdAt: serverTimestamp(),
     });
   }
@@ -53,5 +58,6 @@ async function createUserIfNotExists(user: any) {
 /* ---------------- LOGOUT ---------------- */
 export async function logoutUser() {
   await signOut(auth);
+  await auth.currentUser?.getIdToken(true); // 👈 refresh token
   await fetch("/api/logout", { method: "POST" }); // 👈 clears cookie
 }

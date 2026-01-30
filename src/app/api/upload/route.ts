@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
 
-    // files[] from frontend
+    // files from frontend
     const files = formData.getAll("files") as File[];
     const productId =
       formData.get("productId")?.toString() || "unknown_product";

@@ -23,7 +23,7 @@ const Hamburger = () => {
   ]
 
   return (
-    <div className='flex items-center justify-between font-inter gap-4 py-3 container md:hidden'>
+    <div className='group flex items-center justify-between font-inter gap-4 py-3 container md:hidden'>
       {
         links.map((link, index) => {
           const isActive = pathname === link.href;

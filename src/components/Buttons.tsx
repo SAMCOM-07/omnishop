@@ -1,6 +1,8 @@
 'use client'
 
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
+import { cn } from "@/lib/utils";
 import { ProductType } from "@/types/types";
 import { ArrowRight, ChevronLeft, Heart, Minus, Plus, X } from "lucide-react";
 import Link from "next/link";
@@ -27,31 +29,52 @@ export const LinkButton = ({ text, href }: { text: string, href: string }) => {
 export const AddToCartBtn = ({ product }: { product: ProductType }) => {
 
   const { addToCart, setCount } = useCart();
+  const { removeFromWishlist, wishlistItems } = useWishlist();
+  const productIsInWishlist = !!wishlistItems?.find(item => item.id === product.id);
 
   return (
     <button onClick={() => {
       addToCart(product);
       setCount(1);
-    }} className='hover:scale-105 active:scale-95 transition-transform duration-300 bg-neutral-7 text-xs md:textbase text-neutral-1 p-3 rounded-md w-full text-center font-inter'>Add to Cart</button>
+      wishlistItems && productIsInWishlist && removeFromWishlist(product.id as string);
+    }} className='whitespace-nowrap hover:scale-105 active:scale-95 transition-transform duration-300 bg-neutral-7 text-xs md:textbase text-neutral-1 p-3 rounded-md w-full text-center font-inter'>Add to Cart</button>
   )
 }
 
 
 // wish list button without text
 
-export const WishListBtn = ({ productId }: { productId: string | undefined }) => {
+export const WishListBtn = ({ product }: { product: ProductType }) => {
+  const { addToWishlist, removeFromWishlist, wishlistItems } = useWishlist();
+  const productIsInWishlist = !!wishlistItems?.find(item => item.id === product.id);
   return (
-    <button className='bg-neutral-1 p-1.5 shadow-lg rounded-full text-neutral-4 hover-scale'><Heart size={20} /></button>
+    <button
+      onClick={() => productIsInWishlist ? removeFromWishlist(product.id as string) : addToWishlist(product)}
+      className={cn('bg-neutral-1 p-1.5 shadow-lg rounded-full text-neutral-4 hover-scale')}><Heart size={20} className={cn(productIsInWishlist ? 'fill-green text-green' : 'fill-none')} /></button>
   )
 }
 
 // wish list button
-export const WishListBtnWithText = ({ productId }: { productId: string | undefined }) => {
+export const WishListBtnWithText = ({ product }: { product: ProductType }) => {
+  const { addToWishlist, removeFromWishlist, wishlistItems } = useWishlist();
+  const productIsInWishlist = !!wishlistItems?.find(item => item.id === product.id);
   return (
-    <button className='border border-neutral-4 p-2 text-xs md:textbase rounded-lg w-full text-center font-inter flex items-center justify-center gap-2 hover:bg-neutral-5 hover:text-neutral-1 active:scale-95 transition-all duration-300'><Heart size={18} /><span>Add to Wish List</span></button>
+    <button
+      onClick={() => productIsInWishlist ? removeFromWishlist(product.id as string) : addToWishlist(product)}
+      className='border border-neutral-4 p-2 text-xs md:textbase rounded-lg w-full text-center font-inter flex items-center justify-center gap-2 hover:bg-neutral-5 hover:text-neutral-1 active:scale-95 transition-all duration-300'><Heart size={18} className={cn(productIsInWishlist ? 'fill-green text-green' : 'fill-none')} /><span>{productIsInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}</span></button>
   )
 }
 
+
+export const RemoveFromWishlistButton = ({ productId }: { productId: string | undefined }) => {
+  const { removeFromWishlist } = useWishlist();
+  return (
+    <button onClick={() => removeFromWishlist(productId!)} className="flex items-center text-neutral-4 text-sm gap-1.5"><X size={22} /> </button>
+  )
+}
+
+
+// go back button
 export const GoBackButton = () => {
   return (
     <button

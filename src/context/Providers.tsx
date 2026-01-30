@@ -2,11 +2,14 @@
 
 import { ReactNode } from "react";
 import { CartProvider } from "./CartContext";
+import { WishlistProvider } from "./WishlistContext";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <CartProvider>
-      {children}
+      <WishlistProvider>
+        {children}
+      </WishlistProvider>
     </CartProvider>
   );
 }

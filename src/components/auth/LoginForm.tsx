@@ -27,17 +27,17 @@ export default function LoginForm() {
       const user = await loginUser(email, password);
 
       const token = await user.getIdToken();
-      await fetch("/api/login", {
+      const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
       });
 
-      const role = await getUserRole(user.uid);
-
-      console.log('User role:', role);
-      
-      router.push(role === "admin" ? "/admin" : "/");
+      // const role = await getUserRole(user.uid);
+      // console.log('User role:', role);
+      // router.push(role === "admin" ? "/admin" : "/");
+      // if (!res.ok) router.push("/");
+      router.push("/");
     } catch (e: any) {
       toast.error(e.message);
     } finally {
@@ -71,24 +71,65 @@ export default function LoginForm() {
 
 
 
+  // async function handleGoogle() {
+  //   setLoading(true);
+  //   try {
+  //     const user = await signInWithGoogle();
+  //     const token = await user.getIdToken();
+
+  //     const res = await fetch("/api/login", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ token }),
+  //     });
+
+  //     // const role = await getUserRole(user.uid);
+  //     // console.log('User role:', role);
+  //     // router.push(role === "admin" ? "/admin" : "/");
+  //     // router.push("/");
+
+  //     // if (!res.ok) router.push("/");
+  //     router.push("/");
+  //   } catch (e: any) {
+  //     toast.error("Error: " + e.message);
+  //     console.log('Error: ' + e);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
+
   async function handleGoogle() {
     setLoading(true);
     try {
       const user = await signInWithGoogle();
-      const token = await user.getIdToken();
-      await fetch("/api/login", {
+      const token = await user.getIdToken(true);
+
+      // Fetch login API
+      const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
       });
-      router.push("/");
+
+      // Check the response
+      if (res.ok) {
+        const { success } = await res.json();
+        if (success) {
+          // Retrieve user role if needed or navigate based on login success
+          const role = (await user?.getIdTokenResult()).claims.role; // Get the role directly
+          router.push(role === "admin" ? "/admin" : "/");
+        }
+      } else {
+        router.push("/");
+      }
     } catch (e: any) {
       toast.error("Error: " + e.message);
-      console.log('Error: ' + e);
+      console.error("Error: ", e);
     } finally {
       setLoading(false);
     }
   }
+
 
   return (
     <div className="space-y-4 w-full max-w-sm mx-auto">

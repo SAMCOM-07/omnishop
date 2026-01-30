@@ -49,7 +49,7 @@ export default async function ProductDetailsPage({ params }: { params: { product
           </div>
           <div className="flex gap-4 items-center">
             <QuantityUpdateButton />
-            <WishListBtnWithText productId={product.id} />
+            <WishListBtnWithText product={product} />
           </div>
           <AddToCartBtn product={product} />
         </div>

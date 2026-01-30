@@ -11,10 +11,10 @@ const MyAccount = () => {
         <label className='w-full'><span className='form-title'>PHONE NUMBER *</span><input required type="tel" placeholder='Phone number' className="input-field" /></label>
         
         <h3 className='mt-6'>Password</h3>
-        <label className='w-full'><span className='form-title'>FIRST NAME *</span><input required type="text" placeholder='First name' className="input-field" /></label>
-        <label className='w-full'><span className='form-title'>LAST NAME *</span><input required type="text" placeholder='Last name' className="input-field" /></label>
-        <label className='w-full'><span className='form-title'>EMAIL *</span><input required type="email" placeholder='Email' className="input-field" /></label>
-        <label className='w-full'><span className='form-title'>PHONE NUMBER *</span><input required type="tel" placeholder='Phone number' className="input-field" /></label>
+        <label className='w-full'><span className='form-title'>CURRENT PASSWORD *</span><input required type="password" placeholder='Enter current password' className="input-field" /></label>
+        <label className='w-full'><span className='form-title'>NEW PASSWORD *</span><input required type="password" placeholder='Enter new password' className="input-field" /></label>
+        <label className='w-full'><span className='form-title'>CONFIRM NEW PASSWORD *</span><input required type="password" placeholder='Confirm new password' className="input-field" /></label>
+    
         <button className="w-full block mt-4 submit-button">Save Changes</button>
       </form>
     </section>

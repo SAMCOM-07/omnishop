@@ -2,7 +2,7 @@
 
 import { navLinks } from "@/data/links"
 import { cn } from "@/lib/utils"
-import { Search, ShoppingCart, User2Icon } from "lucide-react"
+import { Heart, Search, ShoppingCart, User2Icon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCart } from "@/context/CartContext"
@@ -58,6 +58,9 @@ const Navbar = () => {
           {
             isLoggedIn ? <Link href={'/profile'}> {user?.photoURL ? <img src={`${user?.photoURL}`} className="rounded-full bg-neutral-3 hover-scale object-cover w-8 h-8" /> : <User2Icon size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" />}</Link> : loadingUser ? <UserIconSkeleton /> : <LogInButton />
           }
+          <Link href={'/wishlist'} className="relative hover-scale">
+            <Heart size={20} />
+          </Link>
           <Link href={'/cart'} className="relative hover-scale">
             <ShoppingCart size={20} />
             <div className='rounded-full p-1 font-bold text-green text-sm absolute left-4.5 -top-3.5'>{totalQuantity}</div>

@@ -44,10 +44,10 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
 
   return (
-    <section ref={scrollRef} className='w-full md:min-w-[16rem] md:max-w-[16rem] sticky inset-0 top-14  z-40 bg-neutral-1 mr-4 '>
+    <section ref={scrollRef} className='w-full'>
       <div className='sticky inset-0 py-6 top-14'>
         <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen(prev => !prev)}
         >
           <ListFilter size={16} />Filter
         </button>
@@ -57,7 +57,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
           {/* filter by categories */}
           <h3 className='mt-6 mb-4'>CATEGORIES</h3>
-          <div className='flex flex-col overflow-y-scroll gap-4 h-60'>
+          <div className='flex flex-col overflow-y-scroll gap-4 h-60 text-sm'>
             {
               categoriesLinks.map((link) => {
                 const isActive = selectedCategory === link.href || link.href === '/shop' && !selectedCategory
@@ -83,7 +83,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
           {/* filter by prices */}
           <h3 className='mt-6 mb-4'>PRICES</h3>
-          <div className='flex flex-col gap-3'>
+          <div className='flex flex-col gap-3 text-sm'>
             {
               priceLinks.map((link) => {
                 const isActive = priceState === link.href || link.price === 'All Prices' && !priceState;
@@ -106,7 +106,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
               )
             }
           </div>
-          <div className='flex flex-col gap-3 mt-8'>
+          <div className='flex flex-col gap-3 mt-8 text-sm'>
             <button
               onClick={() => {
                 setSelectedCategory('');
@@ -139,8 +139,22 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
           <div className='flex flex-col overflow-y-scroll gap-3 h-60 text-sm'>
             {
-              categoriesLinks.map(link =>
-                <label key={link.name} className="flex gap-2 items-center cursor-pointer"><input type="radio" name='category' checked={selectedCategory === link.href} onChange={() => setSelectedCategory(encodeURIComponent(link.href))} className='hidden' /><span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', selectedCategory === link.href && 'text-neutral-1 bg-neutral-7')}>{selectedCategory === link.href ? <Check className='p-1' /> : ''}</span>{link.name}</label>
+              categoriesLinks.map(link => {
+                const isActive = selectedCategory === link.href || link.href === '/shop' && !selectedCategory
+                return (
+                  <label
+                    key={link.name}
+                    className="flex gap-2 items-center cursor-pointer">
+                    <input type="radio" name='category' checked={isActive}
+                      onChange={() => setSelectedCategory(link.href)}
+                      className='hidden'
+                    />
+                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>{isActive ? <Check className='p-1' /> : ''}
+                    </span>
+                    {link.name}
+                  </label>
+                )
+              }
               )
             }
           </div>
@@ -170,7 +184,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
               })
             }
           </div>
-          <div className='flex flex-col gap-3 mt-8'>
+          <div className='flex flex-col gap-3 mt-8 text-sm'>
             <button
               onClick={() => {
                 setSelectedCategory('');

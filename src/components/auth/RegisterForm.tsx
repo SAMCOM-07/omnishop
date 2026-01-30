@@ -10,6 +10,8 @@ import { AuthButton, GoogleSignInButton } from "./AuthButtons";
 
 export default function RegisterForm() {
   const router = useRouter();
+
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,7 @@ export default function RegisterForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const user = await registerUser(email, password);
+      const user = await registerUser(email, password, username);
       const token = await user.getIdToken();
       await fetch("/api/login", {
         method: "POST",
@@ -58,6 +60,13 @@ export default function RegisterForm() {
       <form onSubmit={handleRegister} className="space-y-6 font-inter">
         <span className="text-green text-center block text-2xl font-semibold font-poppins">Welcome to Omnishop</span>
 
+        <input
+          type="text"
+          placeholder="Username"
+          required
+          onChange={(e) => setUsername(e.target.value)}
+          className="border-b border-neutral-3 py-2 w-full outline-none text-neutral-5 placeholder:text-sm"
+        />
         <input
           type="email"
           placeholder="Email"

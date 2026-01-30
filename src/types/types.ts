@@ -52,6 +52,15 @@ export type CartContextType = {
   loadingCart: boolean;
 };
 
+export type WishlistProductType = CartProductType;
+
+export type WishlistContextType = {
+  wishlistItems: WishlistProductType[] | null;
+  addToWishlist: (product: ProductType) => void;
+  removeFromWishlist: (productId: string) => void;
+  loadingWishlist: boolean;
+};
+
 export function getCreatedAtSeconds(
   createdAt?: Date | string | Timestamp
 ): number {
