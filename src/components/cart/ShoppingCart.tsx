@@ -37,7 +37,7 @@ const ShoppingCart = () => {
         </div>
         <div className='flex flex-col overflow-y-auto max-h-150 pr-2'>
           {
-            cartItems && cartItems.length !== 0 && [...cartItems].reverse()?.map((item =>
+            cartItems && cartItems.length > 0 && [...cartItems].reverse()?.map((item =>
               <div key={item.id} className='flex items-center gap-12 justify-between py-6 border-b border-neutral-3'>
                 <div className='flex items-center gap-3'>
                   <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
@@ -73,7 +73,7 @@ const ShoppingCart = () => {
             </tr>
           </thead>
           <tbody className=''>
-            {cartItems && cartItems.length !== 0 && cartItems?.map((item) =>
+            {cartItems && cartItems.length > 0 && cartItems?.map((item) =>
               <tr key={item.id} className='border-b border-neutral-3 text-center'>
                 <td className='py-6'>
                   <div className='flex items-center gap-4'>

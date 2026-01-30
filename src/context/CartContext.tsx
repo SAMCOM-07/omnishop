@@ -140,7 +140,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     loadCart();
-  }, [user]);
+  }, [user, cartItems.length]);
 
   // Sync cart to Firestore when user changes or cart items change
   const syncCartToFirestore = useCallback(async () => {
