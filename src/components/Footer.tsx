@@ -27,7 +27,7 @@ const Footer = () => {
           <li><Link href="/shop" className={cn('hover:text-green/50 transition-colors duration-300', pathname === '/shop' && 'text-green')}>Shop</Link></li>
 
         </ul>
-        <span>Developed by: <Link href={'samuelshonde.vercel.app'} className='text-blue italic underline'>Samuel</Link></span>
+        <span>Developed by: <a href='https://samuelshonde.vercel.app' target='_blank' rel="noopener noreferrer" className='text-blue italic underline'>Samuel</a></span>
       </div>
     </div>
   )
