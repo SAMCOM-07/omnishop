@@ -101,7 +101,7 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
     };
 
     loadWishlist();
-  }, [user, wishlistItems.length]);
+  }, [user]);
 
   /* ---------------- SYNC TO FIRESTORE ---------------- */
   const syncToFirestore = useCallback(async () => {

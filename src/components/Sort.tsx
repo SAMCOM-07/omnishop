@@ -41,7 +41,7 @@ const Sort = ({ category, min, max, sort }: { category: string, min: string, max
                 key={sorting.title}
                 onClick={() => setIsOpen(false)}
                 href={`${pathname}?${category ? `c=${category}` : ''}${min || max ? `&min=${min}&max=${max}&` : ''}${sorting.href}`}
-                className={cn('py-1 px-2 rounded-md text-neutral-4 ', activeSort && 'bg-neutral-3')}
+                className={cn('py-1 px-2 rounded-md text-neutral-4 hover:bg-neutral-2/70', activeSort && 'bg-neutral-2')}
               >{sorting.title}</Link>
             )
           }

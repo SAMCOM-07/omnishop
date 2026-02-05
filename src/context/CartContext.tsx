@@ -125,6 +125,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           );
 
           setCartItems([...mergedCart, ...itemsOnlyInLocal]);
+
         } else {
           // No Firestore cart, just use local cart
           setCartItems([]);
@@ -137,10 +138,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setLoadingCart(false);
       }
 
+      localStorage.removeItem("cart");
     };
 
     loadCart();
-  }, [user, cartItems.length]);
+  }, [user]);
 
   // Sync cart to Firestore when user changes or cart items change
   const syncCartToFirestore = useCallback(async () => {

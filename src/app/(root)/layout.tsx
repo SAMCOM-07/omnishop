@@ -33,9 +33,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
-      <head>
-        <link rel="icon" href="./favicon.ico" />
-      </head>
       <body className="font-poppins bg-neutral-1 text-neutral-7 antialiased relative">
         <ToastProvider />
         <Providers>
