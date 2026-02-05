@@ -64,7 +64,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
 
       <div className='container flex flex-col md:flex-row mt-8 mb-18'>
         <div className='sticky top-14 z-40'>
-          <div className='md:min-w-[16rem] md:max-w-[16rem] sticky top-14 z-40 bg-neutral-1 mr-4 '>
+          <div className='md:min-w-[16rem] md:max-w-[16rem] w-full sticky top-14 z-40 bg-neutral-1 mr-4 '>
             <Filter category={c} min={min} max={max} sort={sort} />
           </div>
         </div>
