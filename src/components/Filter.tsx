@@ -45,7 +45,7 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
   return (
     <section ref={scrollRef} className='w-full'>
-      <div className='sticky inset-0 py-6 top-14'>
+      <div className='py-6'>
         <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
           onClick={() => setIsOpen(prev => !prev)}
         >
