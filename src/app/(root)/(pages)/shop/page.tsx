@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ProductCard from '@/components/ProductCard';
 import { ProductSkeleton } from '@/components/Skeletons';
 import { getProductsByPriceRange, getProductsByCategory, getAllProducts, getProductsByCategoryAndPriceRange } from '@/lib/getProducts';
@@ -8,6 +9,38 @@ import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
 import { ProductType } from '@/types/types';
+
+export const metadata: Metadata = {
+  title: "Shop - Browse Our Best Products | Omnishop",
+  description: "Explore our complete collection of quality products. Find everything you need with our easy-to-use filters, sorting options, and best prices. Shop now at Omnishop.",
+  keywords: ["shop products", "online store", "browse products", "discount items", "best deals", "product catalog"],
+  openGraph: {
+    title: "Shop - Browse Our Best Products | Omnishop",
+    description: "Explore our complete collection of quality products with filters and sorting options.",
+    url: "https://omnishop-ng.vercel.app/shop",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-shop.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Omnishop Product Shop",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shop - Browse Our Best Products | Omnishop",
+    description: "Explore our complete collection of quality products with filters and sorting options.",
+    images: ["/images/og-shop.jpg"],
+  },
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://omnishop-ng.vercel.app/shop",
+  },
+};
+
+
 
 const sortProducts = (products: ProductType[], sortOrder?: string): ProductType[] => {
   if (!sortOrder) return products;

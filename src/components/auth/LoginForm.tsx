@@ -37,9 +37,10 @@ export default function LoginForm() {
       // console.log('User role:', role);
       // router.push(role === "admin" ? "/admin" : "/");
       // if (!res.ok) router.push("/");
+      toast.success("Login successful!");
       router.push("/");
-    } catch (e: any) {
-      toast.error(e.message);
+    } catch (err: any) {
+      toast.error('Error loggin in: ' + err.message);
     } finally {
       setLoading(false);
     }
@@ -122,6 +123,7 @@ export default function LoginForm() {
       } else {
         router.push("/");
       }
+      toast.success("Login successful!");
     } catch (e: any) {
       toast.error("Error: " + e.message);
       console.error("Error: ", e);

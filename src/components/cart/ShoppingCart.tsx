@@ -31,7 +31,7 @@ const ShoppingCart = () => {
     <div className='flex-1 w-full'>
       {/* cart items display for sm & md width */}
       <section className='lg:hidden'>
-        <div className='py-4 border-b-2 border-neutral-3 block font-semibold flex items-center justify-between'>
+        <div className='py-4 border-b-2 border-neutral-3 font-semibold flex items-center justify-between'>
           <span>Product</span>
           <span>Price / Action</span>
         </div>

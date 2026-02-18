@@ -7,6 +7,7 @@ import Link from "next/link";
 import { MouseEventHandler } from "react";
 import GoogleLogo from './../../../public/images/google-logo.png';
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 export const LogInButton = () => {
@@ -45,9 +46,11 @@ export const LogOutButton = () => {
   async function handleLogout() {
     try {
       await logoutUser();
-      router.push("/login");
-    } catch (err) {
+      toast.success("Logout successful!");
+      router.push("/");
+    } catch (err: any) {
       console.error("Logout failed:", err);
+      toast.error("Error logging out: " + err.message);
     }
   }
   return (

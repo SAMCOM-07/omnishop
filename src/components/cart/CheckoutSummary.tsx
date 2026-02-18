@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 const CheckoutSummary = () => {
   const router = useRouter();
    const { cartItems, loadingCart } = useCart();
-     const { isLoggedIn, loadingUser } = useAuth();
 
   const handleSubmit = (formData: FormData) => {
     const data = Object.fromEntries(formData)
@@ -21,13 +20,6 @@ const CheckoutSummary = () => {
 
     }
   };
-
-  useEffect(() => {
-  if (!loadingUser && !isLoggedIn) {
-    router.replace("/login");
-    toast.error("Login to continue");
-  }
-}, [isLoggedIn, loadingUser]);
 
 useEffect(() => {
   if (!loadingCart && (!cartItems || cartItems.length === 0)) {

@@ -2,7 +2,7 @@
 
 import { useCart } from '@/context/CartContext'
 import { cn } from '@/lib/utils'
-import { Heart, HomeIcon, ShoppingBagIcon, ShoppingCart, User2Icon } from 'lucide-react'
+import { Heart, HomeIcon, LogInIcon, ShoppingBagIcon, ShoppingCart, User2Icon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LogInButton } from './auth/AuthButtons'
@@ -13,7 +13,7 @@ const Hamburger = () => {
 
   const pathname = usePathname();
   const { totalQuantity } = useCart();
-  const { isLoggedIn, loadingUser, user } = useAuth();
+  const { isLoggedIn, loadingUser, user, profileDetails } = useAuth();
 
   const links = [
     { name: 'Home', href: '/', icon: <HomeIcon size={20} /> },
@@ -36,8 +36,9 @@ const Hamburger = () => {
         )
       }
       {
-        isLoggedIn ? <Link href={'/profile'} className={cn('flex flex-col gap-0.5 items-center text-xs sm:text-sm', pathname === '/profile' ? 'text-green' : 'text-neutral-4')}>{user?.photoURL ? <img src={`${user?.photoURL}`} className="rounded-full bg-neutral-3 hover-scale object-cover w-6 h-6" /> : <User2Icon size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" />}<span>Profile</span>
-        </Link> : loadingUser ? <UserIconSkeleton /> : <LogInButton />
+        isLoggedIn ? <Link href={'/profile'} className={cn('flex flex-col gap-0.5 items-center text-xs sm:text-sm', pathname === '/profile' ? 'text-green' : 'text-neutral-4')}>{profileDetails?.profilePicture ? <img src={profileDetails.profilePicture} className="rounded-full bg-neutral-3 hover-scale object-cover w-6 h-6" /> : user?.photoURL ? <img src={`${user?.photoURL}`} className="rounded-full bg-neutral-3 hover-scale object-cover w-6 h-6" /> : <User2Icon size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" />}<span>Profile</span>
+        </Link> : loadingUser ? <UserIconSkeleton /> : <Link href={'/login'} className='flex flex-col gap-0.5 items-center text-xs sm:text-sm text-neutral-4'><LogInIcon size={18} /><span>Login</span>
+        </Link>
       }
     </div>
   )

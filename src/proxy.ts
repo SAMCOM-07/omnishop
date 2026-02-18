@@ -30,23 +30,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // import { NextRequest, NextResponse } from "next/server";
 // // import { jwtDecode } from "jwt-decode";
 
@@ -153,5 +136,5 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/cart/:path*"],
+  matcher: ["/admin/:path*", "/cart/:path*", "/profile/:path*", "/checkout/:path*", "/orders/:path*", "/completed/:path*"], 
 };

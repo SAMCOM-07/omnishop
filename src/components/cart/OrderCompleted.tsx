@@ -21,13 +21,6 @@ const OrderCompleted = () => {
   ]
 
   useEffect(() => {
-    if (!loadingUser && !isLoggedIn) {
-      router.replace("/login");
-      toast.error("Login to continue");
-    }
-  }, [isLoggedIn, loadingUser]);
-
-  useEffect(() => {
     if (!loadingCart && (!cartItems || cartItems.length === 0)) {
       router.replace("/shop");
       toast.info("Your cart is empty");

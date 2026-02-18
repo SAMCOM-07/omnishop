@@ -21,8 +21,54 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Omnishop - Where You Get All Kinds Of Products",
-  description: "Modern e-commerce built with Next.js",
+  title: "Omnishop - Your Premium Online Shopping Destination",
+  description: "Discover a wide variety of products at Omnishop. Shop quality items, exclusive deals, and fast delivery. Your trusted online marketplace for all your needs.",
+  keywords: ["online shopping", "e-commerce", "buy online", "products", "deals", "omnishop"],
+  metadataBase: new URL("https://omnishop-ng.vercel.app"),
+  
+  // Open Graph
+  openGraph: {
+    title: "Omnishop - Your Premium Online Shopping Destination",
+    description: "Discover a wide variety of products at Omnishop. Shop quality items, exclusive deals, and fast delivery.",
+    url: "https://omnishop-ng.vercel.app",
+    siteName: "Omnishop",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "./../../../public/images/omnishop-logo2.png",
+        width: 1200,
+        height: 630,
+        alt: "Omnishop - Your Online Shopping Marketplace",
+        type: "image/jpeg",
+      },
+    ],
+  },
+
+  // Twitter
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "Omnishop - Your Premium Online Shopping Destination",
+  //   description: "Discover a wide variety of products at Omnishop. Shop quality items, exclusive deals, and fast delivery.",
+  //   images: ["./../../../public/images/omnishop-logo3.png"],
+  //   creator: "Samuel Shonde",
+  // },
+
+  // Additional metadata
+  robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  alternates: {
+    canonical: "https://omnishop-ng.vercel.app",
+  },
+  authors: [{ name: "Omnishop Team" }],
+  creator: "Omnishop",
+  publisher: "Omnishop",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  manifest: "/manifest.json",
+  verification: {
+    google: "your-google-verification-code",
+  },
 };
 
 

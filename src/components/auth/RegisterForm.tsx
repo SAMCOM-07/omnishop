@@ -29,9 +29,10 @@ export default function RegisterForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
       });
+      toast.success('Signed up successfully!');
       router.push("/");
-    } catch (e: any) {
-      toast.error("Error: " + e.message);
+    } catch (err: any) {
+      toast.error("Error: " + err.message);
     } finally {
       setLoading(false);
     }
@@ -47,9 +48,10 @@ export default function RegisterForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
       });
+      toast.success("Signed up successfully!");
       router.push("/");
-    } catch (e: any) {
-      toast.error("Error: " + e.message);
+    } catch (err: any) {
+      toast.error("Error: " + err.message);
     } finally {
       setLoading(false);
     }
