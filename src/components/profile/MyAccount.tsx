@@ -18,11 +18,13 @@ const MyAccount = () => {
 
   // Effect to set initial values
   useEffect(() => {
-    if (profileDetails) {
+    if (profileDetails && user) {
+      const firstName = user?.displayName!.split(' ')[0] || '';
+      const lastName = user?.displayName!.split(' ')[1] || '';
       setProfile({
         username: profileDetails.username ? profileDetails.username.charAt(0).toUpperCase() + profileDetails.username.slice(1) : '',
-        firstName: profileDetails.firstName ? profileDetails.firstName.charAt(0).toUpperCase() + profileDetails.firstName.slice(1) : '',
-        lastName: profileDetails.lastName ? profileDetails.lastName.charAt(0).toUpperCase() + profileDetails.lastName.slice(1) : '',
+        firstName: profileDetails.firstName ? profileDetails.firstName.charAt(0).toUpperCase() + profileDetails.firstName.slice(1) : firstName,
+        lastName: profileDetails.lastName ? profileDetails.lastName.charAt(0).toUpperCase() + profileDetails.lastName.slice(1) : lastName,
         phoneNumber: profileDetails.phoneNumber || '',
       });
     }
