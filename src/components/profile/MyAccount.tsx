@@ -20,7 +20,7 @@ const MyAccount = () => {
   useEffect(() => {
     const firstName = user?.displayName!.split(' ')[0] || '';
     const lastName = user?.displayName!.split(' ')[1] || '';
-    
+
     if (profileDetails) {
       setProfile({
         username: profileDetails.username ? profileDetails.username.charAt(0).toUpperCase() + profileDetails.username.slice(1) : '',

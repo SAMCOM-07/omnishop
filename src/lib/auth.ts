@@ -49,7 +49,7 @@ async function createUserIfNotExists(user: any, username?: string) {
     await setDoc(ref, {
       email: user.email,
       role: "user",
-      username,
+      username: username || '',
       createdAt: serverTimestamp(),
     });
   }
