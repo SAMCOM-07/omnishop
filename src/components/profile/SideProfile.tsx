@@ -95,8 +95,6 @@ const SideProfile = () => {
     <aside className='w-full h-fit p-6 flex flex-col gap-4 md:shadow-lg rounded-md md:max-w-xs md:min-w-xs font-inter'>
       <div className='self-center relative'>
         <div className='w-34 h-34 rounded-full bg-neutral-3 text-green overflow-hidden flex items-center justify-center'>
-          {/* {profileDetails?.profilePicture ? <img src={profileDetails.profilePicture} alt="Profile Picture" className='object-cover w-full h-full object-center' /> : 
-            user?.photoURL ? <img src={user?.photoURL!} alt="Profile Picture" className='object-cover w-full h-full object-center' /> : loading ? <div className='w-full h-full opacity-50 z-100'><div className='w-8 h-8 rounded-full border-r-2 border-l-2 border-neutral-4 animate-spin'></div></div> : <User2Icon size={45} />} */}
             {
               loading || loadingUser ? <div className='w-full h-full opacity-50 z-100 grid place-content-center'><div className='w-8 h-8 rounded-full border-r-2 border-l-2 border-neutral-4 animate-spin'></div></div> : profileDetails?.profilePicture ? <img src={profileDetails.profilePicture} alt="Profile Picture" className='object-cover w-full h-full object-center' /> : user?.photoURL ? <img src={user?.photoURL!} alt="Profile Picture" className='object-cover w-full h-full object-center' /> : <User2Icon size={45} />
             }
@@ -104,7 +102,7 @@ const SideProfile = () => {
         <label className={cn('text-neutral-1 bg-neutral-5 w-8 h-8 grid place-content-center p-5 rounded-full border-2 border-neutral-1 self-center absolute bottom-0 right-0', loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}><input onChange={handleUpload} type="file" hidden className='hidden' disabled={loading} /><CameraIcon size={25} /></label>
       </div>
       {
-        loadingUser ? <div className='w-24 h-6 rounded-md bg-neutral-3 animate-pulse self-center'></div> : <h3 className='text-center self-center'>{profileDetails?.username || user?.displayName || 'User'}</h3>
+        loadingUser ? <div className='w-24 h-6 rounded-md bg-neutral-3 animate-pulse self-center'></div> : <h3 className='text-center self-center capitalize'>{profileDetails?.username || user?.displayName || 'User'}</h3>
       }
 
       {/* for md & above screen sizes */}
