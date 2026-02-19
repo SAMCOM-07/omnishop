@@ -7,7 +7,7 @@ export default function ToastProvider() {
   return (
     <ToastContainer
       position="top-center"
-      autoClose={500}
+      autoClose={1500}
     //   pauseOnHover
     //   theme="colored"
       hideProgressBar
