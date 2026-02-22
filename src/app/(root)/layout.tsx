@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description: "Discover a wide variety of products at Omnishop. Shop quality items, exclusive deals, and fast delivery. Your trusted online marketplace for all your needs.",
   keywords: ["online shopping", "e-commerce", "buy online", "products", "deals", "omnishop"],
   metadataBase: new URL("https://omnishop-ng.vercel.app"),
-  
+
   // Open Graph
   openGraph: {
     title: "Omnishop - Your Premium Online Shopping Destination",
@@ -79,6 +79,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
+      <head><meta name="google-site-verification" content="TXGAApfYoQlYQxnV7s3s7trHwEWFbchma88PXHOatYQ" /></head>
       <body className="font-poppins bg-neutral-1 text-neutral-7 antialiased relative">
         <ToastProvider />
         <Providers>
