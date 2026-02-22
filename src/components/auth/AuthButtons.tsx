@@ -47,7 +47,7 @@ export const LogOutButton = () => {
     try {
       await logoutUser();
       toast.success("Logout successful!");
-      router.push("/");
+      router.push("/login");
     } catch (err: any) {
       console.error("Logout failed:", err);
       toast.error("Error logging out: " + err.message);

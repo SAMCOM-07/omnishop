@@ -14,6 +14,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
+    // Validate file type
+    // if (!["image/png", "image/jpeg"].includes(file.type)) {
+    //   return NextResponse.json(
+    //     { error: "Only PNG and JPEG files are allowed" },
+    //     { status: 400 }
+    //   );
+    // }
+
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
@@ -24,6 +32,7 @@ export async function POST(req: Request) {
           {
             folder: `profilePictures/${userId}`, // Organized under profilePictures with userId subfolder
             resource_type: "image",
+            // allowed_formats: ["png", "jpeg"],
           },
           (error, result) => {
             if (error) reject(error);

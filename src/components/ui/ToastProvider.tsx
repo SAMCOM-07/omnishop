@@ -12,7 +12,7 @@ export default function ToastProvider() {
     //   theme="colored"
       hideProgressBar
       closeButton={false}
-      className='font-bold text-sm mx-auto pt-6 px-12 container'
+      className='font-bold text-sm mx-auto pt-6 px-12 container rounded-md'
     />
   );
 }

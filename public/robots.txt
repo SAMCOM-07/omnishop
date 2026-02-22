@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://omnishop-ng.vercel.app
+
+# Sitemaps
+Sitemap: https://omnishop-ng.vercel.app/sitemap.xml
