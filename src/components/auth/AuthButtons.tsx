@@ -5,7 +5,7 @@ import { LogInIcon, LogOutIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MouseEventHandler } from "react";
-import GoogleLogo from './../../../public/images/google-logo.png';
+import GoogleLogo from './../../../public/images/google-logo.avif';
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 

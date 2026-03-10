@@ -43,10 +43,10 @@ const MyWishlist = () => {
               <div className='flex gap-4 items-center'>
                 <RemoveFromWishlistButton productId={item.id} />
                 <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
-                  <Image width={400} height={400} priority src={item.images[0].url.replace(
+                  <Image width={400} height={400} src={item.images[0].url.replace(
                     "/upload/",
-                    "/upload/f_auto,q_auto,w_600/"
-                  )} alt={item.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
+                    "/upload/f_auto,q_auto,w_250/"
+                  )} alt={item.name} sizes="112px" className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
                 </Link>
                 <div>
                   <div className='flex flex-col gap-4'>
@@ -77,10 +77,10 @@ const MyWishlist = () => {
                 <div className='flex items-center gap-4'>
                   <RemoveFromWishlistButton productId={item.id} />
                   <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
-                    <Image width={400} height={400} priority src={item.images[0].url.replace(
+                    <Image width={400} height={400} src={item.images[0].url.replace(
                       "/upload/",
-                      "/upload/f_auto,q_auto,w_600/"
-                    )} alt={item.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
+                      "/upload/f_auto,q_auto,w_250/"
+                    )} alt={item.name} sizes="112px" className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
                   </Link>
                   <div className='flex flex-col gap-4'>
                     <Link href={`/shop/${item.id}`} className='font-semibold line-clamp-1 max-w-42 xl:max-w-full'>{item.name}</Link>

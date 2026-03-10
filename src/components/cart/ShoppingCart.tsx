@@ -41,10 +41,10 @@ const ShoppingCart = () => {
               <div key={item.id} className='flex items-center gap-12 justify-between py-6 border-b border-neutral-3'>
                 <div className='flex items-center gap-3'>
                   <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
-                    <Image width={400} height={400} priority src={item.images[0].url.replace(
+                    <Image width={400} height={400} src={item.images[0].url.replace(
                       "/upload/",
-                      "/upload/f_auto,q_auto,w_600/"
-                    )} alt={item.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
+                      "/upload/f_auto,q_auto,w_250/"
+                    )} alt={item.name} sizes="112px" className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
                   </Link>
                   <div className='flex flex-col gap-2 h-full items-left'>
                     <Link href={`/shop/${item.id}`} className='max-w-40 sm:max-w-full line-clamp-1 font-semibold'>{item.name}</Link>
@@ -78,10 +78,10 @@ const ShoppingCart = () => {
                 <td className='py-6'>
                   <div className='flex items-center gap-4'>
                     <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
-                      <Image width={400} height={400} priority src={item.images[0].url.replace(
+                      <Image width={400} height={400} src={item.images[0].url.replace(
                         "/upload/",
-                        "/upload/f_auto,q_auto,w_600/"
-                      )} alt={item.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
+                        "/upload/f_auto,q_auto,w_250/"
+                      )} alt={item.name} sizes="112px" className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
                     </Link>
                     <div className='flex flex-col gap-4'>
                       <Link href={`/shop/${item.id}`} className='font-semibold line-clamp-1'>{item.name}</Link>

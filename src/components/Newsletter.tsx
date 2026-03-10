@@ -1,6 +1,6 @@
 import { MailIcon } from 'lucide-react'
 import Image from 'next/image';
-import AdBannerImg from './../../public/images/clothes2.jpg';
+import AdBannerImg from './../../public/images/clothes2.avif';
 const Newsletter = () => {
   return (
 
@@ -8,7 +8,9 @@ const Newsletter = () => {
       <Image
         src={AdBannerImg}
         alt='banner Image'
-        priority
+        width={600}
+        height={400}
+        sizes="(min-width: 768px) 50vw, 100vw"
         className='w-full md:w-1/2 h-full object-cover aspect-auto object-center'
       />
       <div className='p-6 md:p-0 pb-20 md:pb-0 flex flex-col w-full overflow-hidden items-center'>

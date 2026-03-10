@@ -82,6 +82,7 @@ const ShopPage = async ({ searchParams }: { searchParams: { c: string, min: stri
             priority
             width={600}
             height={400}
+            sizes="100vw"
             className='w-full h-full object-cover object-center'
           />
         </div>

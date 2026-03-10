@@ -7,7 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCart } from "@/context/CartContext"
 import { LogInButton } from "./auth/AuthButtons"
-import LogoText from './../../public/images/omnishop-text.png';
+import LogoText from './../../public/images/omnishop-text.avif';
 import Image from "next/image"
 import { useAuth } from "@/hooks/useAuth"
 import { UserIconSkeleton } from "./Skeletons"
@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="flex items-center gap-6">
           {/* logo */}
           <Link href={'/'} className="font-extrabold text-lg md:text-xl lg:text-2xl tracking-tight text-green">
-            <Image src={LogoText} alt="Omnishop Logo" className="w-24" />
+            <Image src={LogoText} alt="Omnishop Logo" className="w-24" sizes="96px" />
           </Link>
           {/* nav links */}
           <nav className='hidden md:flex items-center gap-6 px-3 py-1 rounded-full '>

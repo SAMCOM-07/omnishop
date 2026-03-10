@@ -32,10 +32,10 @@ const NewArrivals = async () => {
                   </div>
                   {product.discount !== 0 ? <h5 className='bg-green text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2.5'>-{product.discount}%</h5> : <h5 className='h-5'></h5>}
                   <Link href={`/shop/${product.id}`} className='overflow-hidden block w-62.5 h-62.5 rounded-md'>
-                    <Image width={400} height={400} priority src={product.images[0].url.replace(
+                    <Image width={400} height={400} src={product.images[0].url.replace(
                       "/upload/",
-                      "/upload/f_auto,q_auto,w_600/"
-                    )} alt={product.name} className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
+                      "/upload/f_auto,q_auto,w_500/"
+                    )} alt={product.name} sizes="250px" className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
                   </Link>
                   <AddToCartBtn product={product} />
                 </div>

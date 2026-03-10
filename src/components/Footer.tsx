@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import LogoText from './../../public/images/omnishop-text.png';
+import LogoText from './../../public/images/omnishop-text.avif';
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 

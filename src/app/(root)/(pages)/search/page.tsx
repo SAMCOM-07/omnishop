@@ -66,10 +66,10 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
             products && products.length ? products.map((product, index) =>
               <Link href={`/shop/${product.id}`} key={index} className='flex items-center mt-4 gap-4 group hover:shadow-sm transition-all hover:skew-1 duration-500 shadow-lg p-2 rounded-md  border border-border/50'>
                 <div className='min-w-30 min-h-30 max-w-30 max-h-30 overflow-hidden rounded-md bg-neutral-2 grid'>
-                  <Image priority src={product.images[0].url.replace(
+                  <Image src={product.images[0].url.replace(
                     "/upload/",
-                    "/upload/f_auto,q_auto,w_600/"
-                  )} width={400} height={400} alt={product.name} className='w-full h-full object-cover object-center group-hover:scale-110 group-active:scale-95 transition-all duration-500' />
+                    "/upload/f_auto,q_auto,w_250/"
+                  )} width={400} height={400} alt={product.name} sizes="120px" className='w-full h-full object-cover object-center group-hover:scale-110 group-active:scale-95 transition-all duration-500' />
                 </div>
                 <div>
                   <Rating rating={product.rating} />

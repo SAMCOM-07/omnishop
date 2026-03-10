@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Check, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AuthButton, GoogleSignInButton } from "./AuthButtons";
-import { getUserRole } from "@/lib/getUserRole";
+// import { getUserRole } from "@/lib/getUserRole";
 
 export default function LoginForm() {
   const router = useRouter();

@@ -1,4 +1,4 @@
-// import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import './../styles/globals.css';
 
@@ -14,10 +14,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-// export const metadata: Metadata = {
-//   title: "OmniShop",
-//   description: "Modern e-commerce built with Next.js",
-// };
+export const metadata: Metadata = {
+  title: "OmniShop",
+  description: "Modern e-commerce built with Next.js",
+};
 
 export default function RootLayout({
   children,

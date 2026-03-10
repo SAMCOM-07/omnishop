@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "./../../../public/images/omnishop-logo2.png",
+        url: "./../../../public/images/omnishop-logo.png",
         width: 1200,
         height: 630,
         alt: "Omnishop - Your Online Shopping Marketplace",
@@ -65,10 +65,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  manifest: "/manifest.json",
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // manifest: "/manifest.json",
+  // verification: {
+  //   google: "your-google-verification-code",
+  // },
 };
 
 

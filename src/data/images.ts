@@ -1,9 +1,9 @@
-import banner1 from "../../public/images/clothes1.jpg";
-import banner2 from "../../public/images/shop1.jpg";
-import banner3 from "../../public/images/clothes2.jpg";
-import banner4 from "../../public/images/shop2.jpg";
-import banner5 from "../../public/images/clothes3.jpg";
-import banner6 from "../../public/images/shop3.jpg";
+import banner1 from "../../public/images/clothes1.webp";
+import banner2 from "../../public/images/shop1.avif";
+import banner3 from "../../public/images/clothes2.avif";
+import banner4 from "../../public/images/shop2.avif";
+import banner5 from "../../public/images/clothes3.avif";
+import banner6 from "../../public/images/shop3.avif";
 
 export const banners = [
   {

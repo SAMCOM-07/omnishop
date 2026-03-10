@@ -7,10 +7,10 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { LinkButton } from "./Buttons"
 
-import Chair from "../../public/images/chair.png"
+import Chair from "../../public/images/chair.avif"
 import Link from 'next/link'
-import Shirt from './../../public/images/floating-white-shirt-stockcake-removebg-preview.png';
-import Bag from './../../public/images/ei_1757649839935-removebg-preview.png';
+import Shirt from './../../public/images/white-shirt.avif';
+import Bag from './../../public/images/travel-bags.avif';
 
 const Main = () => {
 
@@ -29,8 +29,10 @@ const Main = () => {
                 src={banner.img}
                 alt='banner Image'
                 priority
+                fetchPriority='high'
                 width={600}
                 height={400}
+                sizes="100vw"
                 className='w-full h-full object-cover object-center'
               />
             </div>
@@ -74,7 +76,7 @@ const Main = () => {
           <h2>Furniture</h2>
           <LinkButton text='Show More' href='/shop?c=furniture' />
           <div className='overflow-hidden w-full '>
-            <Image src={Chair} alt='chair (sofa)' className='h-full w-full object-cover object-center' />
+            <Image src={Chair} alt='chair (sofa)' width={400} height={600} priority sizes="(min-width: 1024px) 50vw, 100vw" className='h-full w-full object-cover object-center' />
           </div>
         </div>
         {/* 2 & 3 container */}
@@ -86,7 +88,7 @@ const Main = () => {
               <LinkButton text='Show More' href='/shop?c=fashion' />
             </div>
             <div className='overflow-hidden w-[60%] h-full'>
-              <Image src={Shirt} alt='cloth' className='h-full w-full object-cover object-center' />
+              <Image src={Shirt} alt='cloth' width={400} height={600} priority sizes="(min-width: 1024px) 30vw, 60vw" className='h-full w-full object-cover object-center' />
             </div>
           </div>
           {/* 2 */}
@@ -96,7 +98,7 @@ const Main = () => {
               <LinkButton text='Show More' href='/shop?c=home & kitchen' />
             </div>
             <div className='overflow-hidden w-[40%] h-full'>
-              <Image src={Bag} alt='cloth' className='h-full w-full object-cover object-center' />
+              <Image src={Bag} alt='cloth' width={400} height={600} priority sizes="(min-width: 1024px) 20vw, 40vw" className='h-full w-full object-cover object-center' />
             </div>
           </div>
 

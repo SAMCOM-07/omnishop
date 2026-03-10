@@ -37,10 +37,10 @@ const OrderCompleted = () => {
             cartItems && cartItems.length > 0 ? [...cartItems].reverse()?.map(item =>
               <div key={item.id} className='relative'>
                 <div className='aspect-square overflow-hidden rounded-md w-22 h-22 bg-neutral-2'>
-                  <Image width={400} height={400} priority src={item.images[0].url.replace(
+                  <Image width={400} height={400} src={item.images[0].url.replace(
                     "/upload/",
-                    "/upload/f_auto,q_auto,w_600/"
-                  )} alt={item.name} className='h-full w-full object-cover object-center' />
+                    "/upload/f_auto,q_auto,w_200/"
+                  )} alt={item.name} sizes="88px" className='h-full w-full object-cover object-center' />
                 </div>
                 <span className='bg-green rounded-full w-6 h-6 p-2 grid place-content-center text-neutral-1 text-sm absolute -top-3 -right-3 '>{item.quantity}</span>
               </div>
