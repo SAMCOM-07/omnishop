@@ -36,8 +36,8 @@ useEffect(() => {
 
         <div className='flex flex-col gap-6 lg:w-[60%]'>
           {/* contact information */}
-          <div className='border-card'>
-            <span className='text-neutral-7 text-lg font-semibold'>Contact Information</span>
+          <fieldset className='border-card'>
+            <legend className='text-neutral-7 text-lg font-semibold'>Contact Information</legend>
             <div className='flex items-center gap-4'>
               <label className='w-full'><span className='form-title'>FIRST NAME *</span><input required type="text" placeholder='First name' className="input-field" /></label>
               <label className='w-full'><span className='form-title'>LAST NAME *</span><input required type="text" placeholder='Last name' className="input-field" /></label>
@@ -45,11 +45,11 @@ useEffect(() => {
 
             <label className='w-full'><span className='form-title'>PHONE NUMBER *</span><input required type="tel" placeholder='Phone number' className="input-field" /></label>
             <label className='w-full'><span className='form-title'>EMAIL *</span><input required type="email" placeholder='Email' className="input-field" /></label>
-          </div>
+          </fieldset>
 
           {/* shipping address */}
-          <div className="border-card">
-            <span className='text-neutral-7 text-lg font-semibold'>Shipping Address</span>
+          <fieldset className="border-card">
+            <legend className='text-neutral-7 text-lg font-semibold'>Shipping Address</legend>
             <label className='w-full'><span className='form-title'>STREET ADDRESS *</span><input required type="text" placeholder='Street address' className="input-field" /></label>
             <label className='w-full'><span className='form-title'>COUNTRY *</span><input required type="text" placeholder='Country' className="input-field" /></label>
             <label className='w-full'><span className='form-title'>TOWN / CITY *</span><input required type="text" placeholder='Town / City' className="input-field" /></label>
@@ -57,17 +57,17 @@ useEffect(() => {
               <label className='w-full'><span className='form-title'>STATE *</span><input required type="text" placeholder='State' className="input-field" /></label>
               <label className='w-full'><span className='form-title'>ZIP CODE *</span><input required type="text" placeholder='Zip code' className="input-field" /></label>
             </div>
-          </div>
+          </fieldset>
 
           {/* Payment Method */}
-          <div className="border-card">
-            <span className='text-neutral-7 text-lg font-semibold'>Payment Method</span>
+          <fieldset className="border-card">
+            <legend className='text-neutral-7 text-lg font-semibold'>Payment Method</legend>
             <label className='w-full'><span className='form-title'>CARD NUMBER *</span><input required min={16} max={16} type="text" placeholder='0000 0000 0000 0000' className="input-field" /></label>
             <div className='flex items-center gap-4'>
               <label className='w-full'><span className='form-title'>EXPIRY DATE *</span><input required min={4} max={4} type="text" placeholder='MM/YY' className="input-field" /></label>
               <label className='w-full'><span className='form-title'>CVV *</span><input required min={3} max={3} type="text" placeholder='CVV' className="input-field" /></label>
             </div>
-          </div>
+          </fieldset>
         </div>
         <div className='lg:w-[40%]'>
           <OrderSummary />

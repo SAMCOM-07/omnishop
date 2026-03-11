@@ -26,17 +26,17 @@ const guarantee = [
 
 const Guarantee = () => {
   return (
-    <div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
+    <section aria-label="Our guarantees" className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
       {
         guarantee.map((g, index) =>
           <div className='hover:scale-105 transition-all duration-300 p-4 bg-neutral-2 space-y-2 h-48 flex justify-center items-center flex-col text-center' key={index}>
-            {g.icon}
+            <span aria-hidden="true">{g.icon}</span>
             <h3>{g.title}</h3>
             <p className='text-xs md:text-sm text-neutral-4'>{g.description}</p>
           </div>
         )
       }
-    </div>
+    </section>
   )
 }
 

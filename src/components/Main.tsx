@@ -92,7 +92,7 @@ const Main = () => {
           <h2>Furniture</h2>
           <LinkButton text='Show More' href='/shop?c=furniture' />
           <div className='overflow-hidden w-full '>
-            <Image src={Chair} alt='chair (sofa)' width={200} height={400} priority sizes="(min-width: 1024px) 50vw, 100vw" className='h-full w-full object-cover object-center' />
+            <Image src={Chair} alt='chair (sofa)' width={400} height={400} priority sizes="(min-width: 1024px) 50vw, 100vw" className='h-full w-full object-cover object-center' />
           </div>
         </div>
         {/* 2 & 3 container */}
@@ -104,7 +104,7 @@ const Main = () => {
               <LinkButton text='Show More' href='/shop?c=fashion' />
             </div>
             <div className='overflow-hidden w-[60%] h-full'>
-              <Image src={Shirt} alt='cloth' width={200} height={400} priority sizes="(min-width: 1024px) 30vw, 60vw" className='h-full w-full object-cover object-center' />
+              <Image src={Shirt} alt='cloth' width={400} height={400} priority sizes="(min-width: 1024px) 30vw, 60vw" className='h-full w-full object-cover object-center' />
             </div>
           </div>
           {/* 2 */}
@@ -114,7 +114,7 @@ const Main = () => {
               <LinkButton text='Show More' href='/shop?c=home & kitchen' />
             </div>
             <div className='overflow-hidden w-[40%] h-full'>
-              <Image src={Bag} alt='cloth' width={200} height={400} priority sizes="(min-width: 1024px) 20vw, 40vw" className='h-full w-full object-cover object-center' />
+              <Image src={Bag} alt='travel bag' width={400} height={400} priority sizes="(min-width: 1024px) 20vw, 40vw" className='h-full w-full object-cover object-center' />
             </div>
           </div>
 

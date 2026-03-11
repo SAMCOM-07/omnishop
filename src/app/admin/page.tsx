@@ -24,19 +24,29 @@ export default async function AdminDashboard() {
 
       <div className="mt-8">
         <h2 className="text-lg font-medium mb-4">All Products</h2>
-        <div className="space-y-3">
-          {products.map((p, index) => (
-            <div
-              key={p.id}
-              className="border p-3 rounded flex items-center justify-between"
-            >
-              <span>{index + 1}</span>
-              <span>{p.name}</span>
-              <span>${p.price}</span>
-              <span>{p.category}</span>
-            </div>
-          ))}
-        </div>
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b">
+              <th scope="col" className="text-left p-3">#</th>
+              <th scope="col" className="text-left p-3">Name</th>
+              <th scope="col" className="text-left p-3">Price</th>
+              <th scope="col" className="text-left p-3">Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((p, index) => (
+              <tr
+                key={p.id}
+                className="border p-3"
+              >
+                <td className="p-3">{index + 1}</td>
+                <td className="p-3">{p.name}</td>
+                <td className="p-3">${p.price}</td>
+                <td className="p-3">{p.category}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

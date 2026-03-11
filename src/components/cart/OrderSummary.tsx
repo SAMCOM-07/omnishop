@@ -51,17 +51,18 @@ const OrderSummary = () => {
 
       <div className="space-y-4 font-inter mt-8">
         <div className="space-y-3 text-sm">
-          {shippingOptions.map((option) => (
-            <button key={option.id} type="button" className="w-full" onClick={() => setShippingMethod({ method: option.name, cost: option.cost })}>
-              <label className="flex items-center gap-4 justify-between p-3 border border-neutral-4/50 rounded-md checked:bg-neutral-2/50 hover:bg-neutral-2/50 transition-all duration-300 cursor-pointer">
+          <fieldset>
+            <legend className="sr-only">Shipping method</legend>
+            {shippingOptions.map((option) => (
+              <label key={option.id} className="flex items-center gap-4 justify-between p-3 border border-neutral-4/50 rounded-md hover:bg-neutral-2/50 transition-all duration-300 cursor-pointer">
                 <div className='flex items-center gap-3'>
-                  <input type="radio" name="shipping" value={option.name} defaultChecked={option.id === 1} />
+                  <input type="radio" name="shipping" value={option.name} checked={shippingMethod.method === option.name} onChange={() => setShippingMethod({ method: option.name, cost: option.cost })} />
                   <span>{option.name}</span>
                 </div>
                 <span>${option.cost.toFixed(2)}</span>
               </label>
-            </button>
-          ))}
+            ))}
+          </fieldset>
           <div className="mt-8 pt-4 flex flex-col gap-4 font-inter">
             <div className="flex items-center justify-between">
               <span>Subtotal:</span>

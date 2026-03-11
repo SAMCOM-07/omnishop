@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const ProductSkeleton = () => {
   return (
-    <div className="animate-pulse bg-neutral-1 rounded-lg shadow-sm overflow-hidden relative w-full">
+    <div role="status" aria-label="Loading product" className="animate-pulse bg-neutral-1 rounded-lg shadow-sm overflow-hidden relative w-full">
       {/* Image placeholder */}
       <div className="bg-neutral-3 aspect-square w-full" />
 
@@ -29,7 +29,7 @@ export const ProductSkeleton = () => {
 // skeleton for searched products
 export const SearchProductSkeleton = () => {
   return (
-    <div className="animate-pulse h-32 bg-neutral-1 rounded-lg shadow-sm overflow-hidden relative w-full flex items-center gap-2 p-2 mt-6">
+    <div role="status" aria-label="Loading search result" className="animate-pulse h-32 bg-neutral-1 rounded-lg shadow-sm overflow-hidden relative w-full flex items-center gap-2 p-2 mt-6">
       <div className="bg-neutral-3 h-full aspect-square rounded-md" />
       <div className="space-y-1.5 w-full grow">
         {/* Rating */}
@@ -49,7 +49,7 @@ export const SearchProductSkeleton = () => {
 
 export const ProfileSkeleton = () => {
   return (
-    <div className="animate-pulse w-full max-w-md mx-auto mt-10 p-6 bg-neutral-1 rounded-lg shadow-sm relative">
+    <div role="status" aria-label="Loading profile" className="animate-pulse w-full max-w-md mx-auto mt-10 p-6 bg-neutral-1 rounded-lg shadow-sm relative">
       {/* Profile Picture */}
       <div className="bg-neutral-3 rounded-full h-24 w-24 mx-auto mb-6" />
       {/* Name */}

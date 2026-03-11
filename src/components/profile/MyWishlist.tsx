@@ -66,7 +66,7 @@ const MyWishlist = () => {
         <thead>
           <tr className='border-b-2 border-neutral-3'>
             {['Product', 'Price', 'Action'].map((head) => (
-              <th key={head} className={cn('text-center pb-4 font-bold', head === 'Product' && 'text-left')}>{head}</th>
+              <th key={head} scope="col" className={cn('text-center pb-4 font-bold', head === 'Product' && 'text-left')}>{head}</th>
             ))}
           </tr>
         </thead>

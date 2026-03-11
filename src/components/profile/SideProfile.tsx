@@ -111,7 +111,7 @@ const SideProfile = () => {
           links.map(link => {
             const isActive = pathname === link.href
             return (
-              <li key={link.name} className={cn('py-2 hover:text-neutral-6 transition-color duration-300', isActive && 'border-b-2 text-green font-semibold')}><Link className='block' href={link.href}>{link.name}</Link></li>
+              <li key={link.name} className={cn('py-2 hover:text-neutral-6 transition-color duration-300', isActive && 'border-b-2 text-green font-semibold')}><Link className='block' href={link.href} aria-current={isActive ? 'page' : undefined}>{link.name}</Link></li>
             )
           })
         }

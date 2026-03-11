@@ -94,7 +94,7 @@ const ShopPage = async ({
         <div className="w-full lg:h-150 h-100 bg-gray-200 transition-all duration-500">
           <Image
             src={bannerImg}
-            alt="banner Image"
+            alt="Shop clothing collection banner"
             priority
             width={600}
             height={400}

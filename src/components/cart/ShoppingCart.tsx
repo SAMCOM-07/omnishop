@@ -68,7 +68,7 @@ const ShoppingCart = () => {
           <thead>
             <tr className='border-b-2 border-neutral-3'>
               {['Product', 'Quantity', 'Price', 'Subtotal'].map((head) => (
-                <th key={head} className={cn('text-center pb-4 font-bold', head === 'Product' && 'text-left', head === 'Quantity' && 'lg:text-left pl-4')}>{head}</th>
+                <th key={head} scope="col" className={cn('text-center pb-4 font-bold', head === 'Product' && 'text-left', head === 'Quantity' && 'lg:text-left pl-4')}>{head}</th>
               ))}
             </tr>
           </thead>

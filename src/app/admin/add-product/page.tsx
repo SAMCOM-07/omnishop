@@ -109,30 +109,38 @@ export default function AddProduct() {
       <h2 className="text-2xl font-semibold mb-6 text-gray-800">Add Product</h2>
 
       {/* --- Basic Info --- */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium mb-2 text-gray-700">Basic Information</h3>
-        <input
-          name="name"
-          placeholder="Product name"
-          value={product.name}
-          onChange={handleChange}
-          className="border p-2 w-full mb-3 rounded"
-        />
+      <fieldset className="mb-6">
+        <legend className="text-lg font-medium mb-2 text-gray-700">Basic Information</legend>
+        <label>
+          <span className="sr-only">Product name</span>
+          <input
+            name="name"
+            placeholder="Product name"
+            value={product.name}
+            onChange={handleChange}
+            className="border p-2 w-full mb-3 rounded"
+          />
+        </label>
 
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={product.description}
-          onChange={handleChange}
-          className="border p-2 w-full mb-3 rounded"
-        />
+        <label>
+          <span className="sr-only">Description</span>
+          <textarea
+            name="description"
+            placeholder="Description"
+            value={product.description}
+            onChange={handleChange}
+            className="border p-2 w-full mb-3 rounded"
+          />
+        </label>
 
-        <select
-          name="category"
-          value={product.category}
-          onChange={handleChange}
-          className="border p-2 w-full mb-3 rounded"
-        >
+        <label>
+          <span className="sr-only">Category</span>
+          <select
+            name="category"
+            value={product.category}
+            onChange={handleChange}
+            className="border p-2 w-full mb-3 rounded"
+          >
           <option value="">Select category</option>
           <option value="electronics">Electronics</option>
           <option value="fashion">Fashion</option>
@@ -140,109 +148,138 @@ export default function AddProduct() {
           <option value="accessories">Accessories</option>
           <option value="others">Others</option>
         </select>
+        </label>
 
-        <input
-          name="tags"
-          placeholder="Tags (comma separated)"
-          value={product.tags}
-          onChange={handleChange}
-          className="border p-2 w-full mb-3 rounded"
-        />
-      </div>
+        <label>
+          <span className="sr-only">Tags (comma separated)</span>
+          <input
+            name="tags"
+            placeholder="Tags (comma separated)"
+            value={product.tags}
+            onChange={handleChange}
+            className="border p-2 w-full mb-3 rounded"
+          />
+        </label>
+      </fieldset>
 
       {/* --- Pricing --- */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium mb-2 text-gray-700">Pricing</h3>
+      <fieldset className="mb-6">
+        <legend className="text-lg font-medium mb-2 text-gray-700">Pricing</legend>
         <div className="grid grid-cols-2 gap-3">
-          <input
-            type="number"
-            name="price"
-            placeholder="Price"
-            value={product.price}
-            onChange={handleChange}
-            className="border p-2 w-full rounded"
-          />
-          <input
-            type="number"
-            name="discount"
-            placeholder="Discount (%)"
-            value={product.discount}
-            onChange={handleChange}
-            className="border p-2 w-full rounded"
-          />
-          <input
-            type="number"
-            name="tax"
-            placeholder="Tax"
-            value={product.tax}
-            onChange={handleChange}
-            className="border p-2 w-full rounded"
-          />
+          <label>
+            <span className="sr-only">Price</span>
+            <input
+              type="number"
+              name="price"
+              placeholder="Price"
+              value={product.price}
+              onChange={handleChange}
+              className="border p-2 w-full rounded"
+            />
+          </label>
+          <label>
+            <span className="sr-only">Discount (%)</span>
+            <input
+              type="number"
+              name="discount"
+              placeholder="Discount (%)"
+              value={product.discount}
+              onChange={handleChange}
+              className="border p-2 w-full rounded"
+            />
+          </label>
+          <label>
+            <span className="sr-only">Tax</span>
+            <input
+              type="number"
+              name="tax"
+              placeholder="Tax"
+              value={product.tax}
+              onChange={handleChange}
+              className="border p-2 w-full rounded"
+            />
+          </label>
         </div>
-      </div>
+      </fieldset>
 
       {/* --- Inventory --- */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium mb-2 text-gray-700">Inventory</h3>
+      <fieldset className="mb-6">
+        <legend className="text-lg font-medium mb-2 text-gray-700">Inventory</legend>
         <div className="grid grid-cols-2 gap-3">
+          <label>
+            <span className="sr-only">Units in stock</span>
+            <input
+              type="number"
+              name="unit"
+              placeholder="Units in stock"
+              value={product.unit}
+              onChange={handleChange}
+              className="border p-2 w-full rounded"
+            />
+          </label>
+          <label>
+            <span className="sr-only">Availability</span>
+            <select
+              name="availability"
+              value={product.availability}
+              onChange={handleChange}
+              className="border p-2 w-full rounded"
+            >
+              <option value="in stock">In Stock</option>
+              <option value="out of stock">Out of Stock</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      {/* --- Ratings --- */}
+      <fieldset className="mb-6">
+        <legend className="text-lg font-medium mb-2 text-gray-700">Ratings</legend>
+        <label>
+          <span className="sr-only">Rating (0 - 5)</span>
           <input
             type="number"
-            name="unit"
-            placeholder="Units in stock"
-            value={product.unit}
+            step="0.1"
+            min="0"
+            max="5"
+            name="rating"
+            placeholder="Rating (0 - 5)"
+            value={product.rating}
             onChange={handleChange}
             className="border p-2 w-full rounded"
           />
-          <select
-            name="availability"
-            value={product.availability}
-            onChange={handleChange}
-            className="border p-2 w-full rounded"
-          >
-            <option value="in stock">In Stock</option>
-            <option value="out of stock">Out of Stock</option>
-          </select>
-        </div>
-      </div>
-
-      {/* --- Ratings --- */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium mb-2 text-gray-700">Ratings</h3>
-        <input
-          type="number"
-          step="0.1"
-          min="0"
-          max="5"
-          name="rating"
-          placeholder="Rating (0 - 5)"
-          value={product.rating}
-          onChange={handleChange}
-          className="border p-2 w-full rounded"
-        />
-      </div>
+        </label>
+      </fieldset>
 
       {/* --- Shipping --- */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium mb-2 text-gray-700">Shipping Info</h3>
-        <textarea
-          name="shippingInfo"
-          placeholder="Shipping details..."
-          value={product.shippingInfo}
-          onChange={handleChange}
-          className="border p-2 w-full rounded"
-        />
-      </div>
+      <fieldset className="mb-6">
+        <legend className="text-lg font-medium mb-2 text-gray-700">Shipping Info</legend>
+        <label>
+          <span className="sr-only">Shipping details</span>
+          <textarea
+            name="shippingInfo"
+            placeholder="Shipping details..."
+            value={product.shippingInfo}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+          />
+        </label>
+      </fieldset>
 
       {/* --- Images --- */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium mb-2 text-gray-700">Images</h3>
-        <input
-          type="file"
-          multiple
-          onChange={(e) => setFiles(Array.from(e.target.files || []))}
-          className="border p-2 w-full rounded"
-        />
-      </div>
+      <fieldset className="mb-6">
+        <legend className="text-lg font-medium mb-2 text-gray-700">Images</legend>
+        <label>
+          <span className="sr-only">Product images</span>
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={(e) => setFiles(Array.from(e.target.files || []))}
+            className="border p-2 w-full rounded"
+          />
+        </label>
+      </fieldset>
 
       {/* --- Submit --- */}
       <button

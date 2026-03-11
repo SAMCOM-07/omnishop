@@ -33,10 +33,7 @@ export default function LoginForm() {
         body: JSON.stringify({ token }),
       });
 
-      // const role = await getUserRole(user.uid);
-      // console.log('User role:', role);
-      // router.push(role === "admin" ? "/admin" : "/");
-      // if (!res.ok) router.push("/");
+      
       toast.success("Login successful!");
       router.push("/");
     } catch (err: any) {
@@ -46,58 +43,6 @@ export default function LoginForm() {
     }
   }
 
-  // async function handleLogin(e: React.FormEvent) {
-  //   e.preventDefault();
-  //   setLoading(true);
-
-  //   try {
-  //     const user = await loginUser(email, password);
-  //     const token = await user.getIdToken();
-
-  //     const res = await fetch("/api/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ token }),
-  //     });
-
-  //     if (!res.ok) throw new Error("Unauthorized");
-
-  //     router.push("/admin");
-  //   } catch (e: any) {
-  //     toast.error(e.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-
-
-  // async function handleGoogle() {
-  //   setLoading(true);
-  //   try {
-  //     const user = await signInWithGoogle();
-  //     const token = await user.getIdToken();
-
-  //     const res = await fetch("/api/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ token }),
-  //     });
-
-  //     // const role = await getUserRole(user.uid);
-  //     // console.log('User role:', role);
-  //     // router.push(role === "admin" ? "/admin" : "/");
-  //     // router.push("/");
-
-  //     // if (!res.ok) router.push("/");
-  //     router.push("/");
-  //   } catch (e: any) {
-  //     toast.error("Error: " + e.message);
-  //     console.log('Error: ' + e);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
 
   async function handleGoogle() {
     setLoading(true);

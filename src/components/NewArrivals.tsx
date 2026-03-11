@@ -21,7 +21,7 @@ const NewArrivals = async () => {
           products && products.length > 0 ? products.slice(0, 10).map((p, index) => {
             const product = { ...p }
             return (
-              <div key={index} className='group overflow-clip'>
+              <article key={index} aria-label={product.name} className='group overflow-clip'>
                 <div className='p-3 bg-neutral-2 space-y-3'>
                   <div className='flex item-start justify-between'>
                     <h4 className='px-2.5 py-0.5 rounded-sm bg-neutral-1 font-bold h-fit'>NEW</h4>
@@ -45,7 +45,7 @@ const NewArrivals = async () => {
                   <span className='text-sm font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
                   <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
                 </div>
-              </div>
+              </article>
             )
           }
           ) : <p className='text-center w-full py-12'>No product found !</p>

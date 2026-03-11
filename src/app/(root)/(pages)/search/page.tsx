@@ -41,12 +41,14 @@ const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => 
         <SearchBar q={q} />
       </div>
 
-      <h2 className='text-center mt-8'>Quick Search</h2>
-      <div className="flex flex-wrap gap-2 mt-2 justify-center">
+      <h2 className='text-center mt-8' id='quick-search-heading'>Quick Search</h2>
+      <div className="flex flex-wrap gap-2 mt-2 justify-center" role="list" aria-labelledby="quick-search-heading">
         {searchTags.map(tag => (
           <Link
             href={`/search?q=${tag.toLowerCase()}`}
             key={tag}
+            role="listitem"
+            aria-label={`Search for ${tag}`}
             className="px-3 text-neutral-4 py-1 rounded-full text-xs bg-neutral-2 hover:bg-neutral-3 transition border border-border"
           >
             {tag}

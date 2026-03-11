@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const NotFoundPage = () => {
   const router = useRouter();
   return (
-    <html>
+    <html lang="en">
       <body className="flex flex-col items-center justify-center min-h-screen bg-neutral-1 text-neutral-7">
         <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
         <p className="mb-8">The page you are looking for does not exist.</p>
