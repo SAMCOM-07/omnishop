@@ -1,4 +1,4 @@
-import banner1 from "../../public/images/clothes1.webp";
+import banner1 from "../../public/images/clothes1.avif";
 import banner2 from "../../public/images/shop1.avif";
 import banner3 from "../../public/images/clothes2.avif";
 import banner4 from "../../public/images/shop2.avif";
