@@ -16,7 +16,7 @@ export const LogInButton = () => {
       href={'/login'}
       className="bg-green text-neutral-1 text-sm py-2 px-3 rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2"
     >
-      Login <LogInIcon size={18} />
+      Login <LogInIcon aria-hidden="true" size={18} />
     </Link>
   );
 }
@@ -57,7 +57,7 @@ export const LogOutButton = () => {
       onClick={handleLogout}
       className="bg-red text-neutral-1 text-sm py-2 px-4 rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center gap-2 w-fit"
     >
-      <LogOutIcon size={18} /> Logout
+      <LogOutIcon aria-hidden="true" size={18} /> Logout
     </button>
   );
 }

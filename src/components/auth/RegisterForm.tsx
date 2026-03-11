@@ -87,7 +87,7 @@ export default function RegisterForm() {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full outline-none text-neutral-5 placeholder:text-sm"
           />
-          <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <EyeOff size={18} /> : <Eye size={18} />}</button>
+          <button type="button" aria-label={isOpen ? 'Hide password' : 'Show password'} onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <EyeOff aria-hidden="true" size={18} /> : <Eye aria-hidden="true" size={18} />}</button>
         </div>
 
         <p className="-mt-4 text-xs text-neutral-4 font-extralight italic">Password must include uppercase, lowercase, symbol and number</p>

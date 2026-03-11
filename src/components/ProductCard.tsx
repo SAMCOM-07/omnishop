@@ -9,11 +9,11 @@ const ProductCard = (p: ProductType) => {
   const product = { ...p };
 
   return (
-    <div className='group overflow-clip'>
+    <article aria-label={product.name} className='group overflow-clip'>
       <div className='p-3 bg-neutral-2 space-y-3'>
         <div className='flex items-center justify-between'>
           {product.discount !== 0 ? <h5 className='bg-green rounded-small text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2.5'>-{product.discount}%</h5> : <h5 className='h-5'></h5>}
-          
+
           {/* wishlist button */}
           <div className='lg:opacity-0 group-hover:opacity-100 transition-all duration-500'>
             <WishListBtn product={product} />
@@ -38,10 +38,8 @@ const ProductCard = (p: ProductType) => {
         <span className='text-sm font-bold'>{product.discount ? `$${product.discountedAmount}` : `$${product.price}`}</span>
         <span className='text-sm ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
       </div>
-    </div>
+    </article>
   )
 }
 
 export default ProductCard
-
-

@@ -46,18 +46,21 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
   return (
     <section ref={scrollRef} className='w-full'>
       <div className='py-6'>
-        <button className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
+        <button
+          aria-label="Toggle product filters"
+          aria-expanded={isOpen}
+          className='inline-flex gap-1 items-center border border-border py-1 px-3 rounded-lg font-semibold'
           onClick={() => setIsOpen(prev => !prev)}
         >
-          <ListFilter size={16} />Filter
+          <ListFilter aria-hidden="true" size={16} />Filter
         </button>
 
         {/* filter(side bar) from medium upward */}
-        <aside className='hidden md:block'>
+        <aside aria-label="Product filters" className='hidden md:block'>
 
           {/* filter by categories */}
-          <h3 className='mt-6 mb-4'>CATEGORIES</h3>
-          <div className='flex flex-col overflow-y-scroll gap-4 h-60 text-sm'>
+          <h3 id="filter-categories-heading" className='mt-6 mb-4'>CATEGORIES</h3>
+          <div role="radiogroup" aria-labelledby="filter-categories-heading" className='flex flex-col overflow-y-scroll gap-4 h-60 text-sm'>
             {
               categoriesLinks.map((link) => {
                 const isActive = selectedCategory === link.href || link.href === '/shop' && !selectedCategory
@@ -68,9 +71,9 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
                       name='category'
                       checked={isActive}
                       onChange={() => setSelectedCategory(link.href)}
-                      className='hidden'
+                      className='sr-only'
                     />
-                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
+                    <span aria-hidden="true" className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
                       {isActive ? <Check className='p-1' /> : ''}
                     </span>
                     {link.name}
@@ -82,8 +85,8 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
           </div>
 
           {/* filter by prices */}
-          <h3 className='mt-6 mb-4'>PRICES</h3>
-          <div className='flex flex-col gap-3 text-sm'>
+          <h3 id="filter-prices-heading" className='mt-6 mb-4'>PRICES</h3>
+          <div role="radiogroup" aria-labelledby="filter-prices-heading" className='flex flex-col gap-3 text-sm'>
             {
               priceLinks.map((link) => {
                 const isActive = priceState === link.href || link.price === 'All Prices' && !priceState;
@@ -95,9 +98,9 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
                       name='price'
                       checked={isActive}
                       onChange={() => setPriceState(link.href)}
-                      className='hidden'
+                      className='sr-only'
                     />
-                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
+                    <span aria-hidden="true" className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
                       {isActive ? <Check className='p-1' /> : ''}
                     </span>
                   </label>
@@ -132,12 +135,12 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
         {/* filter for small width */}
 
-        <div ref={dropdownRef} className={cn('md:hidden absolute inset-0 top-16 bg-neutral-1 shadow-lg border border-border min-h-fit p-4 rounded-lg', isOpen ? 'block' : 'hidden')}>
+        <div ref={dropdownRef} role="dialog" aria-label="Product filters" className={cn('md:hidden absolute inset-0 top-16 bg-neutral-1 shadow-lg border border-border min-h-fit p-4 rounded-lg', isOpen ? 'block' : 'hidden')}>
 
           {/* filter by cateogories */}
-          <h3 className='mb-4 flex items-center justify-between'>CATEGORIES<button onClick={() => setIsOpen(false)}><X size={18} /></button></h3>
+          <h3 id="mobile-categories-heading" className='mb-4 flex items-center justify-between'>CATEGORIES<button aria-label="Close filters" onClick={() => setIsOpen(false)}><X aria-hidden="true" size={18} /></button></h3>
 
-          <div className='flex flex-col overflow-y-scroll gap-3 h-60 text-sm'>
+          <div role="radiogroup" aria-labelledby="mobile-categories-heading" className='flex flex-col overflow-y-scroll gap-3 h-60 text-sm'>
             {
               categoriesLinks.map(link => {
                 const isActive = selectedCategory === link.href || link.href === '/shop' && !selectedCategory
@@ -145,11 +148,11 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
                   <label
                     key={link.name}
                     className="flex gap-2 items-center cursor-pointer">
-                    <input type="radio" name='category' checked={isActive}
+                    <input type="radio" name='mobile-category' checked={isActive}
                       onChange={() => setSelectedCategory(link.href)}
-                      className='hidden'
+                      className='sr-only'
                     />
-                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>{isActive ? <Check className='p-1' /> : ''}
+                    <span aria-hidden="true" className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>{isActive ? <Check className='p-1' /> : ''}
                     </span>
                     {link.name}
                   </label>
@@ -161,8 +164,8 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
 
 
           {/* filter by prices */}
-          <h3 className='mb-4 mt-8'>PRICES</h3>
-          <div className='flex flex-col gap-3 text-sm'>
+          <h3 id="mobile-prices-heading" className='mb-4 mt-8'>PRICES</h3>
+          <div role="radiogroup" aria-labelledby="mobile-prices-heading" className='flex flex-col gap-3 text-sm'>
             {
               priceLinks.map((link) => {
                 const isActive = priceState === link.href || (link.price === 'All Prices' && !priceState);
@@ -171,12 +174,12 @@ const Filter = ({ category, min, max, sort }: { category: string, min: string, m
                     {link.price}
                     <input
                       type="radio"
-                      name='price'
+                      name='mobile-price'
                       checked={isActive}
                       onChange={() => setPriceState(link.href)}
-                      className='hidden'
+                      className='sr-only'
                     />
-                    <span className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
+                    <span aria-hidden="true" className={cn('w-5 h-5 border border-border rounded-sm grid place-content-center', isActive && 'text-neutral-1 bg-neutral-7')}>
                       {isActive ? <Check className='p-1' /> : ''}
                     </span>
                   </label>

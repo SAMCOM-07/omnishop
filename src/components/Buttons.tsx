@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import { ProductType } from "@/types/types";
 import { ArrowRight, ChevronLeft, Heart, Minus, Plus, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 
 // link button
@@ -33,7 +32,7 @@ export const AddToCartBtn = ({ product }: { product: ProductType }) => {
   const productIsInWishlist = !!wishlistItems?.find(item => item.id === product.id);
 
   return (
-    <button onClick={() => {
+    <button aria-label={`Add ${product.name} to cart`} onClick={() => {
       addToCart(product);
       setCount(1);
       wishlistItems && productIsInWishlist && removeFromWishlist(product.id as string);
@@ -49,8 +48,9 @@ export const WishListBtn = ({ product }: { product: ProductType }) => {
   const productIsInWishlist = !!wishlistItems?.find(item => item.id === product.id);
   return (
     <button
+      aria-label={productIsInWishlist ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`}
       onClick={() => productIsInWishlist ? removeFromWishlist(product.id as string) : addToWishlist(product)}
-      className={cn('bg-neutral-1 p-1.5 shadow-lg rounded-full text-neutral-4 hover-scale')}><Heart size={20} className={cn(productIsInWishlist ? 'fill-green text-green' : 'fill-none')} /></button>
+      className={cn('bg-neutral-1 p-1.5 shadow-lg rounded-full text-neutral-4 hover-scale')}><Heart aria-hidden="true" size={20} className={cn(productIsInWishlist ? 'fill-green text-green' : 'fill-none')} /></button>
   )
 }
 
@@ -60,8 +60,9 @@ export const WishListBtnWithText = ({ product }: { product: ProductType }) => {
   const productIsInWishlist = !!wishlistItems?.find(item => item.id === product.id);
   return (
     <button
+      aria-label={productIsInWishlist ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`}
       onClick={() => productIsInWishlist ? removeFromWishlist(product.id as string) : addToWishlist(product)}
-      className='border border-neutral-4 p-2 text-xs md:textbase rounded-lg w-full text-center font-inter flex items-center justify-center gap-2 hover:bg-neutral-5 hover:text-neutral-1 active:scale-95 transition-all duration-300'><Heart size={18} className={cn(productIsInWishlist ? 'fill-green text-green' : 'fill-none')} /><span>{productIsInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}</span></button>
+      className='border border-neutral-4 p-2 text-xs md:textbase rounded-lg w-full text-center font-inter flex items-center justify-center gap-2 hover:bg-neutral-5 hover:text-neutral-1 active:scale-95 transition-all duration-300'><Heart aria-hidden="true" size={18} className={cn(productIsInWishlist ? 'fill-green text-green' : 'fill-none')} /><span>{productIsInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}</span></button>
   )
 }
 
@@ -69,7 +70,7 @@ export const WishListBtnWithText = ({ product }: { product: ProductType }) => {
 export const RemoveFromWishlistButton = ({ productId }: { productId: string | undefined }) => {
   const { removeFromWishlist } = useWishlist();
   return (
-    <button onClick={() => removeFromWishlist(productId!)} className="flex items-center text-neutral-4 text-sm gap-1.5"><X size={22} /> </button>
+    <button aria-label="Remove from wishlist" onClick={() => removeFromWishlist(productId!)} className="flex items-center text-neutral-4 text-sm gap-1.5"><X aria-hidden="true" size={22} /> </button>
   )
 }
 
@@ -78,10 +79,11 @@ export const RemoveFromWishlistButton = ({ productId }: { productId: string | un
 export const GoBackButton = () => {
   return (
     <button
+      aria-label="Go back to previous page"
       onClick={() => window.history.back()}
       className="sticky top-16 z-50 py-3 w-full bg-neutral-1 text-neutral-4 flex items-center gap-1 group text-sm md:text-base group [direction:ltr] font-inter"
     >
-      <ChevronLeft size={18} className="group-hover:-translate-x-0.5 group-active:translate-0 transition-transform duration-200" />
+      <ChevronLeft aria-hidden="true" size={18} className="group-hover:-translate-x-0.5 group-active:translate-0 transition-transform duration-200" />
       <span>back</span>
     </button>
   );
@@ -93,19 +95,21 @@ export const QuantityUpdateButton = () => {
   const { count, setCount } = useCart()
 
   return (
-    <div className="bg-neutral-2 max-w-28 min-w-28 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
+    <div role="group" aria-label="Quantity selector" className="bg-neutral-2 max-w-28 min-w-28 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
       <button
+        aria-label="Decrease quantity"
         disabled={count <= 1}
         onClick={() => {
           setCount(prev => prev <= 1 ? 1 : prev - 1);
         }}
-        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale disabled:opacity-50 disabled:cursor-not-allowed"><Minus className="hover-scale" size={16} /></button>
-      <span className="font-bold text-sm">{count}</span>
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale disabled:opacity-50 disabled:cursor-not-allowed"><Minus aria-hidden="true" className="hover-scale" size={16} /></button>
+      <span aria-live="polite" className="font-bold text-sm">{count}</span>
       <button
+        aria-label="Increase quantity"
         onClick={() => {
           setCount(prev => prev + 1);
         }}
-        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale"><Plus className="hover-scale" size={16} /></button>
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale"><Plus aria-hidden="true" className="hover-scale" size={16} /></button>
     </div >
   )
 }
@@ -117,7 +121,7 @@ export const RemoveFromCartButton = ({ productId, text }: { productId: string | 
   const { removeFromCart } = useCart();
 
   return (
-    <button onClick={() => removeFromCart(productId!)} className="flex items-center text-neutral-4 text-sm gap-1.5"><X size={20} /> {text ? text : ''}</button>
+    <button aria-label="Remove from cart" onClick={() => removeFromCart(productId!)} className="flex items-center text-neutral-4 text-sm gap-1.5"><X aria-hidden="true" size={20} /> {text ? text : ''}</button>
   )
 }
 
@@ -126,15 +130,17 @@ export const IncreaseAndDecreaseButton = ({ productId, quantity }: { productId: 
 
   const { increaseQuantity, decreaseQuantity } = useCart();
   return (
-    <div className="bg-neutral-2 max-w-28 min-w-24 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
+    <div role="group" aria-label="Item quantity" className="bg-neutral-2 max-w-28 min-w-24 w-full p-1.5 flex justify-between items-center rounded-full shadow-inner">
       <button
+        aria-label="Decrease quantity"
         disabled={quantity <= 1}
         onClick={() => decreaseQuantity(productId!)}
-        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale disabled:opacity-50 disabled:cursor-not-allowed"><Minus className="hover-scale" size={14} /></button>
-      <span className="text-sm font-semibold">{quantity}</span>
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale disabled:opacity-50 disabled:cursor-not-allowed"><Minus aria-hidden="true" className="hover-scale" size={14} /></button>
+      <span aria-live="polite" className="text-sm font-semibold">{quantity}</span>
       <button
+        aria-label="Increase quantity"
         onClick={() => increaseQuantity(productId!)}
-        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale"><Plus className="hover-scale" size={14} /></button>
+        className="bg-neutral-1 p-1 shadow-md rounded-full text-neutral-5 hover-scale"><Plus aria-hidden="true" className="hover-scale" size={14} /></button>
     </div >
   )
 }

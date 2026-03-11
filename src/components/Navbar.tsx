@@ -30,13 +30,14 @@ const Navbar = () => {
             <Image src={LogoText} alt="Omnishop Logo" className="w-24" sizes="96px" />
           </Link>
           {/* nav links */}
-          <nav className='hidden md:flex items-center gap-6 px-3 py-1 rounded-full '>
+          <nav aria-label="Main navigation" className='hidden md:flex items-center gap-6 px-3 py-1 rounded-full '>
             {
               navLinks && navLinks.map(link => {
                 const activeLink = pathname === link.href
                 return (
                   <Link href={link.href}
                     key={link.name}
+                    aria-current={activeLink ? 'page' : undefined}
                     className={cn(
                       activeLink ? "text-green font-semibold" : "text-neutral-4 hover:text-neutral-5",
                       "transition-colors duration-300"
@@ -48,22 +49,24 @@ const Navbar = () => {
           </nav>
         </div>
 
-        <Link href="/search" className="flex text-neutral-4/70 hover:scale-105 active:scale-95 transition-all duration-300 items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 px-3 py-1.5 rounded-full grow max-w-sm font-inter">
-          <Search size={20} />
-          Search . . .
-        </Link>
+        {
+          pathname !== '/search' && <Link href="/search" aria-label="Search products" className="flex text-neutral-4/70 hover:scale-105 active:scale-95 transition-all duration-300 items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 px-3 py-1.5 rounded-full grow max-w-sm font-inter">
+            <Search aria-hidden="true" size={20} />
+            Search . . .
+          </Link>
+        }
 
         <div className="hidden md:flex items-center gap-6">
 
           {
-            isLoggedIn ? <Link href={'/profile'}> {profileDetails?.profilePicture ? <img src={profileDetails.profilePicture} className="rounded-full bg-neutral-3 hover-scale object-cover w-8 h-8" /> : user?.photoURL ? <img src={`${user?.photoURL}`} className="rounded-full bg-neutral-3 hover-scale object-cover w-8 h-8" /> : <User2Icon size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" />}</Link> : loadingUser ? <UserIconSkeleton /> : <LogInButton />
+            isLoggedIn ? <Link href={'/profile'} aria-label="Profile"> {profileDetails?.profilePicture ? <img src={profileDetails.profilePicture} alt="Profile picture" className="rounded-full bg-neutral-3 hover-scale object-cover w-8 h-8" /> : user?.photoURL ? <img src={`${user?.photoURL}`} alt="Profile picture" className="rounded-full bg-neutral-3 hover-scale object-cover w-8 h-8" /> : <User2Icon aria-hidden="true" size={30} className="bg-neutral-3 hover-scale text-neutral-4 rounded-full p-1" />}</Link> : loadingUser ? <UserIconSkeleton /> : <LogInButton />
           }
-          <Link href={'/wishlist'} className="relative hover-scale">
-            <Heart size={20} />
+          <Link href={'/wishlist'} aria-label="Wishlist" className="relative hover-scale">
+            <Heart aria-hidden="true" size={20} />
           </Link>
-          <Link href={'/cart'} className="relative hover-scale">
-            <ShoppingCart size={20} />
-            <div className='rounded-full p-1 font-bold text-green text-sm absolute left-4.5 -top-3.5'>{totalQuantity}</div>
+          <Link href={'/cart'} aria-label={`Cart, ${totalQuantity} items`} className="relative hover-scale">
+            <ShoppingCart aria-hidden="true" size={20} />
+            <div aria-hidden="true" className='rounded-full p-1 font-bold text-green text-sm absolute left-4.5 -top-3.5'>{totalQuantity}</div>
           </Link>
         </div>
       </header>

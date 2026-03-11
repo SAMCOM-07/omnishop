@@ -10,9 +10,9 @@ const SearchBar = ({ q }: { q?: string | null }) => {
   const router = useRouter()
 
   return (
-    <section className='flex items-center gap-2'>
+    <section role="search" className='flex items-center gap-2'>
       <div className='flex text-neutral-4/70 items-center gap-2 bg-neutral-2 shadow-inner shadow-neutral-4 p-3 rounded-full font-inter grow'>
-        <Search size={20} />
+        <Search aria-hidden="true" size={20} />
         <input
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setQuery(e.target.value);
@@ -22,19 +22,20 @@ const SearchBar = ({ q }: { q?: string | null }) => {
             if (e.key === 'Enter') router.push(`?q=${query}`);
           }}
           value={query}
-          type="text"
+          type="search"
+          aria-label="Search products"
           placeholder='Search . . .'
           className='outline-0 grow'
         />
 
-        <button onClick={() => {
+        <button aria-label="Clear search" onClick={() => {
           setQuery('');
           router.push('/search');
         }}
-          className={`${query ? 'block' : 'hidden'}`}><X size={18} /></button>
-        <button onClick={() => router.push(`?q=${query}`)}
+          className={`${query ? 'block' : 'hidden'}`}><X aria-hidden="true" size={18} /></button>
+        <button aria-label="Submit search" onClick={() => router.push(`?q=${query}`)}
           className={`${query ? 'block' : 'hidden'}`}
-        ><ArrowRightCircle size={24} /></button>
+        ><ArrowRightCircle aria-hidden="true" size={24} /></button>
       </div>
     </section>
   )

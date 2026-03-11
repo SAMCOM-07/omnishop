@@ -156,7 +156,7 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full outline-none text-neutral-5 placeholder:text-sm"
           />
-          <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <EyeOff size={18} /> : <Eye size={18} />}</button>
+          <button type="button" aria-label={isOpen ? 'Hide password' : 'Show password'} onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <EyeOff aria-hidden="true" size={18} /> : <Eye aria-hidden="true" size={18} />}</button>
         </div>
 
 
@@ -165,7 +165,7 @@ export default function LoginForm() {
           <div className="flex items-center gap-2 ">
             <button type="button" className="" onClick={() => setIsChecked(prev => !prev)}>
               <input type="checkbox" id="remember-me" readOnly checked={isChecked} className="hidden" />
-              <span className={cn("h-5 w-5 rounded-sm border-neutral-4 text-neutral-1 grid place-content-center", isChecked ? 'bg-neutral-7 border-0' : 'bg-neutral-1 border-2')}>{isChecked ? <Check className="p-1" /> : ""}</span>
+              <span aria-hidden="true" className={cn("h-5 w-5 rounded-sm border-neutral-4 text-neutral-1 grid place-content-center", isChecked ? 'bg-neutral-7 border-0' : 'bg-neutral-1 border-2')}>{isChecked ? <Check className="p-1" /> : ""}</span>
             </button>
             <label htmlFor="remember-me" className="mt-0.5 text-neutral-4 text-sm cursor-pointer">Remember me</label>
           </div>
