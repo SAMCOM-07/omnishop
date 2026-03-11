@@ -48,7 +48,6 @@ const Main = () => {
                 fetchPriority='high'
                 width={400}
                 height={200}
-
                 sizes="100vw"
                 className='w-full h-full object-cover object-center'
               />
