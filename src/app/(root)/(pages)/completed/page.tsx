@@ -1,6 +1,7 @@
-import OrderCompleted from '@/components/cart/OrderCompleted'
 import CartBreadCrumb from '@/components/CartBreadCrumb'
-import React from 'react'
+import dynamic from 'next/dynamic'
+
+const OrderCompleted = dynamic(() => import('@/components/cart/OrderCompleted'))
 
 const CompletionPage = () => {
   return (

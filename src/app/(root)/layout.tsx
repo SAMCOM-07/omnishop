@@ -3,10 +3,12 @@ import { Poppins, Inter } from "next/font/google";
 import { Providers } from "@/context/Providers";
 import Navbar from "@/components/Navbar";
 import './../styles/globals.css';
-import Footer from "@/components/Footer";
-import Hamburger from "@/components/Hamburger";
 import ToastProvider from "@/components/ui/ToastProvider";
 import Newsletter from "@/components/Newsletter";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("@/components/Footer"));
+const Hamburger = dynamic(() => import("@/components/Hamburger"));
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -79,7 +81,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
-      <head><meta name="google-site-verification" content="TXGAApfYoQlYQxnV7s3s7trHwEWFbchma88PXHOatYQ" /></head>
+      <head>
+        <meta name="google-site-verification" content="TXGAApfYoQlYQxnV7s3s7trHwEWFbchma88PXHOatYQ" />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+      </head>
       <body className="font-poppins bg-neutral-1 text-neutral-7 antialiased relative">
         <ToastProvider />
         <Providers>

@@ -3,7 +3,7 @@ import ProductCard from '@/components/ProductCard';
 import { ProductSkeleton } from '@/components/Skeletons';
 import { getProductsByPriceRange, getProductsByCategory, getAllProducts, getProductsByCategoryAndPriceRange } from '@/lib/getProducts';
 import { Suspense } from 'react';
-import bannerImg from './../../../../../public/images/clothes2.jpg';
+import bannerImg from './../../../../../public/images/clothes2.avif';
 import Image from 'next/image';
 import { LinkButton } from '@/components/Buttons';
 import Sort from '@/components/Sort';

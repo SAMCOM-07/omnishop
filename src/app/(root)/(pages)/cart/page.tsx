@@ -1,5 +1,7 @@
-import ShoppingCart from '@/components/cart/ShoppingCart';
 import CartBreadCrumb from '@/components/CartBreadCrumb';
+import dynamic from 'next/dynamic';
+
+const ShoppingCart = dynamic(() => import('@/components/cart/ShoppingCart'));
 
 const CartPage = () => {
 

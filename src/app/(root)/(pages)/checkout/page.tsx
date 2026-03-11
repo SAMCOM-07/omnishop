@@ -1,7 +1,7 @@
-import CheckoutSummary from '@/components/cart/CheckoutSummary'
-import OrderSummary from '@/components/cart/OrderSummary'
 import CartBreadCrumb from '@/components/CartBreadCrumb'
-import React from 'react'
+import dynamic from 'next/dynamic'
+
+const CheckoutSummary = dynamic(() => import('@/components/cart/CheckoutSummary'))
 
 const CheckOutPage = () => {
   return (
