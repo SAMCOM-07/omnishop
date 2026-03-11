@@ -94,7 +94,7 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
           setWishlistItems(local);
         }
       } catch (err) {
-        console.error("Error loading wishlist", err);
+        toast.error("Failed to load wishlist");
       } finally {
         setLoadingWishlist(false);
       }
@@ -113,7 +113,7 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
         items: wishlistItems,
       });
     } catch (err) {
-      console.error("Wishlist sync failed", err);
+      toast.error("Failed to sync wishlist");
     } finally {
       setIsSyncing(false);
     }

@@ -20,7 +20,7 @@ const ProductCard = (p: ProductType) => {
           </div>
         </div>
         <Link href={`/shop/${product.id}`} className='aspect-square overflow-hidden block rounded-md w-full'>
-          <Image width={400} height={400} src={product.images[0].url.replace(
+          <Image width={200} height={200} src={product.images[0].url.replace(
             "/upload/",
             "/upload/f_auto,q_auto,w_600/"
           )} alt={product.name} sizes="(min-width: 1280px) 20vw, (min-width: 768px) 25vw, 50vw" className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />

@@ -7,11 +7,7 @@ export async function POST(req: Request) {
   // Verify ID token
   const decoded = await adminAuth.verifyIdToken(token);
 
-  // Optional: You can log 'decoded' to explore its structure
-  console.log("Decoded token:", decoded.role);
-  
-
-  // Create SESSION COOKIE
+    // Create SESSION COOKIE
   const sessionCookie = await adminAuth.createSessionCookie(token, {
     expiresIn: 1000 * 60 * 60 * 24 * 5, // 5 days
   });

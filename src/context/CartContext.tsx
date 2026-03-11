@@ -89,7 +89,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       setLoadingCart(false);
     } catch (error) {
       setLoadingCart(false);
-      console.error("Failed to load cart from localStorage:", error);
     } finally {
       setLoadingCart(false);
     }
@@ -132,7 +131,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         }
         setLoadingCart(false);
       } catch (err) {
-        console.error("Error loading cart from Firestore:", err);
+        toast.error("Failed to load cart");
         setLoadingCart(false);
       } finally {
         setLoadingCart(false);
@@ -152,7 +151,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     try {
       await setDoc(doc(db, "cart", user.uid), { items: cartItems });
     } catch (err) {
-      console.error("Error syncing cart to Firestore:", err);
+      toast.error("Failed to sync cart");
     } finally {
       setIsSyncing(false);
     }

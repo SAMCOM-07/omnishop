@@ -78,7 +78,7 @@ const ShoppingCart = () => {
                 <td className='py-6'>
                   <div className='flex items-center gap-4'>
                     <Link href={`/shop/${item.id}`} className='aspect-square overflow-hidden block rounded-md w-28 h-28 bg-neutral-2'>
-                      <Image width={400} height={400} src={item.images[0].url.replace(
+                      <Image width={200} height={200} src={item.images[0].url.replace(
                         "/upload/",
                         "/upload/f_auto,q_auto,w_250/"
                       )} alt={item.name} sizes="112px" className='h-full w-full object-cover object-center hover:scale-110 active:scale-110 transition-all duration-500' />
