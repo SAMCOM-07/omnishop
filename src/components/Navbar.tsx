@@ -27,7 +27,12 @@ const Navbar = () => {
         <div className="flex items-center gap-6">
           {/* logo */}
           <Link href={'/'} className="font-extrabold text-lg md:text-xl lg:text-2xl tracking-tight text-green">
-            <Image src={LogoText} alt="Omnishop Logo" width={400} height={400} className="w-24" sizes="96px" />
+            <Image src={LogoText} alt="Omnishop Logo"
+              priority
+              fetchPriority="high"
+              width={400} height={400}
+              className="w-24"
+              sizes="96px" />
           </Link>
           {/* nav links */}
           <nav aria-label="Main navigation" className='hidden md:flex items-center gap-6 px-3 py-1 rounded-full '>

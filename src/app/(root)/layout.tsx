@@ -12,7 +12,7 @@ const Hamburger = dynamic(() => import("@/components/Hamburger"));
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600"], // adjust as needed
+  weight: ["400", "500", "600"],
   variable: "--font-poppins",
 });
 

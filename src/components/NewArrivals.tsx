@@ -24,7 +24,7 @@ const NewArrivals = async () => {
               <article key={index} aria-label={product.name} className='group overflow-clip'>
                 <div className='p-3 bg-neutral-2 space-y-3'>
                   <div className='flex item-start justify-between'>
-                    <h4 className='px-2.5 py-0.5 rounded-sm bg-neutral-1 font-bold h-fit'>NEW</h4>
+                    <h2 className='text-base px-2.5 py-0.5 rounded-sm bg-neutral-1 font-bold h-fit'>NEW</h2>
                     <div className='lg:opacity-0 group-hover:opacity-100 transition-all duration-500'>
 
                     <WishListBtn product={product} />
