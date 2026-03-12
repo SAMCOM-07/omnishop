@@ -12,7 +12,7 @@ const ProductCard = (p: ProductType) => {
     <article aria-label={product.name} className='group overflow-clip'>
       <div className='p-3 bg-neutral-2 space-y-3'>
         <div className='flex items-center justify-between'>
-          {product.discount !== 0 ? <h5 className='bg-green rounded-small text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2.5'>-{product.discount}%</h5> : <h5 className='h-5'></h5>}
+          {product.discount !== 0 ? <span className='bg-green text-sm rounded-small text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2'>-{product.discount}%</span> : <h5 className='h-5'></h5>}
 
           {/* wishlist button */}
           <div className='lg:opacity-0 group-hover:opacity-100 transition-all duration-500'>

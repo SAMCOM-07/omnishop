@@ -1,5 +1,11 @@
+import { Metadata } from 'next'
 import MyWishlist from '@/components/profile/MyWishlist'
 import SideProfile from '@/components/profile/SideProfile'
+
+export const metadata: Metadata = {
+  title: "My Wishlist | Omnishop",
+  description: "View and manage your wishlist items on Omnishop",
+}
 
 const WishListPage = () => {
   return (

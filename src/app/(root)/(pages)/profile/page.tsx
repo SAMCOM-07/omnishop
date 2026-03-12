@@ -1,6 +1,11 @@
 import MyAccount from '@/components/profile/MyAccount'
 import SideProfile from '@/components/profile/SideProfile'
-import React from 'react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'My Account',
+  description: 'Manage your account and profile settings',
+}
 
 const ProfilePage = () => {
   return (

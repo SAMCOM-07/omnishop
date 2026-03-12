@@ -38,14 +38,23 @@ export default async function ProductDetailsPage({ params }: { params: { product
               product.tags && product.tags.map((tag, i) =>
                 <Link href={`/search?q=${encodeURIComponent(tag)}`}
                   key={i}
+                  aria-label={`Search for ${tag}`}
                   className="bg-blue text-neutral-1 rounded-md py-1 px-3 text-xs font-inter"
                 >{tag}</Link>
               )
             }
           </div>
           <div>
-            <span className='font-bold'>{product.discount ? '$' + product.discountedAmount : '$' + product.price}</span>
-            <span className='ml-4 line-through text-neutral-4'>{product.discount ? `$${product.price}` : ''}</span>
+            <span className='font-bold'>
+              <span className='sr-only'>{product.discount ? 'Sale price: ' : 'Price: '}</span>
+              {product.discount ? '$' + product.discountedAmount : '$' + product.price}
+            </span>
+            {product.discount ? (
+              <span className='ml-4 line-through text-neutral-4'>
+                <span className='sr-only'>Original price: </span>
+                ${product.price}
+              </span>
+            ) : null}
           </div>
           <div className="flex gap-4 items-center">
             <QuantityUpdateButton />

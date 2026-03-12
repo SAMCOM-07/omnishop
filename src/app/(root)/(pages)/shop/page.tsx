@@ -8,12 +8,10 @@ import {
   getProductsByCategoryAndPriceRange,
 } from "@/lib/getProducts";
 import { Suspense } from "react";
-import bannerImg from "./../../../../../public/images/clothes2.avif";
-import Image from "next/image";
-import { LinkButton } from "@/components/Buttons";
 import Sort from "@/components/Sort";
 import Filter from "@/components/Filter";
 import { ProductType } from "@/types/types";
+import ShopBannerCarousel from "@/components/ShopBannerCarousel";
 
 export const metadata: Metadata = {
   title: "Shop - Browse Our Best Products | Omnishop",
@@ -90,29 +88,8 @@ const ShopPage = async ({
 
   return (
     <>
-      <section className="flex items-center justify-center overflow-hidden bg-gray-500 relative ">
-        <div className="w-full lg:h-150 h-100 bg-gray-200 transition-all duration-500">
-          <Image
-            src={bannerImg}
-            alt="Shop clothing collection banner"
-            priority
-            width={600}
-            height={400}
-            sizes="100vw"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-        {/* texts, overlay and CTA button */}
-        <div className="text-center flex flex-col gap-3 items-center justify-center p-6 absolute bg-black/50  inset-0 w-full h-full text-neutral-1">
-          <h1 className="mx-auto sm:text-3xl lg:text-5xl leading-6.5 lg:leading-10 font-extrabold">
-            Feel Free To Shop Anything !!!
-          </h1>
-          <span className="mx-auto mt-2 text-xs sm:text-sm lg:text-lg font-bold">
-            You can filter by category and also sort
-          </span>
-          <LinkButton text="Go Home" href="/" />
-        </div>
-      </section>
+      {/* banner image */}
+      <ShopBannerCarousel />
 
       {/* filter, sort and category-title */}
 

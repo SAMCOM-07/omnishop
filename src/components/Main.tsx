@@ -1,8 +1,6 @@
 'use client'
 
-import { banners } from '@/data/images'
-import { cn } from '@/lib/utils'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+
 import Image from 'next/image'
 import { useState } from 'react'
 import { LinkButton } from "./Buttons"
@@ -11,59 +9,28 @@ import Chair from "../../public/images/chair.avif"
 import Link from 'next/link'
 import Shirt from './../../public/images/white-shirt.avif';
 import Bag from './../../public/images/travel-bags.avif';
-// import Banner from './../../public/images/clothes1.webp';
+import Banner from './../../public/images/clothes1.avif';
 
 const Main = () => {
 
-  const [currentBanner, setCurrentBanner] = useState(0)
+ 
 
   return (
     <main className='mb-24'>
 
       {/* banner section */}
-      <section aria-label="Banner carousel" className='flex items-center justify-center overflow-hidden bg-gray-500 relative'>
-        {
-          banners && banners.length > 0 && banners.map((banner, index) =>
-            <div key={banner.id}
-              className={cn('lg:h-150 h-100 bg-gray-200 transition-all duration-500 relative', currentBanner === index ? 'w-full' : 'w-0')}>
-              <Image
-                src={banner.img}
-                alt='banner Image'
-                priority
-                fetchPriority='high'
-                width={400}
-                height={200}
-
-                sizes="100vw"
-                className='w-full h-full object-cover object-center'
-              />
-            </div>
-          )
-          }
-        
-        {/* <div className="w-full lg:h-150 h-100 bg-gray-200 transition-all duration-500 relative">
+      <section aria-label="Hero banner" className='flex items-center justify-center overflow-hidden bg-gray-500 relative'>
+        <div className="w-full lg:h-150 h-100 bg-gray-200 transition-all duration-500 relative">
           <Image
             src={Banner}
-            alt='banner Image'
+            alt='Omnishop hero banner — shop all products'
             priority
             fetchPriority='high'
             width={400}
             height={200}
-
             sizes="100vw"
             className='w-full h-full object-cover object-center'
           />
-        </div> */}
-
-        {/* banner buttons */}
-        <button aria-label='Previous banner' onClick={() => setCurrentBanner(prev => prev === 0 ? 0 : prev - 1)} className='arrow-button left-6'><ChevronLeft aria-hidden="true" /></button>
-        <button aria-label='Next banner' onClick={() => setCurrentBanner(prev => prev === banners.length - 1 ? banners.length - 1 : prev + 1)} className='arrow-button right-6'><ChevronRight aria-hidden="true" /></button>
-
-        {/* navigation button */}
-        <div className='flex items-center gap-2 absolute bottom-6'>
-          {[...banners].map((_, index) =>
-            <button key={index} aria-label={`Go to banner ${index + 1}`} aria-current={currentBanner === index ? 'true' : undefined} onClick={() => setCurrentBanner(index)} className={cn('h-2.5 rounded-full bg-neutral-1 transition-all duration-300 z-40', currentBanner === index ? 'w-5 bg-green' : 'w-2.5')}></button>
-          )}
         </div>
 
         {/* texts, overlay and CTA button */}
@@ -75,7 +42,7 @@ const Main = () => {
       </section>
 
       {/* hero text (motto) section */}
-      <section className='container grid grid-cols-1 sm:grid-cols-2 sm:items-center gap-6 mt-12'>
+      <section aria-label="Our promise" className='container grid grid-cols-1 sm:grid-cols-2 sm:items-center gap-6 mt-12'>
         <div className='text-4xl lg:text-6xl xl:text-7xl'>
           <div>Simply Unique <span className='text-neutral-4'>/</span></div>
           <div>Simply Better <span className='text-neutral-4'>.</span></div>
@@ -86,7 +53,7 @@ const Main = () => {
       </section>
 
       {/* showcase section */}
-      <section className='container grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 [direction:ltr]'>
+      <section aria-label="Shop by category" className='container grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 [direction:ltr]'>
         {/* 1 */}
         <div className='bg-neutral-2 p-6 overflow-hidden space-y-4 w-full'>
           <h2>Furniture</h2>

@@ -5,6 +5,14 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Rating from '@/components/Rating';
+
+
+export const metadata = {
+  title: 'Search',
+  description: 'Search for products in our store',
+}
+
+
 const SearchPage = async ({ searchParams }: { searchParams: { q: string } }) => {
 
   const { q } = await searchParams || '';

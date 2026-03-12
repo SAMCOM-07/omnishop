@@ -11,9 +11,9 @@ const NewArrivals = async () => {
   const products: ProductType[] = await getAllProducts();
 
   return (
-    <section className='overflow-x-hidden'>
+    <section aria-labelledby="new-arrivals-heading" className='overflow-x-hidden'>
       <div className='flex items-end justify-between'>
-        <h1 className='inline-block leading-8'>New <span className='block'>Arrivals</span></h1>
+        <h1 id="new-arrivals-heading" className='inline-block leading-8'>New <span className='block'>Arrivals</span></h1>
         <LinkButton text='All Products' href='/shop' />
       </div>
       <div className='mt-12 flex items-start overflow-x-auto gap-6'>
@@ -30,7 +30,7 @@ const NewArrivals = async () => {
                     <WishListBtn product={product} />
                     </div>
                   </div>
-                  {product.discount !== 0 ? <h5 className='bg-green text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2.5'>-{product.discount}%</h5> : <h5 className='h-5'></h5>}
+                  {product.discount !== 0 ? <span className='bg-green text-center text-neutral-1 font-semibold rounded-sm w-fit h-5 px-2 text-sm'>-{product.discount}%</span> : <span className='h-5 text-sm'></span>}
                   <Link href={`/shop/${product.id}`} className='overflow-hidden block w-62.5 h-62.5 rounded-md'>
                     <Image width={400} height={400} src={product.images[0].url.replace(
                       "/upload/",

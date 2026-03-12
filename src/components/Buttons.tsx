@@ -17,7 +17,7 @@ export const LinkButton = ({ text, href }: { text: string, href: string }) => {
     >
       <span>{text}</span>
       <span className="group-hover:translate-x-0.5 group-active:translate-0 transition-transform duration-200">
-        <ArrowRight size={18} />
+        <ArrowRight aria-hidden="true" size={18} />
       </span>
     </Link>
   );

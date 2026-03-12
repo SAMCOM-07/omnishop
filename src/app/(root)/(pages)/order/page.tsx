@@ -1,5 +1,10 @@
 import SideProfile from '@/components/profile/SideProfile'
 
+export const metadata = {
+  title: 'Order History',
+  description: 'View your order history and track your orders',
+}
+
 const OrderPage = () => {
   return (
     <div className='container'>

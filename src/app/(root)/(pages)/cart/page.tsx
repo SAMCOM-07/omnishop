@@ -1,7 +1,14 @@
 import CartBreadCrumb from '@/components/CartBreadCrumb';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 const ShoppingCart = dynamic(() => import('@/components/cart/ShoppingCart'));
+
+
+export const metadata: Metadata = {
+  title: "My Cart | Omnishop",
+  description: "View and manage your cart items on Omnishop",
+}
 
 const CartPage = () => {
 

@@ -3,6 +3,11 @@ import dynamic from 'next/dynamic'
 
 const OrderCompleted = dynamic(() => import('@/components/cart/OrderCompleted'))
 
+export const metadata = {
+  title: "Order Completed | Omnishop",
+  description: "Your order has been successfully completed. Thank you for shopping with us!",
+}
+
 const CompletionPage = () => {
   return (
     <div className='container'>

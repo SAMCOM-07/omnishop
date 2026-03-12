@@ -1,4 +1,10 @@
 import SideProfile from '@/components/profile/SideProfile'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "My addresses | Omnishop",
+  description: "Manage your delivery addresses and saved locations on Omnishop",
+}
 
 const AdressPage = () => {
   return (
