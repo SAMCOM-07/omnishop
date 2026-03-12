@@ -32,8 +32,9 @@ const Navbar = () => {
               alt="Omnishop Logo"
               priority
               quality={55}
+              width={400}
+              height={400}
               sizes="96px"
-              className="h-auto w-24"
             />
           </Link>
           {/* nav links */}
