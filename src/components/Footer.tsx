@@ -16,7 +16,13 @@ const Footer = () => {
       <div className='container flex flex-col md:flex-row justify-between items-center md:items-center gap-12'>
         <div className='flex flex-col md:flex-row items-center gap-6'>
           <Link href="/" className="w-24 inline-block brightness-100">
-            <Image src={LogoText} width={400} height={400} alt="Omnishop home" />
+            <Image
+              src={LogoText}
+              alt="Omnishop home"
+              quality={55}
+              sizes="96px"
+              className="h-auto w-24"
+            />
           </Link>
           <div aria-hidden="true" className='md:h-6 md:w-0.5 w-6 h-0.5 -mt-2 md:m-0 bg bg-neutral-4 '></div>
           <p className='font-extralight text-neutral-3'>Where you get all Products</p>

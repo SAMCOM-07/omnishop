@@ -26,13 +26,15 @@ const Navbar = () => {
       <header className="container py-4 flex items-center gap-6 justify-between">
         <div className="flex items-center gap-6">
           {/* logo */}
-          <Link href={'/'} className="font-extrabold text-lg md:text-xl lg:text-2xl tracking-tight text-green">
-            <Image src={LogoText} alt="Omnishop Logo"
+          <Link href={'/'} className="w-24 shrink-0">
+            <Image
+              src={LogoText}
+              alt="Omnishop Logo"
               priority
-              fetchPriority="high"
-              width={400} height={400}
-              className="w-24"
-              sizes="96px" />
+              quality={55}
+              sizes="96px"
+              className="h-auto w-24"
+            />
           </Link>
           {/* nav links */}
           <nav aria-label="Main navigation" className='hidden md:flex items-center gap-6 px-3 py-1 rounded-full '>

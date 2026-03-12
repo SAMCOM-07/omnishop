@@ -20,7 +20,13 @@ export default function LoginPage() {
         <LoginForm />
       </div>
       <Link href="/" aria-label="Go to homepage" className="w-32 absolute top-6 -translate-x-1/2 left-1/2 lg:hidden">
-        <Image src={LogoText} width={400} height={400} alt="Omnishop" />
+        <Image
+          src={LogoText}
+          alt="Omnishop"
+          quality={55}
+          sizes="128px"
+          className="h-auto w-32"
+        />
       </Link>
     </div>
   );
